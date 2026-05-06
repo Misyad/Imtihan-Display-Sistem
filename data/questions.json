@@ -1,0 +1,122 @@
+[
+  {
+    "nomor": 1,
+    "kategori": "Aqidah",
+    "soal": "Sebutkan rukun iman yang ke-4!",
+    "jawaban": "Iman kepada Rasul-rasul Allah"
+  },
+  {
+    "nomor": 2,
+    "kategori": "Fiqih",
+    "soal": "Berapakah jumlah rakaat shalat fardhu dalam sehari semalam?",
+    "jawaban": "17 Rakaat"
+  },
+  {
+    "nomor": 3,
+    "kategori": "Al-Qur'an",
+    "soal": "Surah apakah yang dijuluki sebagai jantungnya Al-Qur'an?",
+    "jawaban": "Surah Yasin"
+  },
+  {
+    "nomor": 4,
+    "kategori": "Tarikh",
+    "soal": "Siapakah nama kakek Rasulullah SAW yang merawat beliau?",
+    "jawaban": "Abdul Muthalib"
+  },
+  {
+    "nomor": 5,
+    "kategori": "Akhlak",
+    "soal": "Apa arti dari sifat Shidiq pada diri Rasulullah?",
+    "jawaban": "Benar / Jujur"
+  },
+  {
+    "nomor": 6,
+    "kategori": "Aqidah",
+    "soal": "Apa lawan kata dari sifat Syirik?",
+    "jawaban": "Tauhid"
+  },
+  {
+    "nomor": 7,
+    "kategori": "Fiqih",
+    "soal": "Sebutkan syarat sah shalat yang pertama!",
+    "jawaban": "Suci dari hadas besar dan kecil"
+  },
+  {
+    "nomor": 8,
+    "kategori": "Al-Qur'an",
+    "soal": "Berapa jumlah ayat dalam Surah Al-Fatihah?",
+    "jawaban": "7 Ayat"
+  },
+  {
+    "nomor": 9,
+    "kategori": "Tarikh",
+    "soal": "Di kota manakah Rasulullah SAW dilahirkan?",
+    "jawaban": "Makkah Al-Mukarramah"
+  },
+  {
+    "nomor": 10,
+    "kategori": "Bahasa Arab",
+    "soal": "Apa bahasa arab dari 'Papan Tulis'?",
+    "jawaban": "Sabburotun (سبورة)"
+  },
+  {
+    "nomor": 11,
+    "kategori": "Aqidah",
+    "soal": "Sebutkan sifat wajib bagi Allah yang pertama!",
+    "jawaban": "Wujud (Ada)"
+  },
+  {
+    "nomor": 12,
+    "kategori": "Fiqih",
+    "soal": "Apa hukum melaksanakan ibadah Haji bagi yang mampu?",
+    "jawaban": "Wajib"
+  },
+  {
+    "nomor": 13,
+    "kategori": "Tarikh",
+    "soal": "Siapakah Khalifah pertama setelah wafatnya Rasulullah?",
+    "jawaban": "Abu Bakar Ash-Shiddiq"
+  },
+  {
+    "nomor": 14,
+    "kategori": "Al-Qur'an",
+    "soal": "Surah terpendek dalam Al-Qur'an adalah...",
+    "jawaban": "Surah Al-Kautsar"
+  },
+  {
+    "nomor": 15,
+    "kategori": "Akhlak",
+    "soal": "Apa arti dari sifat Tawadhu?",
+    "jawaban": "Rendah Hati"
+  },
+  {
+    "nomor": 16,
+    "kategori": "Fiqih",
+    "soal": "Zakat yang wajib dikeluarkan pada bulan Ramadhan adalah...",
+    "jawaban": "Zakat Fitrah"
+  },
+  {
+    "nomor": 17,
+    "kategori": "Tarikh",
+    "soal": "Berapa tahun Rasulullah berdakwah di kota Makkah?",
+    "jawaban": "13 Tahun"
+  },
+  {
+    "nomor": 18,
+    "kategori": "Al-Qur'an",
+    "soal": "Siapakah malaikat yang bertugas menyampaikan wahyu?",
+    "jawaban": "Malaikat Jibril"
+  },
+  {
+    "nomor": 19,
+    "kategori": "Aqidah",
+    "soal": "Apa rukun islam yang ketiga?",
+    "jawaban": "Zakat"
+  },
+  {
+    "nomor": 20,
+    "kategori": "Bahasa Arab",
+    "soal": "Apa bahasa arab dari 'Guru Laki-laki'?",
+    "jawaban": "Mudarrizun / Ustadzun"
+  }
+]
