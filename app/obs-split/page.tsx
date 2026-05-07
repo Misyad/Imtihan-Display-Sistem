@@ -7,9 +7,11 @@ import { BookOpen, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ObsSplitPage() {
-  const { activeQuestion, showAnswer, questions } = useQuestionStore();
+  const { activeProfileId, profiles, activeQuestion, showAnswer } = useQuestionStore();
   const [mounted, setMounted] = useState(false);
 
+  const activeProfile = profiles[activeProfileId];
+  const questions = activeProfile?.questions || [];
   const currentQuestionData = questions.find(q => q.nomor === activeQuestion);
 
   useEffect(() => {
