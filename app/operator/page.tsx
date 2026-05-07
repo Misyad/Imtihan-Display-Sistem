@@ -230,7 +230,7 @@ export default function OperatorPage() {
 
                  <div className="grid grid-cols-2 gap-4 pt-4">
                     <button 
-                      onClick={toggleAnswer}
+                      onClick={() => toggleAnswer()}
                       disabled={!activeQuestion}
                       className={cn(
                         "flex items-center justify-center gap-3 py-5 rounded-[2rem] font-black uppercase tracking-widest text-xs transition-all active:scale-95",
@@ -241,7 +241,7 @@ export default function OperatorPage() {
                        {showAnswer ? "Hide" : "Show"}
                     </button>
                     <button 
-                      onClick={resetQuestion}
+                      onClick={() => resetQuestion()}
                       className="flex items-center justify-center gap-3 py-5 rounded-[2rem] bg-zinc-800 text-zinc-400 font-black uppercase tracking-widest text-xs hover:bg-zinc-700 transition-all"
                     >
                        <RotateCcw className="w-5 h-5" /> Reset

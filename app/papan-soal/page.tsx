@@ -12,7 +12,7 @@ export default function PapanSoalPage() {
     showAnswer,
     setActiveQuestion, 
     toggleAnswer,
-    resetAll 
+    resetUsedQuestions 
   } = useQuestionStore();
 
   const [mounted, setMounted] = useState(false);
@@ -78,7 +78,7 @@ export default function PapanSoalPage() {
 
             <div className="flex items-center gap-2">
               <button 
-                onClick={resetAll}
+                onClick={() => resetUsedQuestions()}
                 className="p-3 rounded-2xl bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-rose-100 hover:text-rose-600 transition-all active:scale-95"
                 title="Reset All"
               >
@@ -117,7 +117,7 @@ export default function PapanSoalPage() {
 
                 <div className="flex flex-col items-center md:items-end gap-4">
                   <button 
-                    onClick={toggleAnswer}
+                    onClick={() => toggleAnswer()}
                     disabled={!activeQuestion}
                     className={cn(
                       "flex items-center gap-3 px-6 py-4 rounded-2xl font-bold transition-all backdrop-blur-md",

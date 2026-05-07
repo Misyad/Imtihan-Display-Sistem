@@ -214,7 +214,7 @@ export default function InteractivePage() {
                               </p>
 
                               <button 
-                                  onClick={toggleAnswer}
+                                  onClick={() => toggleAnswer()}
                                   className="px-12 py-5 rounded-full bg-emerald-600 text-white font-black uppercase tracking-[0.4em] hover:bg-emerald-500 transition-all shadow-xl shadow-emerald-600/20 active:scale-95 pointer-events-auto"
                               >
                                   Buka Jawaban
