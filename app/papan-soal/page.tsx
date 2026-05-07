@@ -7,13 +7,17 @@ import { useQuestionStore } from "@/lib/store";
 
 export default function PapanSoalPage() {
   const { 
+    activeProfileId,
+    profiles,
     activeQuestion, 
-    usedQuestions, 
     showAnswer,
     setActiveQuestion, 
     toggleAnswer,
     resetUsedQuestions 
   } = useQuestionStore();
+
+  const activeProfile = profiles[activeProfileId];
+  const usedQuestions = activeProfile?.usedQuestions || [];
 
   const [mounted, setMounted] = useState(false);
 
