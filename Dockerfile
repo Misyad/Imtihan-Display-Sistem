@@ -46,13 +46,14 @@ RUN cat > /app/start.sh <<'EOF'
 #!/bin/sh
 set -e
 echo "Starting Socket.IO server on port 3001..."
-node /app/socket-server.js &
+PORT=3001 node /app/socket-server.js &
 SOCKET_PID=$!
 echo "Socket.IO server started with PID $SOCKET_PID"
 
+sleep 2
 echo "Starting Next.js server on port 3000..."
 cd /app/standalone
-exec node server.js
+PORT=3000 exec node server.js
 EOF
 
 RUN chmod +x /app/start.sh
