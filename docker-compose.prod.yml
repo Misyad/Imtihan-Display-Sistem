@@ -9,8 +9,8 @@ services:
     container_name: imtihan-display
     restart: unless-stopped
     ports:
-      - "${APP_PORT:-3007}:3000"      # Next.js app
-      - "${SOCKET_PORT:-3008}:3001"   # Socket.IO server
+      - "${APP_PORT:-3010}:3000"      # Next.js app
+      - "${SOCKET_PORT:-3011}:3001"   # Socket.IO server
     environment:
       - NODE_ENV=production
       - PORT=3000

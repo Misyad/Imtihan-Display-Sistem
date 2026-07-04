@@ -3,8 +3,8 @@ pipeline {
     
     environment {
         APP_NAME = 'imtihan-display'
-        APP_PORT = '3007'
-        SOCKET_PORT = '3008'
+        APP_PORT = '3010'
+        SOCKET_PORT = '3011'
     }
     
     stages {
