@@ -6,6 +6,8 @@ export interface QuestionEntry {
   kategori: string;
   soal: string;
   jawaban: string;
+  soalImage?: string;      // Optional: path to question slide image
+  jawabanImage?: string;   // Optional: path to answer slide image
 }
 
 export const imtihanQuestions: QuestionEntry[] = questionsData;
