@@ -26,21 +26,41 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 
+RUN apk add --no-cache tini
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# Copy Socket.IO server and ALL its dependencies
+COPY --from=builder /app/server.js ./socket-server.js
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/node_modules ./node_modules
+
 # Copy built Next.js app (standalone mode)
 COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./standalone
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./standalone/.next/static
 
-# Copy Socket.IO server and its dependencies
-COPY --from=builder --chown=nextjs:nodejs /app/server.js ./socket-server.js
-COPY --from=builder /app/node_modules ./node_modules
+# Create startup script
+RUN cat > /app/start.sh <<'EOF'
+#!/bin/sh
+set -e
+echo "Starting Socket.IO server on port 3001..."
+node /app/socket-server.js &
+SOCKET_PID=$!
+echo "Socket.IO server started with PID $SOCKET_PID"
+
+echo "Starting Next.js server on port 3000..."
+cd /app/standalone
+exec node server.js
+EOF
+
+RUN chmod +x /app/start.sh
+RUN chown nextjs:nodejs /app/start.sh
 
 USER nextjs
 
 EXPOSE 3000 3001
 
-# Start Socket.IO server in background, then Next.js standalone server in foreground
-CMD ["sh", "-c", "node socket-server.js & exec node server.js"]
+ENTRYPOINT ["/sbin/tini", "--"]
+CMD ["/app/start.sh"]
