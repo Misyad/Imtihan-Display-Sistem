@@ -1,17 +1,101 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import { imtihanQuestions as initialQuestions } from "@/data/mock";
 
-// Connect to the socket server dynamically
+// Socket connection state management
+let socket: Socket | null = null;
+let reconnectAttempts = 0;
+const MAX_RECONNECT_ATTEMPTS = 10;
+
+// Connect to the socket server with environment-aware URL
 const getSocketUrl = () => {
   if (typeof window !== "undefined") {
-    return `http://${window.location.hostname}:3001`;
+    // Check for explicit env var first
+    const envSocketUrl = process.env.NEXT_PUBLIC_SOCKET_URL;
+    if (envSocketUrl) {
+      console.log('[Socket] Using NEXT_PUBLIC_SOCKET_URL:', envSocketUrl);
+      return envSocketUrl;
+    }
+    
+    // Auto-detect based on current hostname
+    const hostname = window.location.hostname;
+    const isDev = hostname === "localhost" || hostname === "127.0.0.1";
+    const socketPort = isDev ? 3001 : 3011;
+    const socketUrl = `http://${hostname}:${socketPort}`;
+    console.log('[Socket] Auto-detected URL:', socketUrl);
+    return socketUrl;
   }
   return "http://localhost:3001";
 };
 
-const socket = io(getSocketUrl());
+const initSocket = () => {
+  if (socket) return socket;
+  
+  const socketUrl = getSocketUrl();
+  console.log('[Socket] Initializing connection to:', socketUrl);
+  
+  socket = io(socketUrl, {
+    reconnection: true,
+    reconnectionDelay: 1000,
+    reconnectionDelayMax: 5000,
+    reconnectionAttempts: MAX_RECONNECT_ATTEMPTS,
+    timeout: 20000,
+    transports: ['websocket', 'polling']
+  });
+
+  socket.on('connect', () => {
+    console.log('[Socket] ✅ Connected:', socket?.id);
+    reconnectAttempts = 0;
+    useQuestionStore.getState().setConnectionStatus('connected');
+    // Request latest state on connect
+    socket?.emit('requestState');
+  });
+
+  socket.on('disconnect', (reason) => {
+    console.log('[Socket] ❌ Disconnected:', reason);
+    useQuestionStore.getState().setConnectionStatus('disconnected');
+  });
+
+  socket.on('connect_error', (error) => {
+    console.error('[Socket] Connection error:', error.message);
+    reconnectAttempts++;
+    useQuestionStore.getState().setConnectionStatus('error');
+    
+    if (reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
+      console.error('[Socket] Max reconnection attempts reached');
+      socket?.disconnect();
+    }
+  });
+
+  socket.on('reconnect', (attemptNumber) => {
+    console.log('[Socket] 🔄 Reconnected after', attemptNumber, 'attempts');
+    useQuestionStore.getState().setConnectionStatus('connected');
+  });
+
+  socket.on('reconnecting', (attemptNumber) => {
+    console.log('[Socket] 🔄 Reconnecting... attempt', attemptNumber);
+    useQuestionStore.getState().setConnectionStatus('reconnecting');
+  });
+
+  socket.on('clientCount', (count) => {
+    console.log('[Socket] 👥 Connected clients:', count);
+    useQuestionStore.getState().setClientCount(count);
+  });
+
+  // Listen for state updates from server
+  socket.on('stateUpdate', (newState) => {
+    console.log('[Socket] 📥 State update received:', {
+      activeQuestion: newState.activeQuestion,
+      showAnswer: newState.showAnswer,
+      activeProfileId: newState.activeProfileId,
+      timestamp: new Date(newState.lastUpdated).toISOString()
+    });
+    useQuestionStore.getState().updateFromRemote(newState);
+  });
+
+  return socket;
+};
 
 export interface QuestionEntry {
   nomor: number;
@@ -22,7 +106,7 @@ export interface QuestionEntry {
 
 export interface AppSettings {
   id: string;
-  name: string; // Internal name for profile
+  name: string;
   instituteName: string;
   eventName: string;
   academicYear: string;
@@ -39,12 +123,16 @@ interface ProfileData {
   usedQuestions: number[];
 }
 
+type ConnectionStatus = 'connected' | 'disconnected' | 'reconnecting' | 'error';
+
 interface QuestionStore {
   profiles: Record<string, ProfileData>;
   activeProfileId: string;
   activeQuestion: number | null;
   showAnswer: boolean;
   answerText: string;
+  connectionStatus: ConnectionStatus;
+  clientCount: number;
   
   // Actions
   addProfile: (name: string) => void;
@@ -59,6 +147,9 @@ interface QuestionStore {
   setQuestions: (questions: QuestionEntry[], emit?: boolean) => void;
   updateSettings: (settings: Partial<AppSettings>, emit?: boolean) => void;
   updateFromRemote: (state: Partial<QuestionStore>) => void;
+  setConnectionStatus: (status: ConnectionStatus) => void;
+  setClientCount: (count: number) => void;
+  reconnectSocket: () => void;
 }
 
 const defaultSettings = (id: string, name: string): AppSettings => ({
@@ -74,6 +165,20 @@ const defaultSettings = (id: string, name: string): AppSettings => ({
   categoryQuotas: [],
 });
 
+const emitStateUpdate = (state: Partial<QuestionStore>) => {
+  const socket = initSocket();
+  if (socket.connected) {
+    console.log('[Socket] 📤 Emitting state update:', {
+      activeQuestion: state.activeQuestion,
+      showAnswer: state.showAnswer,
+      activeProfileId: state.activeProfileId
+    });
+    socket.emit('updateState', state);
+  } else {
+    console.warn('[Socket] ⚠️ Cannot emit - socket not connected');
+  }
+};
+
 export const useQuestionStore = create<QuestionStore>()(
   persist(
     (set, get) => ({
@@ -88,6 +193,8 @@ export const useQuestionStore = create<QuestionStore>()(
       activeQuestion: null,
       showAnswer: false,
       answerText: "",
+      connectionStatus: 'disconnected',
+      clientCount: 0,
 
       addProfile: (name) => {
         const id = Math.random().toString(36).substring(7);
@@ -99,24 +206,33 @@ export const useQuestionStore = create<QuestionStore>()(
             usedQuestions: [],
           }
         };
-        set({ profiles: newProfiles });
+        const newState = { profiles: newProfiles };
+        set(newState);
+        emitStateUpdate(newState);
       },
 
       switchProfile: (id, emit = true) => {
         if (!get().profiles[id]) return;
-        const newState = { activeProfileId: id, activeQuestion: null, showAnswer: false };
+        const newState = { 
+          activeProfileId: id, 
+          activeQuestion: null, 
+          showAnswer: false,
+          profiles: get().profiles 
+        };
         set(newState);
-        if (emit) socket.emit('updateState', newState);
+        if (emit) emitStateUpdate(newState);
       },
 
       deleteProfile: (id) => {
         if (id === "default") return;
         const newProfiles = { ...get().profiles };
         delete newProfiles[id];
-        set({ 
+        const newState = { 
           profiles: newProfiles, 
           activeProfileId: get().activeProfileId === id ? "default" : get().activeProfileId 
-        });
+        };
+        set(newState);
+        emitStateUpdate(newState);
       },
 
       setActiveQuestion: (num, answer, emit = true) => {
@@ -144,10 +260,11 @@ export const useQuestionStore = create<QuestionStore>()(
           activeQuestion: num,
           showAnswer: false, 
           answerText: finalAnswer,
+          activeProfileId: state.activeProfileId
         };
 
         set(newState);
-        if (emit) socket.emit('updateState', newState);
+        if (emit) emitStateUpdate(newState);
       },
 
       markQuestionUsed: (num, emit = true) => {
@@ -170,21 +287,32 @@ export const useQuestionStore = create<QuestionStore>()(
         const newState = {
           profiles: updatedProfiles,
           activeQuestion: state.activeQuestion === num ? null : state.activeQuestion,
+          activeProfileId: state.activeProfileId
         };
         set(newState);
-        if (emit) socket.emit('updateState', newState);
+        if (emit) emitStateUpdate(newState);
       },
 
       toggleAnswer: (emit = true) => {
-        const newState = { showAnswer: !get().showAnswer };
+        const newState = { 
+          showAnswer: !get().showAnswer,
+          activeQuestion: get().activeQuestion,
+          activeProfileId: get().activeProfileId,
+          profiles: get().profiles
+        };
         set(newState);
-        if (emit) socket.emit('updateState', newState);
+        if (emit) emitStateUpdate(newState);
       },
 
       resetQuestion: (emit = true) => {
-        const newState = { activeQuestion: null, showAnswer: false };
+        const newState = { 
+          activeQuestion: null, 
+          showAnswer: false,
+          activeProfileId: get().activeProfileId,
+          profiles: get().profiles
+        };
         set(newState);
-        if (emit) socket.emit('updateState', newState);
+        if (emit) emitStateUpdate(newState);
       },
 
       resetUsedQuestions: (emit = true) => {
@@ -197,9 +325,14 @@ export const useQuestionStore = create<QuestionStore>()(
             usedQuestions: [],
           }
         };
-        const newState = { profiles: updatedProfiles, activeQuestion: null, showAnswer: false };
+        const newState = { 
+          profiles: updatedProfiles, 
+          activeQuestion: null, 
+          showAnswer: false,
+          activeProfileId: state.activeProfileId
+        };
         set(newState);
-        if (emit) socket.emit('updateState', newState);
+        if (emit) emitStateUpdate(newState);
       },
 
       setQuestions: (newQuestions, emit = true) => {
@@ -212,9 +345,12 @@ export const useQuestionStore = create<QuestionStore>()(
             questions: newQuestions,
           }
         };
-        const newState = { profiles: updatedProfiles };
+        const newState = { 
+          profiles: updatedProfiles,
+          activeProfileId: state.activeProfileId
+        };
         set(newState);
-        if (emit) socket.emit('updateState', newState);
+        if (emit) emitStateUpdate(newState);
       },
 
       updateSettings: (newSettings, emit = true) => {
@@ -227,22 +363,53 @@ export const useQuestionStore = create<QuestionStore>()(
             settings: { ...activeProfile.settings, ...newSettings },
           }
         };
-        const newState = { profiles: updatedProfiles };
+        const newState = { 
+          profiles: updatedProfiles,
+          activeProfileId: state.activeProfileId
+        };
         set(newState);
-        if (emit) socket.emit('updateState', newState);
+        if (emit) emitStateUpdate(newState);
       },
 
       updateFromRemote: (newState) => {
-        set(newState);
+        // Only update if data is different to avoid loops
+        const currentState = get();
+        if (JSON.stringify(currentState.activeQuestion) !== JSON.stringify(newState.activeQuestion) ||
+            JSON.stringify(currentState.showAnswer) !== JSON.stringify(newState.showAnswer) ||
+            JSON.stringify(currentState.activeProfileId) !== JSON.stringify(newState.activeProfileId)) {
+          console.log('[Store] 🔄 Applying remote state update');
+          set(newState);
+        }
+      },
+
+      setConnectionStatus: (status) => {
+        set({ connectionStatus: status });
+      },
+
+      setClientCount: (count) => {
+        set({ clientCount: count });
+      },
+
+      reconnectSocket: () => {
+        console.log('[Socket] Manual reconnection triggered');
+        socket?.disconnect();
+        socket = null;
+        reconnectAttempts = 0;
+        initSocket();
       }
     }),
     {
       name: "imtihan-multi-lembaga-storage",
+      partialize: (state) => ({
+        profiles: state.profiles,
+        activeProfileId: state.activeProfileId,
+        // Don't persist connection state or active question
+      })
     }
   )
 );
 
-// Listen for state updates
-socket.on('stateUpdate', (newState) => {
-  useQuestionStore.getState().updateFromRemote(newState);
-});
+// Initialize socket on client side only
+if (typeof window !== "undefined") {
+  initSocket();
+}
