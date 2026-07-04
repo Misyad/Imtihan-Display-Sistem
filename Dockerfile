@@ -38,6 +38,7 @@ COPY --from=builder /app/node_modules ./node_modules
 
 # Copy built Next.js app (standalone mode)
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/data ./data
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./standalone
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./standalone/.next/static
 
