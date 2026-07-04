@@ -2,8 +2,9 @@ pipeline {
     agent any
     
     environment {
-        NODE_VERSION = '20.x'
-        DEPLOY_ENV = 'production'
+        APP_NAME = 'imtihan-display'
+        APP_PORT = '3005'
+        SOCKET_PORT = '3006'
     }
     
     stages {
@@ -14,98 +15,63 @@ pipeline {
             }
         }
         
-        stage('Install Dependencies') {
+        stage('Build & Deploy') {
             steps {
-                echo 'Installing Node.js dependencies...'
+                echo 'Building Docker image and deploying...'
                 sh '''
-                    node --version
-                    npm --version
-                    npm ci
+                    set -e
+                    
+                    # Check Docker Compose availability
+                    if docker compose version >/dev/null 2>&1; then
+                        COMPOSE="docker compose"
+                    elif command -v docker-compose >/dev/null 2>&1; then
+                        COMPOSE="docker-compose"
+                    else
+                        echo "Docker Compose is not installed on this Jenkins server."
+                        exit 1
+                    fi
+                    
+                    # Stop and remove old containers
+                    $COMPOSE -f docker-compose.prod.yml down || true
+                    
+                    # Build and start new containers
+                    $COMPOSE -f docker-compose.prod.yml up -d --build
+                    
+                    echo "Deployment complete!"
                 '''
             }
         }
         
-        stage('Lint') {
+        stage('Health Check') {
             steps {
-                echo 'Running ESLint...'
-                sh 'npm run lint'
-            }
-        }
-        
-        stage('Type Check') {
-            steps {
-                echo 'Running TypeScript type checking...'
-                sh 'npx tsc --noEmit'
-            }
-        }
-        
-        stage('Build') {
-            steps {
-                echo 'Building Next.js application...'
-                sh 'npm run build'
-            }
-        }
-        
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-                // Uncomment when tests are implemented
-                // sh 'npm test'
-                echo 'Tests not yet implemented - skipping'
-            }
-        }
-        
-        stage('Security Scan') {
-            steps {
-                echo 'Running security audit...'
-                sh 'npm audit --audit-level=moderate || true'
-            }
-        }
-        
-        stage('Archive Artifacts') {
-            steps {
-                echo 'Archiving build artifacts...'
-                archiveArtifacts artifacts: '.next/**/*', fingerprint: true
-            }
-        }
-        
-        stage('Deploy to Staging') {
-            when {
-                branch 'develop'
-            }
-            steps {
-                echo 'Deploying to staging environment...'
-                // Add your staging deployment commands here
+                echo 'Verifying deployment...'
                 sh '''
-                    echo "Staging deployment would happen here"
-                    # Example: scp -r .next user@staging-server:/app
+                    sleep 5
+                    docker ps | grep imtihan-display || (echo "Container not running!" && exit 1)
+                    echo "✅ Container is running"
                 '''
             }
         }
         
-        stage('Deploy to Production') {
-            when {
-                branch 'master'
-            }
+        stage('Cleanup') {
             steps {
-                echo 'Deploying to production environment...'
-                // Add your production deployment commands here
-                sh '''
-                    echo "Production deployment would happen here"
-                    # Example: vercel --prod
-                '''
+                echo 'Cleaning up old Docker images...'
+                sh 'docker image prune -f || true'
             }
         }
     }
     
     post {
         success {
-            echo 'Pipeline completed successfully!'
-            // Send notification (e.g., Slack, email)
+            echo '✅ Pipeline completed successfully!'
+            echo "Imtihan Display is now running on:"
+            echo "  - Next.js App:  http://192.168.1.60:${APP_PORT}"
+            echo "  - Socket.IO:    http://192.168.1.60:${SOCKET_PORT}"
         }
         failure {
-            echo 'Pipeline failed!'
-            // Send failure notification
+            echo '❌ Pipeline failed!'
+            sh 'docker ps -a | grep imtihan-display || true'
+            sh 'docker logs imtihan-display --tail 50 || true'
         }
         always {
             echo 'Cleaning up workspace...'

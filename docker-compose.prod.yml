@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  imtihan-display:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: imtihan-display:latest
+    container_name: imtihan-display
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-3005}:3000"      # Next.js app
+      - "${SOCKET_PORT:-3006}:3001"   # Socket.IO server
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - SOCKET_PORT=3001
+    networks:
+      - imtihan-network
+
+networks:
+  imtihan-network:
+    driver: bridge
