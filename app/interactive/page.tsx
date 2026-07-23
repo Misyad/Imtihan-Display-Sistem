@@ -56,7 +56,23 @@ export default function InteractivePage() {
     resetQuestion();
   };
 
-  if (!mounted || !activeProfile) return null;
+  if (!mounted) return null;
+
+  if (!activeProfile) {
+    return (
+      <div className="fixed inset-0 bg-zinc-950 flex flex-col items-center justify-center text-white p-6 z-50">
+        <div className="text-center space-y-4 max-w-md">
+          <div className="w-16 h-16 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 mx-auto animate-pulse">
+            <Award className="w-8 h-8" />
+          </div>
+          <h2 className="text-xl font-black uppercase tracking-tight text-white">Sinkronisasi Data...</h2>
+          <p className="text-xs text-zinc-400 leading-relaxed font-medium">
+            Belum ada profil instansi yang tersinkronisasi. Silakan buka dashboard **Operator** atau **Settings** di laptop utama untuk memicu sinkronisasi data awal via jaringan lokal.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-x-0 top-16 bottom-0 flex flex-col overflow-hidden font-sans transition-all duration-500 bg-zinc-950">
@@ -132,10 +148,10 @@ export default function InteractivePage() {
                         key={num}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => handleNumberClick(num)}
-                        disabled={!hasData || isUsed || isActive}
+                        onClick={() => { if (hasData && !isUsed && !isActive) { handleNumberClick(num); } }}
                         className={cn(
-                           "relative flex items-center justify-center font-black transition-all duration-300 border-2 rounded-xl",
+                           "relative flex items-center justify-center font-black transition-all duration-300 border-2 rounded-xl select-none touch-manipulation",
+                           (isUsed || isActive || !hasData) ? "cursor-not-allowed" : "cursor-pointer",
                            sizeClass,
                            !isUsed && hasData && "bg-zinc-900/50 border-white/5 text-zinc-500 hover:border-emerald-500/50 hover:text-emerald-400 cursor-pointer",
                            isUsed && "bg-rose-500/10 border-rose-500/30 text-rose-500 cursor-not-allowed",
