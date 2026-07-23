@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { io } from "socket.io-client";
 import { imtihanQuestions as initialQuestions } from "@/data/mock";
+import { logger } from "@/lib/logger";
 
 // Connect to the socket server dynamically
 const getSocketUrl = () => {
@@ -29,8 +30,7 @@ export interface AppSettings {
   primaryColor: string;
   fontSize: "normal" | "large" | "extra-large";
   showFooter: boolean;
-  layoutTheme: "classic" | "game";
-  categoryQuotas: { name: string; quota: number }[];
+  layoutTheme: "classic";
 }
 
 interface ProfileData {
@@ -45,6 +45,8 @@ interface QuestionStore {
   activeQuestion: number | null;
   showAnswer: boolean;
   answerText: string;
+  isConnected: boolean;
+  setIsConnected: (connected: boolean) => void;
   
   // Actions
   addProfile: (name: string) => void;
@@ -71,7 +73,6 @@ const defaultSettings = (id: string, name: string): AppSettings => ({
   fontSize: "normal",
   showFooter: true,
   layoutTheme: "classic",
-  categoryQuotas: [],
 });
 
 export const useQuestionStore = create<QuestionStore>()(
@@ -88,6 +89,8 @@ export const useQuestionStore = create<QuestionStore>()(
       activeQuestion: null,
       showAnswer: false,
       answerText: "",
+      isConnected: false,
+      setIsConnected: (connected) => set({ isConnected: connected }),
 
       addProfile: (name) => {
         const id = Math.random().toString(36).substring(7);
@@ -243,6 +246,26 @@ export const useQuestionStore = create<QuestionStore>()(
 );
 
 // Listen for state updates
+// Listen for state updates
 socket.on('stateUpdate', (newState) => {
   useQuestionStore.getState().updateFromRemote(newState);
+});
+
+socket.on('connect', () => {
+  logger.info("Socket.IO client connected to server");
+  useQuestionStore.getState().setIsConnected(true);
+});
+
+socket.on('disconnect', (reason) => {
+  logger.warn(`Socket.IO client disconnected: ${reason}`);
+  useQuestionStore.getState().setIsConnected(false);
+});
+
+socket.on('connect_error', (error) => {
+  logger.error("Socket.IO connection error", {}, error);
+  useQuestionStore.getState().setIsConnected(false);
+});
+
+socket.on('error', (error) => {
+  logger.error("Socket.IO application-level error received", { error });
 });

@@ -6,7 +6,6 @@ import { Award, Sparkles, BookOpen } from "lucide-react";
 import { CinematicLayout } from "@/components/layout/cinematic-layout";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { QuestionDisplay } from "@/components/features/question-display";
-import { GameDisplay } from "@/components/features/game-display";
 
 export default function DisplayPage() {
   const { activeProfileId, profiles, activeQuestion, showAnswer } = useQuestionStore();
@@ -21,20 +20,6 @@ export default function DisplayPage() {
   }, []);
 
   if (!mounted || !activeProfile) return null;
-
-  // Render Game Mode if selected in settings
-  if (settings?.layoutTheme === "game") {
-    return (
-      <CinematicLayout bgVariant="obs">
-        <GameDisplay 
-          activeQuestion={activeQuestion}
-          questionData={currentQuestionData}
-          showAnswer={showAnswer}
-          instituteName={settings.instituteName}
-        />
-      </CinematicLayout>
-    );
-  }
 
   return (
     <CinematicLayout>

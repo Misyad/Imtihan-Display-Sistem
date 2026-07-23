@@ -1,18 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { ConnectionStatus } from "@/components/ui/connection-status";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Imtihan Display Sistem",
@@ -25,9 +17,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      style={{
+        "--font-geist-sans": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+        "--font-geist-mono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+      } as React.CSSProperties}
+    >
       <body
         className="min-h-screen bg-background text-foreground antialiased selection:bg-primary/20"
+        suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"
@@ -55,6 +55,7 @@ export default function RootLayout({
                     <a href="/obs-split" className="transition-colors hover:text-primary">OBS Split</a>
                     <a href="/settings" className="transition-colors hover:text-primary">Settings</a>
                   </nav>
+                  <ConnectionStatus />
                   <ThemeToggle />
                 </div>
               </div>

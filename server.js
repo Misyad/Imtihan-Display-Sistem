@@ -22,20 +22,37 @@ let gameState = {
 };
 
 io.on('connection', (socket) => {
-  console.log('User connected:', socket.id);
+  const timestamp = () => new Date().toLocaleTimeString();
+  console.log(`\x1b[32m[INFO]\x1b[0m ${timestamp()} - Socket client connected: ${socket.id}`);
 
   // Send current state to new connection
-  socket.emit('stateUpdate', gameState);
+  try {
+    socket.emit('stateUpdate', gameState);
+  } catch (error) {
+    console.error(`\x1b[31m[ERROR]\x1b[0m ${timestamp()} - Failed to emit initial state update:`, error);
+  }
 
   // Handle state updates from clients
   socket.on('updateState', (newState) => {
-    gameState = { ...gameState, ...newState };
-    // Broadcast to everyone else
-    socket.broadcast.emit('stateUpdate', gameState);
+    try {
+      if (!newState) {
+        throw new Error("Received empty or invalid state update");
+      }
+      gameState = { ...gameState, ...newState };
+      // Broadcast to everyone else
+      socket.broadcast.emit('stateUpdate', gameState);
+    } catch (error) {
+      console.error(`\x1b[31m[ERROR]\x1b[0m ${timestamp()} - Error handling updateState for ${socket.id}:`, error);
+      socket.emit('error', { message: 'Gagal memperbarui status sinkronisasi game.' });
+    }
   });
 
-  socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
+  socket.on('disconnect', (reason) => {
+    console.log(`\x1b[33m[WARN]\x1b[0m ${timestamp()} - Socket client disconnected: ${socket.id} (${reason})`);
+  });
+
+  socket.on('error', (error) => {
+    console.error(`\x1b[31m[ERROR]\x1b[0m ${timestamp()} - Socket error on client ${socket.id}:`, error);
   });
 });
 

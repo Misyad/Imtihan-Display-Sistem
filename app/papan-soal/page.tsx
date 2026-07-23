@@ -18,6 +18,8 @@ export default function PapanSoalPage() {
 
   const activeProfile = profiles[activeProfileId];
   const usedQuestions = activeProfile?.usedQuestions || [];
+  const questions = activeProfile?.questions || [];
+  const gridCount = Math.max(100, questions.length);
 
   const [mounted, setMounted] = useState(false);
 
@@ -148,7 +150,7 @@ export default function PapanSoalPage() {
             <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest">Total Selesai</h3>
             <p className="text-4xl font-black text-emerald-900 dark:text-emerald-400">
               {usedQuestions.length}
-              <span className="text-lg opacity-40 ml-2">/ 200</span>
+              <span className="text-lg opacity-40 ml-2">/ {gridCount}</span>
             </p>
           </div>
         </div>
@@ -156,20 +158,24 @@ export default function PapanSoalPage() {
         {/* The Grid */}
         <div className="bg-white/50 dark:bg-zinc-900/30 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 border border-white/50 dark:border-zinc-800/50 shadow-inner">
           <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 xl:grid-cols-[repeat(20,minmax(0,1fr))] gap-3 md:gap-4">
-            {Array.from({ length: 200 }, (_, i) => i + 1).map((num) => {
+            {Array.from({ length: gridCount }, (_, i) => i + 1).map((num) => {
               const isActive = activeQuestion === num;
               const isUsed = usedQuestions.includes(num);
+              const hasData = questions.some(q => q.nomor === num);
+              const isClickable = hasData && !isUsed && !isActive;
 
               return (
                 <button
                   key={num}
-                  onClick={() => setActiveQuestion(num)}
+                  onClick={() => isClickable && setActiveQuestion(num)}
+                  disabled={!isClickable}
                   className={cn(
-                    "relative aspect-square rounded-xl md:rounded-2xl flex items-center justify-center text-base md:text-lg font-black transition-all duration-300 transform active:scale-90 select-none",
+                    "relative aspect-square rounded-xl md:rounded-2xl flex items-center justify-center text-base md:text-lg font-black transition-all duration-300 transform select-none",
                     "border-2",
-                    !isActive && !isUsed && "bg-white dark:bg-zinc-800 border-emerald-100 dark:border-emerald-900/30 text-emerald-900 dark:text-emerald-500 hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/10",
-                    isActive && "bg-amber-400 border-amber-500 text-white shadow-lg shadow-amber-400/40 ring-4 ring-amber-400/20 scale-110 z-20",
-                    isUsed && !isActive && "bg-rose-500 border-rose-600 text-white opacity-80"
+                    !isActive && !isUsed && hasData && "bg-white dark:bg-zinc-800 border-emerald-100 dark:border-emerald-900/30 text-emerald-900 dark:text-emerald-500 hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/10 cursor-pointer",
+                    isActive && "bg-amber-400 border-amber-500 text-white shadow-lg shadow-amber-400/40 ring-4 ring-amber-400/20 scale-110 z-20 cursor-not-allowed",
+                    isUsed && !isActive && "bg-rose-500 border-rose-600 text-white opacity-80 cursor-not-allowed",
+                    !hasData && "opacity-20 grayscale cursor-not-allowed"
                   )}
                 >
                   {num}

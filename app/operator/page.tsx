@@ -82,8 +82,7 @@ export default function OperatorPage() {
     reader.readAsBinaryString(file);
   };
 
-  const totalQuota = settings?.categoryQuotas?.reduce((acc, q) => acc + q.quota, 0) || 0;
-  const gridCount = totalQuota > 0 ? totalQuota : Math.max(100, questions.length);
+  const gridCount = Math.max(100, questions.length);
 
   if (!mounted || !activeProfile) return null;
 
@@ -165,14 +164,14 @@ export default function OperatorPage() {
                     return (
                        <button
                           key={num}
-                          onClick={() => hasData && setActiveQuestion(num)}
-                          disabled={!hasData && !isUsed}
+                          onClick={() => hasData && !isUsed && !isActive && setActiveQuestion(num)}
+                          disabled={!hasData || isUsed || isActive}
                           className={cn(
                              "aspect-square rounded-xl flex items-center justify-center text-sm font-black transition-all border-2",
-                             !isUsed && "bg-slate-50 dark:bg-zinc-800 border-transparent text-slate-400 hover:border-emerald-500/30",
-                             isUsed && "bg-rose-500/10 border-rose-500/20 text-rose-500",
-                             isActive && "bg-emerald-600 border-emerald-400 text-white shadow-xl shadow-emerald-600/30 scale-110 z-10",
-                             !hasData && !isUsed && "opacity-20 grayscale cursor-not-allowed"
+                             !isUsed && !isActive && hasData && "bg-slate-50 dark:bg-zinc-800 border-transparent text-slate-400 hover:border-emerald-500/30 cursor-pointer",
+                             isUsed && !isActive && "bg-rose-500/10 border-rose-500/20 text-rose-500 cursor-not-allowed",
+                             isActive && "bg-emerald-600 border-emerald-400 text-white shadow-xl shadow-emerald-600/30 scale-110 z-10 cursor-not-allowed",
+                             !hasData && "opacity-20 grayscale cursor-not-allowed"
                           )}
                        >
                           {num}
