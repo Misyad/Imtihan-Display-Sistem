@@ -18,7 +18,8 @@ export default function InteractivePage() {
     showAnswer, 
     setActiveQuestion, 
     toggleAnswer, 
-    resetQuestion 
+    resetQuestion,
+    markQuestionUsed
   } = useQuestionStore();
 
   const [mounted, setMounted] = useState(false);
@@ -28,9 +29,11 @@ export default function InteractivePage() {
   const usedQuestions = activeProfile?.usedQuestions || [];
   const settings = activeProfile?.settings;
   const currentQuestionData = questions.find(q => q.nomor === activeQuestion);
+  const gridCount = Math.max(100, questions.length);
+  const baseMinSize = gridCount <= 20 ? 140 : gridCount <= 50 ? 90 : 60;
+  const dynamicMinSize = Math.round((baseMinSize * buttonScale) / 100);
   const answerText = currentQuestionData?.jawaban || "MUMTAZ";
 
-  const gridCount = Math.max(100, questions.length);
 
   useEffect(() => {
     setMounted(true);
@@ -47,6 +50,9 @@ export default function InteractivePage() {
   };
 
   const handleClose = () => {
+    if (activeQuestion !== null) {
+      markQuestionUsed(activeQuestion);
+    }
     resetQuestion();
   };
 
@@ -109,34 +115,27 @@ export default function InteractivePage() {
       </header>
 
       {/* Main Grid Area */}
-      <main className="relative z-10 flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar flex items-center justify-center">
-         <div className="w-full max-w-7xl mx-auto flex items-center justify-center min-h-[60vh]">
-            <div className={cn(
-              "grid gap-4 md:gap-6 justify-center w-full",
-              gridCount <= 20 ? "grid-cols-4 sm:grid-cols-5" : 
-              gridCount <= 50 ? "grid-cols-5 sm:grid-cols-8 md:grid-cols-10" :
-              "grid-cols-5 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 xl:grid-cols-[repeat(20,minmax(0,1fr))]"
-            )}>
+      <main className="relative z-10 flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar flex flex-col items-center justify-start">
+         <div className="w-full max-w-7xl mx-auto flex flex-col items-center justify-start pt-6">
+            <div style={{ gridTemplateColumns: `repeat(auto-fill, ${dynamicMinSize}px)` }}
+              className="grid gap-2 md:gap-3 justify-center w-full transition-all duration-200">
                {Array.from({ length: gridCount }, (_, i) => i + 1).map((num) => {
                   const isUsed = usedQuestions.includes(num);
                   const isActive = activeQuestion === num;
                   const hasData = questions.some(q => q.nomor === num);
 
                   // Dynamic Size based on total count
-                  const sizeClass = gridCount <= 20 ? "h-24 md:h-32 text-4xl" :
-                                   gridCount <= 50 ? "h-20 md:h-24 text-2xl" :
-                                   "aspect-square text-lg";
+                  const sizeClass = gridCount <= 20 ? "aspect-square text-5xl md:text-6xl" : gridCount <= 50 ? "aspect-square text-3xl md:text-4xl" : "aspect-square text-xl md:text-2xl";
 
                   return (
                      <motion.button
                         key={num}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        style={{ scale: buttonScale / 100 }}
                         onClick={() => handleNumberClick(num)}
                         disabled={!hasData || isUsed || isActive}
                         className={cn(
-                           "relative flex items-center justify-center font-black transition-all duration-300 border-2 rounded-3xl",
+                           "relative flex items-center justify-center font-black transition-all duration-300 border-2 rounded-xl",
                            sizeClass,
                            !isUsed && hasData && "bg-zinc-900/50 border-white/5 text-zinc-500 hover:border-emerald-500/50 hover:text-emerald-400 cursor-pointer",
                            isUsed && "bg-rose-500/10 border-rose-500/30 text-rose-500 cursor-not-allowed",
