@@ -22,6 +22,14 @@ const getSocketUrl = () => {
     // Auto-detect based on current hostname
     const hostname = window.location.hostname;
     const isDev = hostname === "localhost" || hostname === "127.0.0.1";
+    
+    // Cloudflare Tunnel dynamic routing fallback for projecthasan.com
+    if (hostname.includes("projecthasan.com")) {
+      const protocol = window.location.protocol;
+      const socketUrl = `${protocol}//khotaman-socket.projecthasan.com`;
+      logger.info(`[Socket] Public domain mapped to: ${socketUrl}`);
+      return socketUrl;
+    }
     const socketPort = isDev ? 3001 : 3011;
     const protocol = window.location.protocol;
     const socketUrl = `${protocol}//${hostname}:${socketPort}`;
