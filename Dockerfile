@@ -43,21 +43,18 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./standalone
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./standalone/.next/static
 
 # Create startup script
-RUN cat > /app/start.sh <<'EOF'
-#!/bin/sh
-set -e
-echo "Starting Socket.IO server on port 3001..."
-PORT=3001 node /app/socket-server.js &
-SOCKET_PID=$!
-echo "Socket.IO server started with PID $SOCKET_PID"
+RUN printf '#!/bin/sh\n\
+set -e\n\
+echo "Starting Socket.IO server on port 3001..."\n\
+PORT=3001 node /app/socket-server.js &\n\
+SOCKET_PID=\$\!\n\
+echo "Socket.IO server started with PID \$SOCKET_PID"\n\
+sleep 2\n\
+echo "Starting Next.js server on port 3000..."\n\
+cd /app/standalone\n\
+PORT=3000 exec node server.js\n\
+' > /app/start.sh
 
-sleep 2
-echo "Starting Next.js server on port 3000..."
-cd /app/standalone
-PORT=3000 exec node server.js
-EOF
-
-RUN sed -i 's/\r$//' /app/start.sh
 RUN chmod +x /app/start.sh
 RUN chown nextjs:nodejs /app/start.sh
 
