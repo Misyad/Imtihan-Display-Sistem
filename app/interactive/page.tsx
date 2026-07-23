@@ -72,11 +72,11 @@ export default function InteractivePage() {
                <Award className="w-6 h-6 text-white" />
             </div>
             <div>
-               <h1 className="truncate text-lg font-black text-white uppercase tracking-tighter">{settings?.instituteName || "Interactive Board"}</h1>
-               <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-500">{settings?.eventName || "Synced Mode"}</p>
+               <h1 className="truncate text-sm sm:text-lg font-black text-white uppercase tracking-tighter">{settings?.instituteName || "Interactive Board"}</h1>
+               <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-emerald-500">{settings?.eventName || "Synced Mode"}</p>
             </div>
          </div>
-         <div className="flex w-full flex-wrap items-center justify-end gap-3 sm:gap-4 md:w-auto">
+         <div className="flex w-full items-center justify-between sm:justify-end gap-2 sm:gap-4 md:w-auto">
             <div className="flex min-w-0 flex-1 items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-white sm:flex-none">
                <label htmlFor="question-button-scale" className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
                   Tombol {buttonScale}%
@@ -89,7 +89,7 @@ export default function InteractivePage() {
                   step="10"
                   value={buttonScale}
                   onChange={(event) => setButtonScale(Number(event.target.value))}
-                  className="w-24 accent-emerald-500"
+                  className="w-16 sm:w-24 accent-emerald-500"
                   aria-label="Ukuran tombol nomor soal"
                />
                <button
@@ -115,7 +115,7 @@ export default function InteractivePage() {
       </header>
 
       {/* Main Grid Area */}
-      <main className="relative z-10 flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar flex flex-col items-center justify-start">
+      <main className="relative z-10 flex-1 overflow-y-auto p-4 sm:p-8 md:p-12 custom-scrollbar flex flex-col items-center justify-start">
          <div className="w-full max-w-7xl mx-auto flex flex-col items-center justify-start pt-6">
             <div style={{ gridTemplateColumns: `repeat(auto-fill, ${dynamicMinSize}px)` }}
               className="grid gap-2 md:gap-3 justify-center w-full transition-all duration-200">
@@ -157,7 +157,7 @@ export default function InteractivePage() {
          </div>
       </main>
 
-      <footer className="relative z-10 p-6 text-center text-[10px] font-bold text-zinc-600 uppercase tracking-[0.4em] bg-black/20">
+      <footer className="hidden sm:block relative z-10 p-4 md:p-6 text-center text-[10px] font-bold text-zinc-600 uppercase tracking-[0.4em] bg-black/20">
          &copy; 2024 Imtihan Display &bull; MULTI-MODE INTEGRATED
       </footer>
 
@@ -168,13 +168,13 @@ export default function InteractivePage() {
                initial={{ opacity: 0 }}
                animate={{ opacity: 1 }}
                exit={{ opacity: 0 }}
-               className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12"
+               className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12"
             >
                <div className="absolute inset-0 bg-black/95 backdrop-blur-2xl" onClick={handleClose} />
                
                <button 
                   onClick={handleClose}
-                  className="absolute top-8 right-8 z-[110] w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-white transition-all pointer-events-auto"
+                  className="absolute top-4 right-4 sm:top-8 sm:right-8 z-[110] w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-white transition-all pointer-events-auto"
                >
                   <X className="w-6 h-6" />
                </button>
@@ -196,18 +196,18 @@ export default function InteractivePage() {
 
                               <div className="relative">
                                   <div className="absolute -inset-20 bg-emerald-500/10 rounded-full blur-[100px]" />
-                                  <h1 className="relative text-[10rem] md:text-[15rem] font-black leading-none tracking-tighter text-white drop-shadow-2xl italic">
+                                  <h1 className="relative text-7xl sm:text-9xl md:text-[12rem] lg:text-[15rem] font-black leading-none tracking-tighter text-white drop-shadow-2xl italic">
                                     {activeQuestion?.toString().padStart(2, '0')}
                                   </h1>
                               </div>
 
-                              <p dir="auto" className="text-4xl md:text-6xl font-bold text-white leading-tight max-w-4xl tracking-tight whitespace-pre-line">
+                              <p dir="auto" className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-4xl tracking-tight whitespace-pre-line px-2">
                                   <QuestionText text={currentQuestionData?.soal || ""} />
                               </p>
 
                               <button 
                                   onClick={() => toggleAnswer()}
-                                  className="px-12 py-5 rounded-full bg-emerald-600 text-white font-black uppercase tracking-[0.4em] hover:bg-emerald-500 transition-all shadow-xl shadow-emerald-600/20 active:scale-95 pointer-events-auto"
+                                  className="px-6 py-3 sm:px-12 sm:py-5 text-xs sm:text-base rounded-full bg-emerald-600 text-white font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] hover:bg-emerald-500 transition-all shadow-xl shadow-emerald-600/20 active:scale-95 pointer-events-auto"
                               >
                                   Buka Jawaban
                               </button>
@@ -220,19 +220,19 @@ export default function InteractivePage() {
                               exit={{ opacity: 0, scale: 1.1 }}
                               className="w-full"
                             >
-                              <GlassCard variant="gold" className="py-20 px-12 md:px-24 mx-auto max-w-5xl">
+                              <GlassCard variant="gold" className="py-10 px-6 sm:py-20 sm:px-12 md:px-24 mx-auto max-w-5xl w-full max-h-[85vh] overflow-y-auto custom-scrollbar">
                                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(251,191,36,0.1),_transparent)] animate-pulse" />
                                   <div className="relative z-10 space-y-8">
                                     <h3 className="text-amber-500 text-xl md:text-3xl font-bold uppercase tracking-[0.6em]">Natijah Imtihan</h3>
                                     <h1 className={cn(
                                       "font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-amber-200 via-amber-400 to-amber-600 whitespace-pre-line break-words",
                                       answerText.length > 300
-                                        ? "text-2xl md:text-3xl"
+                                        ? "text-lg sm:text-2xl md:text-3xl"
                                         : answerText.length > 150
-                                          ? "text-3xl md:text-4xl"
+                                          ? "text-xl sm:text-3xl md:text-4xl"
                                           : answerText.length > 70
-                                            ? "text-4xl md:text-5xl"
-                                            : "text-6xl md:text-8xl"
+                                            ? "text-2xl sm:text-4xl md:text-5xl"
+                                            : "text-4xl sm:text-6xl md:text-8xl"
                                     )}>
                                         <QuestionText text={answerText} />
                                     </h1>
