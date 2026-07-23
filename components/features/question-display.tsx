@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen } from "lucide-react";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { GlassCard } from "@/components/ui/glass-card";
+import { QuestionText } from "@/components/ui/question-text";
 
 interface QuestionDisplayProps {
   activeQuestion: number | null;
@@ -58,10 +59,10 @@ export const QuestionDisplay = ({
           {questionData && (
             <div className={cn("max-w-4xl", layout === "overlay" && "max-w-full")}>
               <p className={cn(
-                "font-bold leading-tight text-white tracking-tight",
+                "font-bold leading-tight text-white tracking-tight whitespace-pre-line",
                 layout === "full" ? "text-4xl md:text-6xl" : "text-2xl md:text-4xl"
               )}>
-                "{questionData.soal}"
+                <QuestionText text={questionData.soal} />
               </p>
             </div>
           )}
@@ -84,7 +85,7 @@ export const QuestionDisplay = ({
               "font-black text-amber-950 tracking-tight",
               layout === "full" ? "text-7xl md:text-9xl" : "text-4xl md:text-6xl"
             )}>
-              {questionData?.jawaban || "MUMTAZ"}
+              <QuestionText text={questionData?.jawaban || "MUMTAZ"} />
             </h1>
           </div>
         </GlassCard>

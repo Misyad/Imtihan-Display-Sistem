@@ -2,6 +2,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import { QuestionText } from "@/components/ui/question-text";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, Trophy, Clock } from "lucide-react";
 
@@ -54,7 +55,7 @@ export const GameDisplay = ({
                </div>
 
                <h2 className="text-4xl md:text-5xl font-black text-amber-900 leading-tight">
-                  {questionData?.soal || "Memuat Pertanyaan..."}
+                  <QuestionText text={questionData?.soal || "Memuat Pertanyaan..."} />
                </h2>
 
                <div className="flex gap-4">
@@ -86,7 +87,7 @@ export const GameDisplay = ({
                </div>
 
                <h1 className="text-6xl md:text-8xl font-black text-emerald-700 uppercase tracking-tight">
-                  {questionData?.jawaban || "MUMTAZ"}
+                  <QuestionText text={questionData?.jawaban || "MUMTAZ"} />
                </h1>
 
                <div className="flex justify-center gap-6">

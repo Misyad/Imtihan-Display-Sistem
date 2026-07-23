@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useQuestionStore } from "@/lib/store";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, X, Award, CheckCircle2 } from "lucide-react";
+import { BookOpen, X, Award, CheckCircle2, RotateCcw } from "lucide-react";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SlideDisplay } from "@/components/features/slide-display";
+import { QuestionText } from "@/components/ui/question-text";
 
 export default function InteractivePage() {
   const { 
@@ -21,11 +22,13 @@ export default function InteractivePage() {
   } = useQuestionStore();
 
   const [mounted, setMounted] = useState(false);
+  const [buttonScale, setButtonScale] = useState(100);
   const activeProfile = profiles[activeProfileId];
   const questions = activeProfile?.questions || [];
   const usedQuestions = activeProfile?.usedQuestions || [];
   const settings = activeProfile?.settings;
   const currentQuestionData = questions.find(q => q.nomor === activeQuestion);
+  const answerText = currentQuestionData?.jawaban || "MUMTAZ";
 
   const gridCount = Math.max(100, questions.length);
 
@@ -50,31 +53,58 @@ export default function InteractivePage() {
   if (!mounted || !activeProfile) return null;
 
   return (
-    <div className="fixed inset-0 flex flex-col overflow-hidden font-sans transition-all duration-500 bg-zinc-950">
+    <div className="fixed inset-x-0 top-16 bottom-0 flex flex-col overflow-hidden font-sans transition-all duration-500 bg-zinc-950">
       {/* Background Cinematic */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-950/20 via-zinc-950 to-black" />
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/islamic-art.png')]" />
 
       {/* Header */}
-      <header className="relative z-10 p-8 flex justify-between items-center backdrop-blur-md border-b bg-zinc-900/50 border-white/5">
-         <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg bg-emerald-600 shadow-emerald-600/20">
-               <Award className="w-7 h-7 text-white" />
+      <header className="relative z-10 border-b border-slate-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+         <div className="mx-auto flex w-full max-w-[1600px] flex-col items-center justify-between gap-4 md:flex-row">
+         <div className="flex min-w-0 items-center gap-4 md:w-auto">
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg bg-emerald-600 shadow-emerald-600/20">
+               <Award className="w-6 h-6 text-white" />
             </div>
             <div>
-               <h1 className="text-xl font-black text-white uppercase tracking-tighter">{settings?.instituteName || "Interactive Board"}</h1>
+               <h1 className="truncate text-lg font-black text-white uppercase tracking-tighter">{settings?.instituteName || "Interactive Board"}</h1>
                <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-500">{settings?.eventName || "Synced Mode"}</p>
             </div>
          </div>
-         <div className="flex items-center gap-6">
-            <div className="text-right hidden md:block text-white">
+         <div className="flex w-full flex-wrap items-center justify-end gap-3 sm:gap-4 md:w-auto">
+            <div className="flex min-w-0 flex-1 items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-white sm:flex-none">
+               <label htmlFor="question-button-scale" className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
+                  Tombol {buttonScale}%
+               </label>
+               <input
+                  id="question-button-scale"
+                  type="range"
+                  min="80"
+                  max="150"
+                  step="10"
+                  value={buttonScale}
+                  onChange={(event) => setButtonScale(Number(event.target.value))}
+                  className="w-24 accent-emerald-500"
+                  aria-label="Ukuran tombol nomor soal"
+               />
+               <button
+                  type="button"
+                  onClick={() => setButtonScale(100)}
+                  className="rounded-lg p-1.5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
+                  title="Reset ukuran tombol"
+                  aria-label="Reset ukuran tombol ke 100 persen"
+               >
+                  <RotateCcw className="h-3.5 w-3.5" />
+               </button>
+            </div>
+            <div className="hidden text-right text-white md:block">
                <p className="text-[10px] font-bold opacity-50 uppercase tracking-widest">Selesai</p>
                <p className="text-xl font-black">{usedQuestions.length} <span className="opacity-30 text-sm">/ {questions.length}</span></p>
             </div>
-            <div className="w-px h-8 bg-white/10" />
+            <div className="hidden h-8 w-px bg-white/10 sm:block" />
             <StatusBadge variant="emerald" icon={<div className="w-2 h-2 rounded-full animate-pulse bg-emerald-400" />}>
                REALTIME SYNCED
             </StatusBadge>
+         </div>
          </div>
       </header>
 
@@ -102,6 +132,7 @@ export default function InteractivePage() {
                         key={num}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        style={{ scale: buttonScale / 100 }}
                         onClick={() => handleNumberClick(num)}
                         disabled={!hasData || isUsed || isActive}
                         className={cn(
@@ -171,8 +202,8 @@ export default function InteractivePage() {
                                   </h1>
                               </div>
 
-                              <p className="text-4xl md:text-6xl font-bold text-white leading-tight max-w-4xl tracking-tight">
-                                  "{currentQuestionData?.soal}"
+                              <p dir="auto" className="text-4xl md:text-6xl font-bold text-white leading-tight max-w-4xl tracking-tight whitespace-pre-line">
+                                  <QuestionText text={currentQuestionData?.soal || ""} />
                               </p>
 
                               <button 
@@ -194,8 +225,17 @@ export default function InteractivePage() {
                                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(251,191,36,0.1),_transparent)] animate-pulse" />
                                   <div className="relative z-10 space-y-8">
                                     <h3 className="text-amber-500 text-xl md:text-3xl font-bold uppercase tracking-[0.6em]">Natijah Imtihan</h3>
-                                    <h1 className="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-amber-200 via-amber-400 to-amber-600">
-                                        {currentQuestionData?.jawaban || "MUMTAZ"}
+                                    <h1 className={cn(
+                                      "font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-amber-200 via-amber-400 to-amber-600 whitespace-pre-line break-words",
+                                      answerText.length > 300
+                                        ? "text-2xl md:text-3xl"
+                                        : answerText.length > 150
+                                          ? "text-3xl md:text-4xl"
+                                          : answerText.length > 70
+                                            ? "text-4xl md:text-5xl"
+                                            : "text-6xl md:text-8xl"
+                                    )}>
+                                        <QuestionText text={answerText} />
                                     </h1>
                                     <button 
                                         onClick={handleClose}

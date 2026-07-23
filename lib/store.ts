@@ -399,7 +399,8 @@ export const useQuestionStore = create<QuestionStore>()(
       }
     }),
     {
-      name: "imtihan-multi-lembaga-storage",
+      // Bump storage key so the corrected slide transcription replaces stale placeholder data.
+      name: "imtihan-multi-lembaga-storage-v2",
       partialize: (state) => ({
         profiles: state.profiles,
         activeProfileId: state.activeProfileId,

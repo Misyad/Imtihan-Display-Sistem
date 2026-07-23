@@ -21,6 +21,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
 import * as XLSX from "xlsx";
 import { ConnectionStatus } from "@/components/ui/connection-status";
+import { QuestionText } from "@/components/ui/question-text";
 
 export default function OperatorPage() {
   const { 
@@ -208,8 +209,8 @@ export default function OperatorPage() {
                  <div className="space-y-4">
                     <div className="p-5 rounded-3xl bg-white/5 border border-white/5 space-y-2">
                        <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Pertanyaan</p>
-                       <p className="text-lg font-bold leading-snug">
-                          {currentQuestionData?.soal || "Pilih nomor soal pada papan untuk memulai."}
+                       <p dir="auto" className="text-lg font-bold leading-snug whitespace-pre-line">
+                          <QuestionText text={currentQuestionData?.soal || "Pilih nomor soal pada papan untuk memulai."} />
                        </p>
                     </div>
 
@@ -221,8 +222,8 @@ export default function OperatorPage() {
                           className="p-5 rounded-3xl bg-emerald-500/10 border border-emerald-500/20 space-y-2"
                         >
                            <p className="text-[10px] font-black uppercase tracking-widest text-emerald-500">Jawaban</p>
-                           <p className="text-xl font-black text-emerald-400 uppercase tracking-tight">
-                              {currentQuestionData?.jawaban || "MUMTAZ"}
+                           <p dir="auto" className="text-xl font-black text-emerald-400 uppercase tracking-tight whitespace-pre-line">
+                              <QuestionText text={currentQuestionData?.jawaban || "MUMTAZ"} />
                            </p>
                         </motion.div>
                       )}

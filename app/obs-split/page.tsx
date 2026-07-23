@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn, formatQuestionText } from "@/lib/utils";
 import { useQuestionStore } from "@/lib/store";
 import { BookOpen, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -86,7 +86,7 @@ export default function ObsSplitPage() {
                         className="w-full"
                       >
                          <p className="text-4xl md:text-5xl font-bold text-white leading-tight text-left drop-shadow-sm">
-                            "{currentQuestionData?.soal}"
+                            {formatQuestionText(currentQuestionData?.soal || "")}
                          </p>
                       </motion.div>
                    ) : (
@@ -100,7 +100,7 @@ export default function ObsSplitPage() {
                       >
                          <span className="block text-amber-950/60 text-xs font-black uppercase tracking-[0.5em] mb-4">Jawaban Benar</span>
                          <h1 className="text-6xl md:text-7xl font-black text-amber-950 tracking-tight">
-                            {currentQuestionData?.jawaban || "MUMTAZ"}
+                            {formatQuestionText(currentQuestionData?.jawaban || "MUMTAZ")}
                          </h1>
                       </motion.div>
                    )
