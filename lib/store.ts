@@ -23,7 +23,8 @@ const getSocketUrl = () => {
     const hostname = window.location.hostname;
     const isDev = hostname === "localhost" || hostname === "127.0.0.1";
     const socketPort = isDev ? 3001 : 3011;
-    const socketUrl = `http://${hostname}:${socketPort}`;
+    const protocol = window.location.protocol;
+    const socketUrl = `${protocol}//${hostname}:${socketPort}`;
     logger.info(`[Socket] Auto-detected URL: ${socketUrl}`);
     return socketUrl;
   }
