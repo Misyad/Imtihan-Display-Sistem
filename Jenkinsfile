@@ -53,8 +53,14 @@ pipeline {
                 echo 'Verifying deployment...'
                 sh '''
                     sleep 5
-                    docker ps | grep imtihan-display || (echo "Container not running!" && exit 1)
-                    echo "✅ Container is running"
+                    STATUS=$(docker inspect -f '{{.State.Status}}' imtihan-display || echo "not-found")
+                    echo "Container status: $STATUS"
+                    if [ "$STATUS" != "running" ]; then
+                        echo "? Container is not running successfully! Status: $STATUS"
+                        docker logs imtihan-display --tail 100
+                        exit 1
+                    fi
+                    echo "? Container is running successfully"
                 '''
             }
         }
