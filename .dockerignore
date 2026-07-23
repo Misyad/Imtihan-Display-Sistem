@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.gitignore
+*.md
+SOAL PILIHAN IMTIHAN 2025_JPG
+Dockerfile
+docker-compose.yml
+docker-compose.prod.yml
+Jenkinsfile
+.env
+.env.local
+.env.example
+AGENTS.md
+CLAUDE.md
