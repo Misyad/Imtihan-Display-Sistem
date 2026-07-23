@@ -15,7 +15,7 @@ services:
       - NODE_ENV=production
       - PORT=3000
       - SOCKET_PORT=3001
-      - NEXT_PUBLIC_SOCKET_URL=https://khotaman-display.projecthasan.com
+      - NEXT_PUBLIC_SOCKET_URL=https://khotaman-socket.projecthasan.com
     networks:
       - imtihan-network
 
