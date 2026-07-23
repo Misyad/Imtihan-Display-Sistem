@@ -16,19 +16,17 @@ export function SlideDisplay({ question, showAnswer }: SlideDisplayProps) {
   const hasImage = question.soalImage || question.jawabanImage;
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-8">
+    <div className="w-full flex flex-col items-center justify-center p-4">
       {hasImage && imageToShow ? (
-        <div className="relative w-full h-full flex items-center justify-center">
-          <div className="relative w-full max-w-6xl h-full">
-            <Image
-              src={imageToShow}
-              alt={showAnswer ? "Jawaban" : "Soal"}
-              fill
-              className="object-contain"
-              priority
-              unoptimized
-            />
-          </div>
+        <div className="relative w-full aspect-[16/9] max-w-5xl max-h-[75vh]">
+          <Image
+            src={imageToShow}
+            alt={showAnswer ? "Jawaban" : "Soal"}
+            fill
+            className="object-contain"
+            priority
+            unoptimized
+          />
         </div>
       ) : (
         // Fallback to text if no image

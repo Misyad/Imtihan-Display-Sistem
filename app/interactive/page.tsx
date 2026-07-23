@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, X, Award, CheckCircle2 } from "lucide-react";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { GlassCard } from "@/components/ui/glass-card";
+import { SlideDisplay } from "@/components/features/slide-display";
 
 export default function InteractivePage() {
   const { 
