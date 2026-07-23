@@ -34,6 +34,12 @@ pipeline {
                     # Stop and remove old containers
                     $COMPOSE -f docker-compose.prod.yml down || true
                     
+                    # Force stop & remove any existing conflicting container
+                    if docker ps -a --format '{{.Names}}' | grep -Eq "^imtihan-display$"; then
+                        echo "Removing conflicting container..."
+                        docker rm -f imtihan-display || true
+                    fi
+                    
                     # Build and start new containers
                     $COMPOSE -f docker-compose.prod.yml up -d --build
                     
