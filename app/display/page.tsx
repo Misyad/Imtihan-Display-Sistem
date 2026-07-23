@@ -6,6 +6,8 @@ import { Award, Sparkles, BookOpen } from "lucide-react";
 import { CinematicLayout } from "@/components/layout/cinematic-layout";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { QuestionDisplay } from "@/components/features/question-display";
+import { GameDisplay } from "@/components/features/game-display";
+import { SlideDisplay } from "@/components/features/slide-display";
 
 export default function DisplayPage() {
   const { activeProfileId, profiles, activeQuestion, showAnswer } = useQuestionStore();
@@ -33,12 +35,19 @@ export default function DisplayPage() {
         </div>
 
         <div className="relative w-full flex items-center justify-center min-h-[60vh]">
-          <QuestionDisplay 
-            activeQuestion={activeQuestion}
-            questionData={currentQuestionData}
-            showAnswer={showAnswer}
-            layout="full"
-          />
+          {currentQuestionData?.soalImage || currentQuestionData?.jawabanImage ? (
+            <SlideDisplay 
+              question={currentQuestionData}
+              showAnswer={showAnswer}
+            />
+          ) : (
+            <QuestionDisplay 
+              activeQuestion={activeQuestion}
+              questionData={currentQuestionData}
+              showAnswer={showAnswer}
+              layout="full"
+            />
+          )}
         </div>
 
         {/* Cinematic Footer */}

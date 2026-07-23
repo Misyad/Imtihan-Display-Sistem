@@ -11,44 +11,81 @@ const io = new Server(server, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"]
-  }
+  },
+  pingTimeout: 60000,
+  pingInterval: 25000
 });
 
-let gameState = {
+// Global state (full app state synced across all clients)
+let globalState = {
+  profiles: {},
+  activeProfileId: "default",
   activeQuestion: null,
-  usedQuestions: [],
   showAnswer: false,
-  answerText: "MUMTAZ (ISTIMEWA)"
+  answerText: "",
+  lastUpdated: Date.now()
 };
 
 io.on('connection', (socket) => {
   const timestamp = () => new Date().toLocaleTimeString();
   console.log(`\x1b[32m[INFO]\x1b[0m ${timestamp()} - Socket client connected: ${socket.id}`);
+  console.log(`\x1b[32m[INFO]\x1b[0m ${timestamp()} - Total clients: ${io.engine.clientsCount}`);
 
-  // Send current state to new connection
+  // Send current full state to new connection
   try {
-    socket.emit('stateUpdate', gameState);
+    socket.emit('stateUpdate', globalState);
+    // Broadcast current client count
+    io.emit('clientCount', io.engine.clientsCount);
   } catch (error) {
-    console.error(`\x1b[31m[ERROR]\x1b[0m ${timestamp()} - Failed to emit initial state update:`, error);
+    console.error(`\x1b[31m[ERROR]\x1b[0m ${timestamp()} - Failed to send initial state to ${socket.id}:`, error);
   }
 
-  // Handle state updates from clients
+  // Handle full state updates from clients
   socket.on('updateState', (newState) => {
     try {
       if (!newState) {
         throw new Error("Received empty or invalid state update");
       }
-      gameState = { ...gameState, ...newState };
-      // Broadcast to everyone else
-      socket.broadcast.emit('stateUpdate', gameState);
+      // Merge new state with global state
+      globalState = { 
+        ...globalState, 
+        ...newState,
+        lastUpdated: Date.now()
+      };
+      
+      console.log(`\x1b[32m[INFO]\x1b[0m ${timestamp()} - State updated:`, {
+        activeQuestion: globalState.activeQuestion,
+        showAnswer: globalState.showAnswer,
+        activeProfileId: globalState.activeProfileId
+      });
+      
+      // Broadcast to ALL clients (including sender)
+      io.emit('stateUpdate', globalState);
     } catch (error) {
       console.error(`\x1b[31m[ERROR]\x1b[0m ${timestamp()} - Error handling updateState for ${socket.id}:`, error);
       socket.emit('error', { message: 'Gagal memperbarui status sinkronisasi game.' });
     }
   });
 
+  // Handle request for current state
+  socket.on('requestState', () => {
+    try {
+      socket.emit('stateUpdate', globalState);
+    } catch (error) {
+      console.error(`\x1b[31m[ERROR]\x1b[0m ${timestamp()} - Error handling requestState for ${socket.id}:`, error);
+    }
+  });
+
   socket.on('disconnect', (reason) => {
     console.log(`\x1b[33m[WARN]\x1b[0m ${timestamp()} - Socket client disconnected: ${socket.id} (${reason})`);
+    console.log(`\x1b[32m[INFO]\x1b[0m ${timestamp()} - Total clients: ${io.engine.clientsCount}`);
+    
+    try {
+      // Broadcast updated client count
+      io.emit('clientCount', io.engine.clientsCount);
+    } catch (error) {
+      console.error(`\x1b[31m[ERROR]\x1b[0m ${timestamp()} - Error broadcasting clientCount:`, error);
+    }
   });
 
   socket.on('error', (error) => {
@@ -74,8 +111,10 @@ const PORT = process.env.PORT || 3001;
 server.listen(PORT, '0.0.0.0', () => {
   const ip = getLocalIP();
   console.log('-------------------------------------------');
-  console.log(`🚀 Socket.IO server running:`);
+  console.log(`?? Socket.IO server running:`);
   console.log(`   - Local:   http://localhost:${PORT}`);
   console.log(`   - Network: http://${ip}:${PORT}`);
   console.log('-------------------------------------------');
+  console.log('? Full state sync enabled');
+  console.log('? Reconnection support active');
 });

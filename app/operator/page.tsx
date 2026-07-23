@@ -20,6 +20,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
 import * as XLSX from "xlsx";
+import { ConnectionStatus } from "@/components/ui/connection-status";
 
 export default function OperatorPage() {
   const { 
@@ -106,6 +107,7 @@ export default function OperatorPage() {
           </div>
 
           <div className="flex items-center gap-3">
+             <ConnectionStatus />
              <select 
                value={activeProfileId}
                onChange={(e) => switchProfile(e.target.value)}
