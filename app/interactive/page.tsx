@@ -61,7 +61,7 @@ export default function InteractivePage() {
   return (
     <div className="fixed inset-x-0 top-16 bottom-0 flex flex-col overflow-hidden font-sans transition-all duration-500 bg-zinc-950">
       {/* Background Cinematic */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-950/20 via-zinc-950 to-black" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-950/20 via-zinc-950 to-black" />
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/islamic-art.png')]" />
 
       {/* Header */}
@@ -72,13 +72,13 @@ export default function InteractivePage() {
                <Award className="w-6 h-6 text-white" />
             </div>
             <div>
-               <h1 className="truncate text-sm sm:text-lg font-black text-white uppercase tracking-tighter">{settings?.instituteName || "Interactive Board"}</h1>
+               <h1 className="truncate text-sm sm:text-lg font-black text-zinc-900 dark:text-white uppercase tracking-tighter">{settings?.instituteName || "Interactive Board"}</h1>
                <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-emerald-500">{settings?.eventName || "Synced Mode"}</p>
             </div>
          </div>
          <div className="flex w-full items-center justify-between sm:justify-end gap-2 sm:gap-4 md:w-auto">
-            <div className="flex min-w-0 flex-1 items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-white sm:flex-none">
-               <label htmlFor="question-button-scale" className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
+            <div className="flex min-w-0 flex-1 items-center justify-center gap-3 rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 px-3 py-2 text-zinc-800 dark:text-white sm:flex-none">
+               <label htmlFor="question-button-scale" className="text-[10px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
                   Tombol {buttonScale}%
                </label>
                <input
@@ -95,7 +95,7 @@ export default function InteractivePage() {
                <button
                   type="button"
                   onClick={() => setButtonScale(100)}
-                  className="rounded-lg p-1.5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
+                  className="rounded-lg p-1.5 text-zinc-500 dark:text-zinc-400 transition-colors hover:bg-zinc-200 dark:hover:bg-white/10 hover:text-zinc-800 dark:hover:text-white"
                   title="Reset ukuran tombol"
                   aria-label="Reset ukuran tombol ke 100 persen"
                >
