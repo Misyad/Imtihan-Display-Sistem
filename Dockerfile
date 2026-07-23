@@ -57,6 +57,7 @@ cd /app/standalone
 PORT=3000 exec node server.js
 EOF
 
+RUN sed -i 's/\r$//' /app/start.sh
 RUN chmod +x /app/start.sh
 RUN chown nextjs:nodejs /app/start.sh
 
