@@ -1,4 +1,5 @@
-// @ts-nocheck
+// NOTE: Uncomment when pg and drizzle-orm are installed
+/*
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import * as schema from "./schema";
@@ -21,3 +22,16 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 export const db = drizzle(pool, { schema });
+*/
+
+// Temporary Mock Export to prevent compilation errors while offline
+export const db = {
+  select: () => ({
+    from: () => ({
+      where: () => []
+    })
+  }),
+  insert: () => ({
+    values: () => {}
+  })
+} as any;

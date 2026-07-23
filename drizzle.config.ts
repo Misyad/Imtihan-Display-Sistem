@@ -1,4 +1,5 @@
-// @ts-nocheck
+// NOTE: Uncomment when drizzle-kit is installed
+/*
 import type { Config } from "drizzle-kit";
 
 export default {
@@ -9,3 +10,4 @@ export default {
     url: process.env.DATABASE_URL || "postgresql://user:password@localhost:5432/imtihan",
   },
 } satisfies Config;
+*/

@@ -1,4 +1,5 @@
-// @ts-nocheck
+// NOTE: Uncomment when drizzle-orm is installed
+/*
 import { pgTable, serial, text, integer, boolean, timestamp, uniqueIndex } from "drizzle-orm/pg-core";
 
 // Users Table for Authentication & RBAC
@@ -13,22 +14,22 @@ export const users = pgTable("users", {
 
 // Profiles Table (represents Lembaga / Institution)
 export const profiles = pgTable("profiles", {
-  id: text("id").primaryKey(), // Using text-based ID to match Zustand profiles
+  id: text("id").primaryKey(),
   name: text("name").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 // Settings Table for App Customization
 export const settings = pgTable("settings", {
-  id: text("id").primaryKey(), // Matches the profile ID (one-to-one relationship)
+  id: text("id").primaryKey(),
   profileId: text("profile_id").references(() => profiles.id, { onDelete: "cascade" }).notNull(),
   instituteName: text("institute_name").default("PONDOK PESANTREN AL-ITQAN").notNull(),
   eventName: text("event_name").default("HAFLAH AT-TAKSHRIJ").notNull(),
   academicYear: text("academic_year").default("2024/2025").notNull(),
   primaryColor: text("primary_color").default("#10b981").notNull(),
-  fontSize: text("font_size").default("normal").notNull(), // 'normal' | 'large' | 'extra-large'
+  fontSize: text("font_size").default("normal").notNull(),
   showFooter: boolean("show_footer").default(true).notNull(),
-  layoutTheme: text("layout_theme").default("classic").notNull(), // 'classic' | 'game'
+  layoutTheme: text("layout_theme").default("classic").notNull(),
 });
 
 // Questions Table
@@ -39,11 +40,11 @@ export const questions = pgTable("questions", {
   kategori: text("kategori").notNull(),
   soal: text("soal").notNull(),
   jawaban: text("jawaban").notNull(),
-  soalImage: text("soal_image"),      // optional path to slide image
-  jawabanImage: text("jawaban_image"), // optional path to slide image
+  soalImage: text("soal_image"),
+  jawabanImage: text("jawaban_image"),
 });
 
-// Used Questions Table (to persist used/completed questions per profile)
+// Used Questions Table
 export const usedQuestions = pgTable("used_questions", {
   id: serial("id").primaryKey(),
   profileId: text("profile_id").references(() => profiles.id, { onDelete: "cascade" }).notNull(),
@@ -51,7 +52,7 @@ export const usedQuestions = pgTable("used_questions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-// NextAuth Tables (for sessions and tokens)
+// NextAuth Tables
 export const sessions = pgTable("sessions", {
   id: text("id").primaryKey(),
   userId: integer("user_id").references(() => users.id, { onDelete: "cascade" }).notNull(),
@@ -64,3 +65,4 @@ export const verificationTokens = pgTable("verification_tokens", {
   token: text("token").notNull().unique(),
   expires: timestamp("expires").notNull(),
 });
+*/
