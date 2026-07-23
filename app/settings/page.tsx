@@ -27,7 +27,8 @@ export default function SettingsPage() {
     resetUsedQuestions, 
     addProfile, 
     switchProfile, 
-    deleteProfile 
+    deleteProfile,
+    setQuestions
   } = useQuestionStore();
 
   const activeProfile = profiles[activeProfileId];
@@ -173,6 +174,61 @@ export default function SettingsPage() {
                         <input type="text" value={formData.eventName} onChange={e => setFormData({ ...formData, eventName: e.target.value.toUpperCase() })} className="w-full p-4 rounded-2xl bg-slate-50 dark:bg-zinc-800 font-bold dark:text-white" />
                       </div>
                    </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Manajemen Soal & Progres */}
+            <div className="bg-white dark:bg-zinc-900 p-8 rounded-[2.5rem] border border-slate-200 dark:border-zinc-800 shadow-sm space-y-6">
+              <div className="flex items-center gap-3">
+                <AlertTriangle className="w-5 h-5 text-rose-500" />
+                <h2 className="text-lg font-bold uppercase tracking-tight dark:text-white">Manajemen Soal & Progres</h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Reset Progress */}
+                <div className="p-5 rounded-2xl bg-rose-50/50 dark:bg-rose-950/10 border border-rose-100 dark:border-rose-900/30 space-y-3">
+                  <h4 className="font-bold text-sm text-rose-800 dark:text-rose-400">Reset Progres Ujian</h4>
+                  <p className="text-xs text-slate-500 dark:text-zinc-400 leading-relaxed">
+                    Menghapus status soal yang sudah dikerjakan (nomor berwarna kuning) agar kembali ke status belum dikerjakan.
+                  </p>
+                  <button
+                    onClick={() => {
+                      if (confirm("Apakah Anda yakin ingin mereset progres ujian untuk lembaga ini? Semua soal akan ditandai kembali sebagai belum dikerjakan.")) {
+                        resetUsedQuestions();
+                        alert("Progres ujian berhasil direset!");
+                      }
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 bg-rose-600 text-white rounded-xl text-xs font-bold hover:bg-rose-500 transition-all cursor-pointer"
+                  >
+                    <Trash2 className="w-4 h-4" /> Reset Progres
+                  </button>
+                </div>
+
+                {/* Reset to Default Questions */}
+                <div className="p-5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/10 border border-emerald-100 dark:border-emerald-900/30 space-y-3">
+                  <h4 className="font-bold text-sm text-emerald-800 dark:text-emerald-400">Muat Bank Soal Bawaan</h4>
+                  <p className="text-xs text-slate-500 dark:text-zinc-400 leading-relaxed">
+                    Memulihkan bank soal ke data default (89 soal Tajwid & Qira'at) dari sistem. Soal aktif saat ini akan digantikan.
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <button
+                      onClick={() => {
+                        if (confirm("Apakah Anda yakin ingin memulihkan bank soal bawaan? Ini akan menimpa seluruh soal saat ini.")) {
+                          import("@/data/mock").then((mock) => {
+                            setQuestions(mock.imtihanQuestions);
+                            alert("Bank soal default (89 soal) berhasil dimuat!");
+                          });
+                        }
+                      }}
+                      className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-500 transition-all cursor-pointer"
+                    >
+                      <Download className="w-4 h-4" /> Muat Soal Default
+                    </button>
+                    <span className="text-xs font-bold text-slate-400 dark:text-zinc-500">
+                      {activeProfile.questions.length} Soal Terload
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
