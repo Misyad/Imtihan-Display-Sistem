@@ -25,7 +25,13 @@ export default function InteractivePage() {
 
   const [mounted, setMounted] = useState(false);
   const [buttonScale, setButtonScale] = useState(100);
-  const { isVisible, headerRef } = useAutoHideHeader();
+  const { isVisible, ref: headerRef } = useAutoHideHeader();
+  const { isVisible: footerVisible, ref: footerRef } = useAutoHideHeader({
+    showOnTopProximity: false,
+    showOnBottomProximity: true,
+    idleTimeout: 3000,
+    disableHoverProtection: true,
+  });
   const activeProfile = profiles[activeProfileId];
   const questions = activeProfile?.questions || [];
   const usedQuestions = activeProfile?.usedQuestions || [];
@@ -181,8 +187,14 @@ export default function InteractivePage() {
          </div>
       </main>
 
-      <footer className="hidden sm:block relative z-10 p-4 md:p-6 text-center text-[10px] font-bold text-zinc-600 uppercase tracking-[0.4em] bg-black/20">
-         &copy; 2024 Imtihan Display &bull; MULTI-MODE INTEGRATED
+      <footer
+        ref={footerRef}
+        className={cn(
+          "hidden sm:block relative z-10 p-4 md:p-6 text-center text-[10px] font-bold text-zinc-600 uppercase tracking-[0.4em] bg-black/20 header-auto-hide bottom",
+          footerVisible ? "visible" : "hidden"
+        )}
+      >
+          &copy; 2024 Imtihan Display &bull; MULTI-MODE INTEGRATED
       </footer>
 
       {/* INTEGRATED MODAL (DRIVEN BY GLOBAL STATE) */}

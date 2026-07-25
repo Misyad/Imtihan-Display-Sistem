@@ -48,7 +48,7 @@ export default function OperatorPage() {
   const usedQuestions = activeProfile?.usedQuestions || [];
   const settings = activeProfile?.settings;
   const currentQuestionData = questions.find(q => q.nomor === activeQuestion);
-  const { isVisible, headerRef } = useAutoHideHeader();
+  const { isVisible, ref: headerRef } = useAutoHideHeader();
 
   useEffect(() => {
     setMounted(true);

@@ -37,7 +37,7 @@ export default function RemotePage() {
     };
   }, []);
 
-  const { isVisible, headerRef } = useAutoHideHeader({ disabled: isMobile });
+  const { isVisible, ref: headerRef } = useAutoHideHeader({ disabled: isMobile });
 
   const handleVibrate = () => {
     if (typeof navigator !== "undefined" && navigator.vibrate) {

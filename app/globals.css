@@ -106,4 +106,12 @@ body {
   transform: translateY(0);
 }
 
+.header-auto-hide.bottom.hidden {
+  transform: translateY(100%);
+}
+
+.header-auto-hide.bottom.visible {
+  transform: translateY(0);
+}
+
 

@@ -23,7 +23,7 @@ export default function PapanSoalPage() {
   const gridCount = Math.max(100, questions.length);
 
   const [mounted, setMounted] = useState(false);
-  const { isVisible, headerRef } = useAutoHideHeader();
+  const { isVisible, ref: headerRef } = useAutoHideHeader();
 
   // Avoid hydration mismatch with persisted state
   useEffect(() => {

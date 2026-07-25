@@ -17,7 +17,13 @@ export default function DisplayPage() {
   const activeProfile = profiles[activeProfileId];
   const currentQuestionData = activeProfile?.questions.find(q => q.nomor === activeQuestion);
   const settings = activeProfile?.settings;
-  const { isVisible, headerRef } = useAutoHideHeader();
+  const { isVisible, ref: headerRef } = useAutoHideHeader();
+  const { isVisible: footerVisible, ref: footerRef } = useAutoHideHeader({
+    showOnTopProximity: false,
+    showOnBottomProximity: true,
+    idleTimeout: 3000,
+    disableHoverProtection: true,
+  });
 
   useEffect(() => {
     setMounted(true);
@@ -53,7 +59,13 @@ export default function DisplayPage() {
 
         {/* Cinematic Footer */}
         {settings?.showFooter && (
-          <div className="absolute bottom-16 left-0 right-0 px-20 flex justify-between items-end opacity-40">
+          <div
+            ref={footerRef}
+            className={cn(
+              "absolute bottom-16 left-0 right-0 px-20 flex justify-between items-end opacity-40 header-auto-hide bottom",
+              footerVisible ? "visible" : "hidden"
+            )}
+          >
              <div className="text-left space-y-2">
                 <p className="text-emerald-500 text-xs font-bold uppercase tracking-widest">{settings.instituteName}</p>
                 <div className="h-0.5 w-24 bg-emerald-500/30" />

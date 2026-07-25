@@ -5,21 +5,27 @@ import { useEffect, useRef, useState } from "react";
 interface UseAutoHideHeaderOptions {
   idleTimeout?: number;
   showOnTopProximity?: boolean;
+  showOnBottomProximity?: boolean;
   proximityThreshold?: number;
+  bottomProximityThreshold?: number;
   disabled?: boolean;
+  disableHoverProtection?: boolean;
 }
 
 export function useAutoHideHeader<T extends HTMLElement = HTMLDivElement>(options: UseAutoHideHeaderOptions = {}) {
   const {
     idleTimeout = 1500,
     showOnTopProximity = true,
+    showOnBottomProximity = false,
     proximityThreshold = 100,
+    bottomProximityThreshold = 100,
     disabled = false,
+    disableHoverProtection = false,
   } = options;
 
   const [isVisible, setIsVisible] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  const headerRef = useRef<T>(null!);
+  const ref = useRef<T>(null!);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -32,7 +38,7 @@ export function useAutoHideHeader<T extends HTMLElement = HTMLDivElement>(option
       setIsVisible(true);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
-      if (!isHovered) {
+      if (disableHoverProtection || !isHovered) {
         timeoutRef.current = setTimeout(() => {
           setIsVisible(false);
         }, idleTimeout);
@@ -40,7 +46,10 @@ export function useAutoHideHeader<T extends HTMLElement = HTMLDivElement>(option
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (showOnTopProximity && e.clientY <= proximityThreshold) {
+      const isTop = showOnTopProximity && e.clientY <= proximityThreshold;
+      const isBottom = showOnBottomProximity && e.clientY >= window.innerHeight - bottomProximityThreshold;
+
+      if (isTop || isBottom) {
         setIsVisible(true);
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
         return;
@@ -56,8 +65,10 @@ export function useAutoHideHeader<T extends HTMLElement = HTMLDivElement>(option
 
     const handleMouseLeave = () => {
       setIsHovered(false);
-      setIsVisible(false);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (!disableHoverProtection) {
+        setIsVisible(false);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      }
     };
 
     resetTimer();
@@ -68,10 +79,12 @@ export function useAutoHideHeader<T extends HTMLElement = HTMLDivElement>(option
     window.addEventListener("scroll", resetTimer);
     window.addEventListener("touchstart", resetTimer);
 
-    const header = headerRef.current;
-    if (header) {
-      header.addEventListener("mouseenter", handleMouseEnter);
-      header.addEventListener("mouseleave", handleMouseLeave);
+    if (!disableHoverProtection) {
+      const el = ref.current;
+      if (el) {
+        el.addEventListener("mouseenter", handleMouseEnter);
+        el.addEventListener("mouseleave", handleMouseLeave);
+      }
     }
 
     return () => {
@@ -82,12 +95,15 @@ export function useAutoHideHeader<T extends HTMLElement = HTMLDivElement>(option
       window.removeEventListener("scroll", resetTimer);
       window.removeEventListener("touchstart", resetTimer);
 
-      if (header) {
-        header.removeEventListener("mouseenter", handleMouseEnter);
-        header.removeEventListener("mouseleave", handleMouseLeave);
+      if (!disableHoverProtection) {
+        const el = ref.current;
+        if (el) {
+          el.removeEventListener("mouseenter", handleMouseEnter);
+          el.removeEventListener("mouseleave", handleMouseLeave);
+        }
       }
     };
-  }, [idleTimeout, showOnTopProximity, proximityThreshold, disabled, isHovered]);
+  }, [idleTimeout, showOnTopProximity, showOnBottomProximity, proximityThreshold, bottomProximityThreshold, disabled, disableHoverProtection, isHovered]);
 
-  return { isVisible, headerRef };
+  return { isVisible, ref };
 }
