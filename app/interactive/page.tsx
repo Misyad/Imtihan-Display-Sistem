@@ -9,6 +9,7 @@ import { StatusBadge } from "@/components/ui/status-badge";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SlideDisplay } from "@/components/features/slide-display";
 import { QuestionText } from "@/components/ui/question-text";
+import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
 
 export default function InteractivePage() {
   const { 
@@ -24,6 +25,7 @@ export default function InteractivePage() {
 
   const [mounted, setMounted] = useState(false);
   const [buttonScale, setButtonScale] = useState(100);
+  const { isVisible, headerRef } = useAutoHideHeader();
   const activeProfile = profiles[activeProfileId];
   const questions = activeProfile?.questions || [];
   const usedQuestions = activeProfile?.usedQuestions || [];
@@ -81,7 +83,13 @@ export default function InteractivePage() {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/islamic-art.png')]" />
 
       {/* Header */}
-      <header className="relative z-10 border-b border-slate-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+      <header
+        ref={headerRef}
+        className={cn(
+          "relative z-10 border-b border-slate-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900 header-auto-hide",
+          isVisible ? "visible" : "hidden"
+        )}
+      >
          <div className="mx-auto flex w-full max-w-[1600px] flex-col items-center justify-between gap-4 md:flex-row">
          <div className="flex min-w-0 items-center gap-4 md:w-auto">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg bg-emerald-600 shadow-emerald-600/20">

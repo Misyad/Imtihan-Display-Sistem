@@ -22,6 +22,7 @@ import { QRCodeSVG } from "qrcode.react";
 import * as XLSX from "xlsx";
 import { ConnectionStatus } from "@/components/ui/connection-status";
 import { QuestionText } from "@/components/ui/question-text";
+import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
 
 export default function OperatorPage() {
   const { 
@@ -47,6 +48,7 @@ export default function OperatorPage() {
   const usedQuestions = activeProfile?.usedQuestions || [];
   const settings = activeProfile?.settings;
   const currentQuestionData = questions.find(q => q.nomor === activeQuestion);
+  const { isVisible, headerRef } = useAutoHideHeader();
 
   useEffect(() => {
     setMounted(true);
@@ -92,7 +94,13 @@ export default function OperatorPage() {
     <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 flex flex-col font-sans transition-colors duration-500">
       
       {/* Top Navbar */}
-      <nav className="bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 p-4 sticky top-0 z-30">
+      <nav
+        ref={headerRef}
+        className={cn(
+          "bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 p-4 sticky top-0 z-30 header-auto-hide",
+          isVisible ? "visible" : "hidden"
+        )}
+      >
         <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-4">
              <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-black shadow-lg shadow-emerald-600/20">

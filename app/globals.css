@@ -93,4 +93,17 @@ body {
   cursor: none !important;
 }
 
+.header-auto-hide {
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.header-auto-hide.hidden {
+  transform: translateY(-100%);
+}
+
+.header-auto-hide.visible {
+  transform: translateY(0);
+}
+
 

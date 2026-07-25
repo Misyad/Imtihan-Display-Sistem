@@ -13,6 +13,7 @@ import {
   Smartphone
 } from "lucide-react";
 import { useQuestionStore } from "@/lib/store";
+import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
 
 export default function RemotePage() {
   const { 
@@ -24,15 +25,19 @@ export default function RemotePage() {
   } = useQuestionStore();
 
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    setIsMobile('ontouchstart' in window || navigator.maxTouchPoints > 0);
     // Lock scroll for mobile feel
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, []);
+
+  const { isVisible, headerRef } = useAutoHideHeader({ disabled: isMobile });
 
   const handleVibrate = () => {
     if (typeof navigator !== "undefined" && navigator.vibrate) {
@@ -70,7 +75,13 @@ export default function RemotePage() {
   return (
     <div className="fixed inset-0 bg-zinc-950 text-white flex flex-col p-6 safe-area-inset">
       {/* Header Info */}
-      <div className="flex items-center justify-between mb-8">
+      <div
+        ref={headerRef}
+        className={cn(
+          "flex items-center justify-between mb-8 header-auto-hide",
+          isVisible ? "visible" : "hidden"
+        )}
+      >
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center">
             <Smartphone className="w-6 h-6" />

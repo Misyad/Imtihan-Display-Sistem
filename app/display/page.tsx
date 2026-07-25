@@ -3,10 +3,12 @@
 import React, { useEffect, useState } from "react";
 import { useQuestionStore } from "@/lib/store";
 import { Award, Sparkles, BookOpen } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { CinematicLayout } from "@/components/layout/cinematic-layout";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { QuestionDisplay } from "@/components/features/question-display";
 import { GameDisplay } from "@/components/features/game-display";
+import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
 
 export default function DisplayPage() {
   const { activeProfileId, profiles, activeQuestion, showAnswer } = useQuestionStore();
@@ -15,6 +17,7 @@ export default function DisplayPage() {
   const activeProfile = profiles[activeProfileId];
   const currentQuestionData = activeProfile?.questions.find(q => q.nomor === activeQuestion);
   const settings = activeProfile?.settings;
+  const { isVisible, headerRef } = useAutoHideHeader();
 
   useEffect(() => {
     setMounted(true);
@@ -27,7 +30,13 @@ export default function DisplayPage() {
       <div className="w-full h-full flex flex-col items-center justify-center text-center px-8">
         
         {/* Header Branding */}
-        <div className="absolute top-12 left-0 right-0 flex justify-center pointer-events-none">
+        <div
+          ref={headerRef}
+          className={cn(
+            "absolute top-12 left-0 right-0 flex justify-center pointer-events-none header-auto-hide",
+            isVisible ? "visible" : "hidden"
+          )}
+        >
            <StatusBadge icon={<Award className="text-amber-500" />} variant="zinc">
              {settings?.instituteName} &bull; {settings?.eventName}
            </StatusBadge>
