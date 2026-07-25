@@ -10,6 +10,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { SlideDisplay } from "@/components/features/slide-display";
 import { QuestionText } from "@/components/ui/question-text";
 import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
+import { HeaderToggle } from "@/components/ui/header-toggle";
 
 export default function InteractivePage() {
   const { 
@@ -25,12 +26,11 @@ export default function InteractivePage() {
 
   const [mounted, setMounted] = useState(false);
   const [buttonScale, setButtonScale] = useState(100);
-  const { isVisible, ref: headerRef } = useAutoHideHeader();
+  const { isVisible, ref: headerRef, toggleHide } = useAutoHideHeader();
   const { isVisible: footerVisible, ref: footerRef } = useAutoHideHeader({
     showOnTopProximity: false,
     showOnBottomProximity: true,
     idleTimeout: 3000,
-    disableHoverProtection: true,
   });
   const activeProfile = profiles[activeProfileId];
   const questions = activeProfile?.questions || [];
@@ -138,11 +138,12 @@ export default function InteractivePage() {
             </div>
             <div className="hidden h-8 w-px bg-white/10 sm:block" />
             <StatusBadge variant="emerald" icon={<div className="w-2 h-2 rounded-full animate-pulse bg-emerald-400" />}>
-               REALTIME SYNCED
-            </StatusBadge>
-         </div>
-         </div>
-      </header>
+                REALTIME SYNCED
+             </StatusBadge>
+          </div>
+          <HeaderToggle onToggle={toggleHide} isVisible={isVisible} />
+          </div>
+       </header>
 
       {/* Main Grid Area */}
       <main className="relative z-10 flex-1 overflow-y-auto p-4 sm:p-8 md:p-12 custom-scrollbar flex flex-col items-center justify-start">

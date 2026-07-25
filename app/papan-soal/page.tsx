@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { CheckCircle2, Maximize2, RotateCcw, Eye, EyeOff } from "lucide-react";
 import { useQuestionStore } from "@/lib/store";
 import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
+import { HeaderToggle } from "@/components/ui/header-toggle";
 
 export default function PapanSoalPage() {
   const { 
@@ -23,7 +24,7 @@ export default function PapanSoalPage() {
   const gridCount = Math.max(100, questions.length);
 
   const [mounted, setMounted] = useState(false);
-  const { isVisible, ref: headerRef } = useAutoHideHeader();
+  const { isVisible, ref: headerRef, toggleHide } = useAutoHideHeader();
 
   // Avoid hydration mismatch with persisted state
   useEffect(() => {
@@ -107,6 +108,7 @@ export default function PapanSoalPage() {
               </button>
             </div>
           </div>
+          <HeaderToggle onToggle={toggleHide} isVisible={isVisible} />
         </header>
 
         {/* Current Status Card */}

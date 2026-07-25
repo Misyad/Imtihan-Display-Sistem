@@ -9,6 +9,7 @@ import { StatusBadge } from "@/components/ui/status-badge";
 import { QuestionDisplay } from "@/components/features/question-display";
 import { GameDisplay } from "@/components/features/game-display";
 import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
+import { HeaderToggle } from "@/components/ui/header-toggle";
 
 export default function DisplayPage() {
   const { activeProfileId, profiles, activeQuestion, showAnswer } = useQuestionStore();
@@ -17,12 +18,11 @@ export default function DisplayPage() {
   const activeProfile = profiles[activeProfileId];
   const currentQuestionData = activeProfile?.questions.find(q => q.nomor === activeQuestion);
   const settings = activeProfile?.settings;
-  const { isVisible, ref: headerRef } = useAutoHideHeader();
+  const { isVisible, ref: headerRef, toggleHide, autoHideEnabled, toggleAutoHide } = useAutoHideHeader();
   const { isVisible: footerVisible, ref: footerRef } = useAutoHideHeader({
     showOnTopProximity: false,
     showOnBottomProximity: true,
     idleTimeout: 3000,
-    disableHoverProtection: true,
   });
 
   useEffect(() => {
@@ -46,6 +46,7 @@ export default function DisplayPage() {
            <StatusBadge icon={<Award className="text-amber-500" />} variant="zinc">
              {settings?.instituteName} &bull; {settings?.eventName}
            </StatusBadge>
+           <HeaderToggle onToggle={toggleHide} isVisible={isVisible} />
         </div>
 
         <div className="relative w-full flex items-center justify-center min-h-[60vh]">

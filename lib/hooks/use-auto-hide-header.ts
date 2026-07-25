@@ -2,6 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const STORAGE_KEY = "imtihan-header-auto-hide";
+
+function getStoredPreference(): boolean {
+  if (typeof window === "undefined") return true;
+  const stored = localStorage.getItem(STORAGE_KEY);
+  return stored !== null ? stored === "true" : true;
+}
+
+function setStoredPreference(enabled: boolean) {
+  localStorage.setItem(STORAGE_KEY, String(enabled));
+}
+
 interface UseAutoHideHeaderOptions {
   idleTimeout?: number;
   showOnTopProximity?: boolean;
@@ -9,7 +21,6 @@ interface UseAutoHideHeaderOptions {
   proximityThreshold?: number;
   bottomProximityThreshold?: number;
   disabled?: boolean;
-  disableHoverProtection?: boolean;
 }
 
 export function useAutoHideHeader<T extends HTMLElement = HTMLDivElement>(options: UseAutoHideHeaderOptions = {}) {
@@ -20,29 +31,40 @@ export function useAutoHideHeader<T extends HTMLElement = HTMLDivElement>(option
     proximityThreshold = 100,
     bottomProximityThreshold = 100,
     disabled = false,
-    disableHoverProtection = false,
   } = options;
 
+  const [autoHideEnabled, setAutoHideEnabled] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
-  const ref = useRef<T>(null!);
+  const manuallyHiddenRef = useRef(false);
+  const isVisibleRef = useRef(true);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const ref = useRef<T>(null!);
 
   useEffect(() => {
-    if (disabled) {
+    setAutoHideEnabled(getStoredPreference());
+  }, []);
+
+  const isFullyDisabled = disabled || !autoHideEnabled;
+
+  useEffect(() => {
+    if (isFullyDisabled) {
       setIsVisible(true);
       return;
     }
 
     const resetTimer = () => {
       setIsVisible(true);
+      isVisibleRef.current = true;
+      manuallyHiddenRef.current = false;
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
 
-      if (disableHoverProtection || !isHovered) {
-        timeoutRef.current = setTimeout(() => {
-          setIsVisible(false);
-        }, idleTimeout);
-      }
+    const startHideTimer = () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        setIsVisible(false);
+        isVisibleRef.current = false;
+      }, idleTimeout);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -50,25 +72,29 @@ export function useAutoHideHeader<T extends HTMLElement = HTMLDivElement>(option
       const isBottom = showOnBottomProximity && e.clientY >= window.innerHeight - bottomProximityThreshold;
 
       if (isTop || isBottom) {
-        setIsVisible(true);
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        resetTimer();
         return;
       }
-      resetTimer();
+
+      if (manuallyHiddenRef.current) return;
+
+      if (!isVisibleRef.current) {
+        setIsVisible(true);
+        isVisibleRef.current = true;
+      }
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        setIsVisible(false);
+        isVisibleRef.current = false;
+      }, idleTimeout);
     };
 
     const handleMouseEnter = () => {
-      setIsHovered(true);
-      setIsVisible(true);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      resetTimer();
     };
 
     const handleMouseLeave = () => {
-      setIsHovered(false);
-      if (!disableHoverProtection) {
-        setIsVisible(false);
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      }
+      startHideTimer();
     };
 
     resetTimer();
@@ -76,15 +102,12 @@ export function useAutoHideHeader<T extends HTMLElement = HTMLDivElement>(option
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mousedown", resetTimer);
     window.addEventListener("keydown", resetTimer);
-    window.addEventListener("scroll", resetTimer);
     window.addEventListener("touchstart", resetTimer);
 
-    if (!disableHoverProtection) {
-      const el = ref.current;
-      if (el) {
-        el.addEventListener("mouseenter", handleMouseEnter);
-        el.addEventListener("mouseleave", handleMouseLeave);
-      }
+    const el = ref.current;
+    if (el) {
+      el.addEventListener("mouseenter", handleMouseEnter);
+      el.addEventListener("mouseleave", handleMouseLeave);
     }
 
     return () => {
@@ -92,18 +115,37 @@ export function useAutoHideHeader<T extends HTMLElement = HTMLDivElement>(option
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mousedown", resetTimer);
       window.removeEventListener("keydown", resetTimer);
-      window.removeEventListener("scroll", resetTimer);
       window.removeEventListener("touchstart", resetTimer);
 
-      if (!disableHoverProtection) {
-        const el = ref.current;
-        if (el) {
-          el.removeEventListener("mouseenter", handleMouseEnter);
-          el.removeEventListener("mouseleave", handleMouseLeave);
-        }
+      if (el) {
+        el.removeEventListener("mouseenter", handleMouseEnter);
+        el.removeEventListener("mouseleave", handleMouseLeave);
       }
     };
-  }, [idleTimeout, showOnTopProximity, showOnBottomProximity, proximityThreshold, bottomProximityThreshold, disabled, disableHoverProtection, isHovered]);
+  }, [idleTimeout, showOnTopProximity, showOnBottomProximity, proximityThreshold, bottomProximityThreshold, isFullyDisabled]);
 
-  return { isVisible, ref };
+  const toggleHide = () => {
+    if (isVisibleRef.current) {
+      setIsVisible(false);
+      isVisibleRef.current = false;
+      manuallyHiddenRef.current = true;
+    } else {
+      setIsVisible(true);
+      isVisibleRef.current = true;
+      manuallyHiddenRef.current = false;
+    }
+  };
+
+  const toggleAutoHide = () => {
+    const newVal = !autoHideEnabled;
+    setAutoHideEnabled(newVal);
+    setStoredPreference(newVal);
+    if (newVal) {
+      setIsVisible(true);
+      isVisibleRef.current = true;
+      manuallyHiddenRef.current = false;
+    }
+  };
+
+  return { isVisible, ref, toggleHide, autoHideEnabled, toggleAutoHide };
 }

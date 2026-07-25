@@ -23,6 +23,7 @@ import * as XLSX from "xlsx";
 import { ConnectionStatus } from "@/components/ui/connection-status";
 import { QuestionText } from "@/components/ui/question-text";
 import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
+import { HeaderToggle } from "@/components/ui/header-toggle";
 
 export default function OperatorPage() {
   const { 
@@ -48,7 +49,7 @@ export default function OperatorPage() {
   const usedQuestions = activeProfile?.usedQuestions || [];
   const settings = activeProfile?.settings;
   const currentQuestionData = questions.find(q => q.nomor === activeQuestion);
-  const { isVisible, ref: headerRef } = useAutoHideHeader();
+  const { isVisible, ref: headerRef, toggleHide } = useAutoHideHeader();
 
   useEffect(() => {
     setMounted(true);
@@ -136,8 +137,9 @@ export default function OperatorPage() {
                 <SettingsIcon className="w-5 h-5 text-slate-500" />
              </a>
           </div>
-        </div>
-      </nav>
+           </div>
+           <HeaderToggle onToggle={toggleHide} isVisible={isVisible} />
+        </nav>
 
       <div className="flex-1 max-w-[1600px] mx-auto w-full p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
         

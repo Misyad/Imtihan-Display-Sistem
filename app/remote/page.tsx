@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useQuestionStore } from "@/lib/store";
 import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
+import { HeaderToggle } from "@/components/ui/header-toggle";
 
 export default function RemotePage() {
   const { 
@@ -37,7 +38,7 @@ export default function RemotePage() {
     };
   }, []);
 
-  const { isVisible, ref: headerRef } = useAutoHideHeader({ disabled: isMobile });
+  const { isVisible, ref: headerRef, toggleHide } = useAutoHideHeader({ disabled: isMobile });
 
   const handleVibrate = () => {
     if (typeof navigator !== "undefined" && navigator.vibrate) {
@@ -98,6 +99,7 @@ export default function RemotePage() {
             <span className="text-xs font-black tracking-tighter">ONLINE</span>
           </div>
         </div>
+        <HeaderToggle onToggle={toggleHide} isVisible={isVisible} />
       </div>
 
       {/* Main Display Info */}
