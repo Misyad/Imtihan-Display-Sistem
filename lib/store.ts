@@ -178,8 +178,8 @@ interface QuestionStore {
 const defaultSettings = (id: string, name: string): AppSettings => ({
   id,
   name,
-  instituteName: "PONDOK PESANTREN AL-ITQAN",
-  eventName: "HAFLAH AT-TAKSHRIJ",
+  instituteName: "TPQ ARROUDLOH PAKIS",
+  eventName: "KHOTAMAN DAN IMTIHAN SANTRI",
   academicYear: "2024/2025",
   primaryColor: "#10b981",
   fontSize: "normal",

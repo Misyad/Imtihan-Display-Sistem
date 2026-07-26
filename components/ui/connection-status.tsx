@@ -87,7 +87,7 @@ export function ConnectionStatus() {
       {(connectionStatus === 'disconnected' || connectionStatus === 'error') && (
         <button
           onClick={reconnectSocket}
-          className="ml-2 text-xs font-bold text-white/70 hover:text-white transition-colors px-2 py-1 rounded bg-white/5 hover:bg-white/10 cursor-pointer"
+          className="ml-2 text-xs font-bold text-white/70 hover:text-white transition-colors min-h-[44px] px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer"
         >
           Retry
         </button>

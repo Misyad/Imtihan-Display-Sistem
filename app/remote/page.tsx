@@ -13,8 +13,6 @@ import {
   Smartphone
 } from "lucide-react";
 import { useQuestionStore } from "@/lib/store";
-import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
-import { HeaderToggle } from "@/components/ui/header-toggle";
 
 export default function RemotePage() {
   const { 
@@ -26,19 +24,15 @@ export default function RemotePage() {
   } = useQuestionStore();
 
   const [mounted, setMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    setIsMobile('ontouchstart' in window || navigator.maxTouchPoints > 0);
     // Lock scroll for mobile feel
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, []);
-
-  const { isVisible, ref: headerRef, toggleHide } = useAutoHideHeader({ disabled: isMobile });
 
   const handleVibrate = () => {
     if (typeof navigator !== "undefined" && navigator.vibrate) {
@@ -76,30 +70,23 @@ export default function RemotePage() {
   return (
     <div className="fixed inset-0 bg-zinc-950 text-white flex flex-col p-6 safe-area-inset">
       {/* Header Info */}
-      <div
-        ref={headerRef}
-        className={cn(
-          "flex items-center justify-between mb-8 header-auto-hide",
-          isVisible ? "visible" : "hidden"
-        )}
-      >
+      <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center">
             <Smartphone className="w-6 h-6" />
           </div>
           <div className="text-left">
             <h2 className="font-bold text-sm uppercase tracking-widest text-emerald-500">Smart Remote</h2>
-            <p className="text-[10px] text-zinc-500 font-medium tracking-widest">IMTIHAN SYSTEM</p>
+            <p className="text-[10px] sm:text-xs text-zinc-500 font-medium tracking-widest">IMTIHAN SYSTEM</p>
           </div>
         </div>
         <div className="text-right">
-          <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">Status</p>
+          <p className="text-[10px] sm:text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Status</p>
           <div className="flex items-center gap-2 justify-end">
             <div className="w-2 h-2 rounded-full bg-emerald-50 animate-pulse" />
             <span className="text-xs font-black tracking-tighter">ONLINE</span>
           </div>
         </div>
-        <HeaderToggle onToggle={toggleHide} isVisible={isVisible} />
       </div>
 
       {/* Main Display Info */}
@@ -119,7 +106,7 @@ export default function RemotePage() {
                 {activeQuestion.toString().padStart(2, '0')}
               </h1>
               {showAnswer && (
-                <div className="mt-4 px-4 py-1 rounded-full bg-amber-400 text-amber-950 text-[10px] font-black uppercase tracking-widest">
+                <div className="mt-4 px-4 py-1 rounded-full bg-amber-400 text-amber-950 text-[10px] sm:text-xs font-black uppercase tracking-widest">
                   ANSWER REVEALED
                 </div>
               )}
@@ -189,7 +176,7 @@ export default function RemotePage() {
       {/* Feedback Hint */}
       <div className="flex items-center justify-center gap-2 text-zinc-700">
         <Vibrate className="w-3 h-3" />
-        <span className="text-[10px] font-bold uppercase tracking-widest">Haptic Feedback Enabled</span>
+        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest">Haptic Feedback Enabled</span>
       </div>
     </div>
   );

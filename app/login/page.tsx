@@ -139,7 +139,7 @@ export default function LoginPage() {
 
           {/* Hint for Dev */}
           <div className="mt-8 pt-6 border-t border-border/40 text-center">
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground/60 font-mono">
+            <span className="text-[10px] sm:text-xs uppercase tracking-widest text-muted-foreground/60 font-mono">
               Dev Mode: admin@imtihan.com / admin123
             </span>
           </div>

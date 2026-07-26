@@ -59,14 +59,14 @@ export default function ObsSplitPage() {
                     <BookOpen className="w-6 h-6 text-white" />
                  </div>
                  <div className="text-left">
-                    <h3 className="text-emerald-400 text-[10px] font-black uppercase tracking-[0.3em]">Bidang Studi</h3>
+                    <h3 className="text-emerald-400 text-[10px] sm:text-xs font-black uppercase tracking-[0.3em]">Bidang Studi</h3>
                     <p className="text-white text-xl font-black uppercase tracking-tight">
                        {currentQuestionData?.kategori || "Imtihan Umum"}
                     </p>
                  </div>
               </div>
               <div className="text-right">
-                 <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] block">No. Soal</span>
+                 <span className="text-[10px] sm:text-xs font-black text-zinc-500 uppercase tracking-[0.3em] block">No. Soal</span>
                  <span className="text-5xl font-black text-amber-400 italic">
                     {activeQuestion?.toString().padStart(2, '0') || "--"}
                  </span>

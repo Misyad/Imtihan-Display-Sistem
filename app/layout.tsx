@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { ConnectionStatus } from "@/components/ui/connection-status";
+import { Navbar } from "@/components/layout/Navbar";
 
 
 
@@ -36,30 +35,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="relative min-h-screen flex flex-col">
-            <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              <div className="container mx-auto flex h-16 items-center justify-between px-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                    <span className="text-primary-foreground font-bold text-lg">I</span>
-                  </div>
-                  <span className="font-bold text-xl hidden sm:inline-block tracking-tight">Imtihan Display</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-                    <a href="/" className="transition-colors hover:text-primary">Dashboard</a>
-                    <a href="/interactive" className="transition-colors hover:text-primary">Interactive Board</a>
-                    <a href="/operator" className="transition-colors hover:text-primary">Operator</a>
-                    <a href="/papan-soal" className="transition-colors hover:text-primary">Papan Soal</a>
-                    <a href="/display" className="transition-colors hover:text-primary">Display</a>
-                    <a href="/obs" className="transition-colors hover:text-primary">OBS Overlay</a>
-                    <a href="/obs-split" className="transition-colors hover:text-primary">OBS Split</a>
-                    <a href="/settings" className="transition-colors hover:text-primary">Settings</a>
-                  </nav>
-                  <ConnectionStatus />
-                  <ThemeToggle />
-                </div>
-              </div>
-            </header>
+            <Navbar />
             <main className="flex-1">
               {children}
             </main>

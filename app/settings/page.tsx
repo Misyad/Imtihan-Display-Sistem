@@ -108,7 +108,7 @@ export default function SettingsPage() {
                           <span className={cn("font-bold text-sm", activeProfileId === id ? "text-emerald-700 dark:text-emerald-400" : "text-slate-600 dark:text-zinc-300")}>
                              {profile.settings.name}
                           </span>
-                          <span className="text-[10px] opacity-50 uppercase tracking-tighter">{profile.questions.length} Soal</span>
+                          <span className="text-[10px] sm:text-xs opacity-50 uppercase tracking-tighter">{profile.questions.length} Soal</span>
                        </div>
                     </div>
                   ))}
@@ -146,10 +146,10 @@ export default function SettingsPage() {
 
                    <div className="space-y-6">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-zinc-400">Ukuran Font</label>
+                        <label className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-zinc-400">Ukuran Font</label>
                         <div className="flex gap-2">
                            {["normal", "large", "extra-large"].map(s => (
-                             <button key={s} onClick={() => setFormData({ ...formData, fontSize: s as any })} className={cn("flex-1 p-2 rounded-xl text-[10px] font-bold uppercase", formData.fontSize === s ? "bg-emerald-600 text-white" : "bg-slate-100 dark:bg-zinc-700 dark:text-zinc-300")}>
+                             <button key={s} onClick={() => setFormData({ ...formData, fontSize: s as any })} className={cn("flex-1 p-2 rounded-xl text-[10px] sm:text-xs font-bold uppercase", formData.fontSize === s ? "bg-emerald-600 text-white" : "bg-slate-100 dark:bg-zinc-700 dark:text-zinc-300")}>
                                 {s}
                              </button>
                            ))}
@@ -166,11 +166,11 @@ export default function SettingsPage() {
                    </div>
                    <div className="space-y-4">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-zinc-400">Nama Ma'had</label>
+                        <label className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-zinc-400">Nama Ma'had</label>
                         <input type="text" value={formData.instituteName} onChange={e => setFormData({ ...formData, instituteName: e.target.value.toUpperCase() })} className="w-full p-4 rounded-2xl bg-slate-50 dark:bg-zinc-800 font-bold dark:text-white" />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-zinc-400">Nama Acara</label>
+                        <label className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-zinc-400">Nama Acara</label>
                         <input type="text" value={formData.eventName} onChange={e => setFormData({ ...formData, eventName: e.target.value.toUpperCase() })} className="w-full p-4 rounded-2xl bg-slate-50 dark:bg-zinc-800 font-bold dark:text-white" />
                       </div>
                    </div>

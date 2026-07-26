@@ -3,14 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useQuestionStore } from "@/lib/store";
+import { useNavbarToggle } from "@/lib/hooks/use-navbar-toggle";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, X, Award, CheckCircle2, RotateCcw } from "lucide-react";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SlideDisplay } from "@/components/features/slide-display";
 import { QuestionText } from "@/components/ui/question-text";
-import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
-import { HeaderToggle } from "@/components/ui/header-toggle";
 
 export default function InteractivePage() {
   const { 
@@ -26,12 +25,7 @@ export default function InteractivePage() {
 
   const [mounted, setMounted] = useState(false);
   const [buttonScale, setButtonScale] = useState(100);
-  const { isVisible, ref: headerRef, toggleHide } = useAutoHideHeader();
-  const { isVisible: footerVisible, ref: footerRef } = useAutoHideHeader({
-    showOnTopProximity: false,
-    showOnBottomProximity: true,
-    idleTimeout: 3000,
-  });
+  const { isVisible: navbarVisible } = useNavbarToggle();
   const activeProfile = profiles[activeProfileId];
   const questions = activeProfile?.questions || [];
   const usedQuestions = activeProfile?.usedQuestions || [];
@@ -83,32 +77,29 @@ export default function InteractivePage() {
   }
 
   return (
-    <div className="fixed inset-x-0 top-16 bottom-0 flex flex-col overflow-hidden font-sans transition-all duration-500 bg-zinc-950">
+    <div className={cn(
+          "fixed inset-x-0 bottom-0 flex flex-col overflow-hidden font-sans transition-[top] duration-300 bg-zinc-950",
+          navbarVisible ? "top-16" : "top-0"
+        )}>
       {/* Background Cinematic */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-950/20 via-zinc-950 to-black" />
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/islamic-art.png')]" />
 
       {/* Header */}
-      <header
-        ref={headerRef}
-        className={cn(
-          "relative z-10 border-b border-slate-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900 header-auto-hide",
-          isVisible ? "visible" : "hidden"
-        )}
-      >
-         <div className="mx-auto flex w-full max-w-[1600px] flex-col items-center justify-between gap-4 md:flex-row">
+      <header className="relative z-10 border-b border-slate-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="mx-auto flex w-full max-w-[1600px] flex-col items-center justify-between gap-4 md:flex-row">
          <div className="flex min-w-0 items-center gap-4 md:w-auto">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg bg-emerald-600 shadow-emerald-600/20">
                <Award className="w-6 h-6 text-white" />
             </div>
             <div>
                <h1 className="truncate text-sm sm:text-lg font-black text-zinc-900 dark:text-white uppercase tracking-tighter">{settings?.instituteName || "Interactive Board"}</h1>
-               <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-emerald-500">{settings?.eventName || "Synced Mode"}</p>
+               <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-emerald-500">{settings?.eventName || "Synced Mode"}</p>
             </div>
          </div>
          <div className="flex w-full items-center justify-between sm:justify-end gap-2 sm:gap-4 md:w-auto">
             <div className="flex min-w-0 flex-1 items-center justify-center gap-3 rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 px-3 py-2 text-zinc-800 dark:text-white sm:flex-none">
-               <label htmlFor="question-button-scale" className="text-[10px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+               <label htmlFor="question-button-scale" className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
                   Tombol {buttonScale}%
                </label>
                <input
@@ -133,17 +124,16 @@ export default function InteractivePage() {
                </button>
             </div>
             <div className="hidden text-right text-white md:block">
-               <p className="text-[10px] font-bold opacity-50 uppercase tracking-widest">Selesai</p>
+               <p className="text-[10px] sm:text-xs font-bold opacity-50 uppercase tracking-widest">Selesai</p>
                <p className="text-xl font-black">{usedQuestions.length} <span className="opacity-30 text-sm">/ {questions.length}</span></p>
             </div>
             <div className="hidden h-8 w-px bg-white/10 sm:block" />
             <StatusBadge variant="emerald" icon={<div className="w-2 h-2 rounded-full animate-pulse bg-emerald-400" />}>
                 REALTIME SYNCED
              </StatusBadge>
-          </div>
-          <HeaderToggle onToggle={toggleHide} isVisible={isVisible} />
-          </div>
-       </header>
+           </div>
+           </div>
+         </header>
 
       {/* Main Grid Area */}
       <main className="relative z-10 flex-1 overflow-y-auto p-4 sm:p-8 md:p-12 custom-scrollbar flex flex-col items-center justify-start">
@@ -188,13 +178,7 @@ export default function InteractivePage() {
          </div>
       </main>
 
-      <footer
-        ref={footerRef}
-        className={cn(
-          "hidden sm:block relative z-10 p-4 md:p-6 text-center text-[10px] font-bold text-zinc-600 uppercase tracking-[0.4em] bg-black/20 header-auto-hide bottom",
-          footerVisible ? "visible" : "hidden"
-        )}
-      >
+            <footer className="hidden sm:block relative z-10 p-4 md:p-6 text-center text-[10px] sm:text-xs font-bold text-zinc-600 uppercase tracking-[0.4em] bg-black/20">
           &copy; 2024 Imtihan Display &bull; MULTI-MODE INTEGRATED
       </footer>
 

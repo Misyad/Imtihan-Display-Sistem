@@ -23,8 +23,8 @@ export const profiles = pgTable("profiles", {
 export const settings = pgTable("settings", {
   id: text("id").primaryKey(),
   profileId: text("profile_id").references(() => profiles.id, { onDelete: "cascade" }).notNull(),
-  instituteName: text("institute_name").default("PONDOK PESANTREN AL-ITQAN").notNull(),
-  eventName: text("event_name").default("HAFLAH AT-TAKSHRIJ").notNull(),
+  instituteName: text("institute_name").default("TPQ ARROUDLOH PAKIS").notNull(),
+  eventName: text("event_name").default("KHOTAMAN DAN IMTIHAN SANTRI").notNull(),
   academicYear: text("academic_year").default("2024/2025").notNull(),
   primaryColor: text("primary_color").default("#10b981").notNull(),
   fontSize: text("font_size").default("normal").notNull(),

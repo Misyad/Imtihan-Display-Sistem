@@ -4,8 +4,6 @@ import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { CheckCircle2, Maximize2, RotateCcw, Eye, EyeOff } from "lucide-react";
 import { useQuestionStore } from "@/lib/store";
-import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
-import { HeaderToggle } from "@/components/ui/header-toggle";
 
 export default function PapanSoalPage() {
   const { 
@@ -24,7 +22,6 @@ export default function PapanSoalPage() {
   const gridCount = Math.max(100, questions.length);
 
   const [mounted, setMounted] = useState(false);
-  const { isVisible, ref: headerRef, toggleHide } = useAutoHideHeader();
 
   // Avoid hydration mismatch with persisted state
   useEffect(() => {
@@ -58,13 +55,7 @@ export default function PapanSoalPage() {
 
       <div className="max-w-7xl mx-auto space-y-8 relative z-10">
         {/* Header */}
-        <header
-          ref={headerRef}
-          className={cn(
-            "flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white dark:bg-zinc-900/50 backdrop-blur-md p-6 rounded-3xl border border-emerald-100 dark:border-emerald-900/30 shadow-sm header-auto-hide",
-            isVisible ? "visible" : "hidden"
-          )}
-        >
+        <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white dark:bg-zinc-900/50 backdrop-blur-md p-6 rounded-3xl border border-emerald-100 dark:border-emerald-900/30 shadow-sm">
           <div className="space-y-1">
             <h1 className="text-3xl font-bold tracking-tight text-emerald-900 dark:text-emerald-400 text-left">
               Papan Monitor Imtihan
@@ -108,7 +99,6 @@ export default function PapanSoalPage() {
               </button>
             </div>
           </div>
-          <HeaderToggle onToggle={toggleHide} isVisible={isVisible} />
         </header>
 
         {/* Current Status Card */}

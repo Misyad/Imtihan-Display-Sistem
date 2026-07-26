@@ -62,10 +62,10 @@ export default function DashboardPage() {
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div className="space-y-2">
             <div className="flex items-center gap-3">
-               <div className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-[10px] font-black uppercase tracking-widest">
+               <div className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-[10px] sm:text-xs font-black uppercase tracking-widest">
                   System Active
                </div>
-               <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+               <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest">
                   <ShieldCheck className="w-3 h-3 text-blue-500" /> Secure Local Link
                </div>
             </div>
@@ -76,11 +76,11 @@ export default function DashboardPage() {
 
           <div className="flex gap-4 p-2 bg-white dark:bg-zinc-900 rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-sm">
              <div className="px-6 py-3 text-center border-r border-slate-100 dark:border-zinc-800">
-                <p className="text-[10px] font-black text-slate-400 uppercase mb-1">Total Lembaga</p>
+                <p className="text-[10px] sm:text-xs font-black text-slate-400 uppercase mb-1">Total Lembaga</p>
                 <p className="text-2xl font-black dark:text-white">{totalLembaga}</p>
              </div>
              <div className="px-6 py-3 text-center">
-                <p className="text-[10px] font-black text-slate-400 uppercase mb-1">Total Soal</p>
+                <p className="text-[10px] sm:text-xs font-black text-slate-400 uppercase mb-1">Total Soal</p>
                 <p className="text-2xl font-black dark:text-white">{totalSoal}</p>
              </div>
           </div>
@@ -91,7 +91,7 @@ export default function DashboardPage() {
            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-emerald-500/20 via-transparent to-transparent" />
            <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
               <div className="space-y-4 text-center md:text-left">
-                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-emerald-400 text-[10px] font-black uppercase tracking-[0.3em]">
+                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-emerald-400 text-[10px] sm:text-xs font-black uppercase tracking-[0.3em]">
                     <Zap className="w-3 h-3 fill-emerald-400" /> Active Session
                  </div>
                  <h2 className="text-3xl md:text-5xl font-black italic tracking-tight">
@@ -104,7 +104,7 @@ export default function DashboardPage() {
               </div>
               <div className="flex flex-col items-center gap-3">
                  <div className="text-center">
-                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Progres Ujian</p>
+                    <p className="text-[10px] sm:text-xs font-black text-zinc-500 uppercase tracking-widest mb-2">Progres Ujian</p>
                     <div className="text-5xl font-black text-emerald-500">{totalTerjawab} <span className="text-xl text-zinc-700">/ {totalSoal}</span></div>
                  </div>
                  <div className="w-48 h-2 bg-zinc-800 rounded-full overflow-hidden">
@@ -157,7 +157,7 @@ export default function DashboardPage() {
                  <Layers className="w-5 h-5 text-slate-400" />
               </div>
               <div>
-                 <p className="text-[10px] font-black text-slate-400 uppercase">Version</p>
+                 <p className="text-[10px] sm:text-xs font-black text-slate-400 uppercase">Version</p>
                  <p className="text-sm font-bold dark:text-white">v2.1 Build Production</p>
               </div>
            </div>
@@ -166,7 +166,7 @@ export default function DashboardPage() {
                  <CheckCircle2 className="w-5 h-5 text-slate-400" />
               </div>
               <div>
-                 <p className="text-[10px] font-black text-slate-400 uppercase">Server Status</p>
+                 <p className="text-[10px] sm:text-xs font-black text-slate-400 uppercase">Server Status</p>
                  <p className="text-sm font-bold text-emerald-600">WebSocket Connected</p>
               </div>
            </div>
@@ -175,7 +175,7 @@ export default function DashboardPage() {
                  <Smartphone className="w-5 h-5 text-slate-400" />
               </div>
               <div>
-                 <p className="text-[10px] font-black text-slate-400 uppercase">Remote Support</p>
+                 <p className="text-[10px] sm:text-xs font-black text-slate-400 uppercase">Remote Support</p>
                  <p className="text-sm font-bold dark:text-white">Enabled (Local IP)</p>
               </div>
            </div>

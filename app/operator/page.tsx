@@ -22,8 +22,6 @@ import { QRCodeSVG } from "qrcode.react";
 import * as XLSX from "xlsx";
 import { ConnectionStatus } from "@/components/ui/connection-status";
 import { QuestionText } from "@/components/ui/question-text";
-import { useAutoHideHeader } from "@/lib/hooks/use-auto-hide-header";
-import { HeaderToggle } from "@/components/ui/header-toggle";
 
 export default function OperatorPage() {
   const { 
@@ -49,7 +47,6 @@ export default function OperatorPage() {
   const usedQuestions = activeProfile?.usedQuestions || [];
   const settings = activeProfile?.settings;
   const currentQuestionData = questions.find(q => q.nomor === activeQuestion);
-  const { isVisible, ref: headerRef, toggleHide } = useAutoHideHeader();
 
   useEffect(() => {
     setMounted(true);
@@ -95,13 +92,7 @@ export default function OperatorPage() {
     <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 flex flex-col font-sans transition-colors duration-500">
       
       {/* Top Navbar */}
-      <nav
-        ref={headerRef}
-        className={cn(
-          "bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 p-4 sticky top-0 z-30 header-auto-hide",
-          isVisible ? "visible" : "hidden"
-        )}
-      >
+      <nav className="bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 p-4 sticky top-0 z-30">
         <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-4">
              <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-black shadow-lg shadow-emerald-600/20">
@@ -111,7 +102,7 @@ export default function OperatorPage() {
                 <h1 className="text-lg font-black tracking-tighter uppercase dark:text-white">Operator Dashboard</h1>
                 <div className="flex items-center gap-2">
                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                   <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">{settings?.name} Mode</p>
+                   <p className="text-[10px] sm:text-xs font-bold text-emerald-600 uppercase tracking-widest">{settings?.name} Mode</p>
                 </div>
              </div>
           </div>
@@ -138,14 +129,13 @@ export default function OperatorPage() {
              </a>
           </div>
            </div>
-           <HeaderToggle onToggle={toggleHide} isVisible={isVisible} />
         </nav>
 
       <div className="flex-1 max-w-[1600px] mx-auto w-full p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        {/* Left Column: Grid Control */}
-        <div className="lg:col-span-8 space-y-6">
-           <div className="bg-white dark:bg-zinc-900 p-8 rounded-[2.5rem] border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden">
+        {/* Grid Control - second on mobile, first on desktop */}
+        <div className="lg:col-span-8 space-y-6 order-2 lg:order-1">
+           <div className="bg-white dark:bg-zinc-900 p-4 sm:p-6 md:p-8 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden">
               <div className="flex justify-between items-center mb-8">
                  <div>
                     <h2 className="text-xl font-black uppercase tracking-tight dark:text-white">Papan Soal</h2>
@@ -195,21 +185,21 @@ export default function OperatorPage() {
            </div>
         </div>
 
-        {/* Right Column: Live Preview & Details */}
-        <div className="lg:col-span-4 space-y-6">
+        {/* Control Panel - first on mobile, second on desktop */}
+        <div className="lg:col-span-4 space-y-6 order-1 lg:order-2">
            
-           {/* Active Control Card */}
-           <div className="bg-zinc-900 p-8 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+            {/* Active Control Card */}
+            <div className="bg-zinc-900 p-5 sm:p-6 md:p-8 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/20 blur-[80px] group-hover:bg-emerald-500/40 transition-all duration-700" />
               
               <div className="relative z-10 space-y-8">
                  <div className="flex justify-between items-start">
                     <div>
-                       <p className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-400 mb-1">Status Soal</p>
+                       <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.4em] text-emerald-400 mb-1">Status Soal</p>
                        <h3 className="text-3xl font-black italic">No. {activeQuestion?.toString().padStart(2, '0') || "--"}</h3>
                     </div>
                     <div className={cn(
-                       "px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border",
+                       "px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest border",
                        activeQuestion ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400" : "bg-zinc-800 border-zinc-700 text-zinc-500"
                     )}>
                        {activeQuestion ? "Active" : "Standby"}
@@ -218,7 +208,7 @@ export default function OperatorPage() {
 
                  <div className="space-y-4">
                     <div className="p-5 rounded-3xl bg-white/5 border border-white/5 space-y-2">
-                       <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Pertanyaan</p>
+                       <p className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-zinc-500">Pertanyaan</p>
                        <p dir="auto" className="text-lg font-bold leading-snug whitespace-pre-line">
                           <QuestionText text={currentQuestionData?.soal || "Pilih nomor soal pada papan untuk memulai."} />
                        </p>
@@ -231,7 +221,7 @@ export default function OperatorPage() {
                           animate={{ opacity: 1, y: 0 }}
                           className="p-5 rounded-3xl bg-emerald-500/10 border border-emerald-500/20 space-y-2"
                         >
-                           <p className="text-[10px] font-black uppercase tracking-widest text-emerald-500">Jawaban</p>
+                           <p className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-emerald-500">Jawaban</p>
                            <p dir="auto" className="text-xl font-black text-emerald-400 uppercase tracking-tight whitespace-pre-line">
                               <QuestionText text={currentQuestionData?.jawaban || "MUMTAZ"} />
                            </p>
@@ -307,16 +297,16 @@ export default function OperatorPage() {
                   </div>
                   
                   <div className="p-6 bg-white rounded-3xl shadow-inner border-8 border-emerald-500/10">
-                     <QRCodeSVG value={remoteUrl} size={200} />
+                      <QRCodeSVG value={remoteUrl} size={200} className="w-[160px] h-[160px] sm:w-[200px] sm:h-[200px]" />
                   </div>
 
                   <div className="w-full p-4 rounded-2xl bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700">
-                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Direct Link</p>
+                     <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Direct Link</p>
                      <p className="text-xs font-mono truncate text-emerald-600">{remoteUrl}</p>
                   </div>
 
                   {typeof window !== "undefined" && window.location.hostname === "localhost" && (
-                     <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/30 text-amber-700 dark:text-amber-400 text-[10px] font-bold uppercase leading-relaxed text-center">
+                     <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/30 text-amber-700 dark:text-amber-400 text-[10px] sm:text-xs font-bold uppercase leading-relaxed text-center">
                         ⚠️ PERINGATAN: Anda mengakses via 'localhost'. <br/>
                         Agar HP bisa terhubung, buka halaman ini menggunakan Alamat IP Laptop Anda di jaringan Wi-Fi.
                      </div>
