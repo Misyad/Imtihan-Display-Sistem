@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Minus, Plus, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useNavbarToggle } from "@/lib/hooks/use-navbar-toggle";
@@ -44,9 +45,13 @@ export function Navbar() {
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">I</span>
-            </div>
+            <Image
+              src="/logo-icon.png"
+              alt="Imtihan Display"
+              width={32}
+              height={32}
+              className="object-contain rounded-lg"
+            />
             <span className="font-bold text-xl hidden sm:inline-block tracking-tight">Imtihan Display</span>
           </div>
           <div className="flex items-center gap-4">
@@ -91,9 +96,13 @@ export function Navbar() {
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">I</span>
-              </div>
+              <Image
+                src="/logo-icon.png"
+                alt="Imtihan Display"
+                width={32}
+                height={32}
+                className="object-contain rounded-lg"
+              />
               <span className="font-bold text-xl hidden sm:inline-block tracking-tight">Imtihan Display</span>
             </div>
             <div className="flex items-center gap-4 pr-12">

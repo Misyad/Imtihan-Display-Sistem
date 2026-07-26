@@ -8,6 +8,10 @@ import { Navbar } from "@/components/layout/Navbar";
 export const metadata: Metadata = {
   title: "Imtihan Display Sistem",
   description: "Modern Display System built with Next.js",
+  icons: {
+    icon: "/logo-favicon.png",
+    apple: "/logo-icon.png",
+  },
 };
 
 export default function RootLayout({
