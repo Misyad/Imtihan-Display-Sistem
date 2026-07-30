@@ -1,4 +1,4 @@
-import quranData from "quran-json/dist/quran_id.json";
+import quranData from "./quran-data.json";
 import { PAGE_BREAKS } from "./page-breaks";
 import type { Verse, SurahInfo } from "./types";
 
