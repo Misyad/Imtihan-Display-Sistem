@@ -15,7 +15,8 @@ import {
   Trash2,
   Settings as SettingsIcon,
   ChevronRight,
-  Plus
+  Plus,
+  BookOpen
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
@@ -28,9 +29,11 @@ export default function OperatorPage() {
     activeProfileId,
     profiles,
     activeQuestion, 
-    showAnswer, 
+    showAnswer,
+    showQuranRef,
     setActiveQuestion, 
-    toggleAnswer, 
+    toggleAnswer,
+    toggleQuranRef,
     resetQuestion, 
     resetUsedQuestions,
     setQuestions,
@@ -249,8 +252,25 @@ export default function OperatorPage() {
                        <RotateCcw className="w-5 h-5" /> Reset
                     </button>
                  </div>
+
+                 {currentQuestionData?.quranRef && showAnswer && (
+                   <div className="pt-2">
+                     <button
+                       onClick={() => toggleQuranRef()}
+                       className={cn(
+                         "w-full flex items-center justify-center gap-3 py-5 rounded-[2rem] font-black uppercase tracking-widest text-xs transition-all active:scale-95",
+                         showQuranRef 
+                           ? "bg-purple-500 text-white" 
+                           : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
+                       )}
+                     >
+                       <BookOpen className="w-5 h-5" />
+                       {showQuranRef ? "Sembunyikan" : "Tampilkan"} Al-Quran
+                     </button>
+                   </div>
+                 )}
               </div>
-           </div>
+            </div>
 
            {/* Quick Actions */}
            <div className="bg-white dark:bg-zinc-900 p-6 rounded-[2.5rem] border border-slate-200 dark:border-zinc-800 space-y-4">

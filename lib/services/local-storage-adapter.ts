@@ -19,6 +19,7 @@ export class LocalStorageAdapter implements QuestionStorageAdapter {
       createdAt: q.createdAt || new Date().toISOString(),
       updatedAt: q.updatedAt || new Date().toISOString(),
       isRTL: q.isRTL || false,
+      quranRef: q.quranRef,
     }));
   }
 
@@ -38,6 +39,7 @@ export class LocalStorageAdapter implements QuestionStorageAdapter {
       createdAt: q.createdAt,
       updatedAt: q.updatedAt,
       isRTL: q.isRTL,
+      quranRef: q.quranRef,
     }));
 
     state.setQuestions(questionEntries);
@@ -67,6 +69,7 @@ export class LocalStorageAdapter implements QuestionStorageAdapter {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       isRTL: data.isRTL || false,
+      quranRef: data.quranRef,
     };
     
     questions.push(newQuestion);
@@ -109,7 +112,9 @@ export class LocalStorageAdapter implements QuestionStorageAdapter {
       q.nomor.toString().includes(query) ||
       q.kategori.toLowerCase().includes(lowerQuery) ||
       q.soal.toLowerCase().includes(lowerQuery) ||
-      q.jawaban.toLowerCase().includes(lowerQuery)
+      q.jawaban.toLowerCase().includes(lowerQuery) ||
+      q.quranRef?.surahName.toLowerCase().includes(lowerQuery) ||
+      q.quranRef?.ayat.includes(query)
     );
   }
 

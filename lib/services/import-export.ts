@@ -93,6 +93,7 @@ async function parseJSON(file: File): Promise<Partial<Question>[]> {
     jawabanImage: item.jawabanImage || item.jawaban_image || item.imageJawaban || '',
     catatan: item.catatan || item.notes || '',
     isRTL: item.isRTL || false,
+    quranRef: item.quranRef || undefined,
   }));
 }
 
@@ -102,15 +103,32 @@ async function parseExcel(file: File): Promise<Partial<Question>[]> {
   const sheet = workbook.Sheets[workbook.SheetNames[0]];
   const rows = XLSX.utils.sheet_to_json(sheet);
 
-  return rows.map((row: any) => ({
-    nomor: parseInt(row.nomor || row.No || row.Nomor || 0),
-    kategori: row.kategori || row.Kategori || row.Category || 'Umum',
-    soal: row.soal || row.Soal || row.Question || row.Pertanyaan || '',
-    jawaban: row.jawaban || row.Jawaban || row.Answer || '',
-    soalImage: row.soalImage || row.gambar_soal || row.imageSoal || '',
-    jawabanImage: row.jawabanImage || row.gambar_jawaban || row.imageJawaban || '',
-    catatan: row.catatan || row.Catatan || row.notes || '',
-  }));
+  return rows.map((row: any) => {
+    const question: Partial<Question> = {
+      nomor: parseInt(row.nomor || row.No || row.Nomor || 0),
+      kategori: row.kategori || row.Kategori || row.Category || 'Umum',
+      soal: row.soal || row.Soal || row.Question || row.Pertanyaan || '',
+      jawaban: row.jawaban || row.Jawaban || row.Answer || '',
+      soalImage: row.soalImage || row.gambar_soal || row.imageSoal || '',
+      jawabanImage: row.jawabanImage || row.gambar_jawaban || row.imageJawaban || '',
+      catatan: row.catatan || row.Catatan || row.notes || '',
+    };
+
+    // Parse quranRef from Excel columns
+    const surah = row.quranRef_surah || row.surah || row.Surah;
+    const surahName = row.quranRef_surahName || row.surahName || row.SurahName;
+    const ayat = row.quranRef_ayat || row.ayat || row.Ayat;
+
+    if (surah && surahName && ayat) {
+      question.quranRef = {
+        surah: parseInt(surah),
+        surahName: String(surahName),
+        ayat: String(ayat),
+      };
+    }
+
+    return question;
+  });
 }
 
 async function applyImportMode(
@@ -140,6 +158,7 @@ async function applyImportMode(
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             isRTL: item.isRTL || false,
+            quranRef: item.quranRef,
           };
 
           await storage.create(newQuestion);
@@ -176,6 +195,7 @@ async function applyImportMode(
               createdAt: new Date().toISOString(),
               updatedAt: new Date().toISOString(),
               isRTL: item.isRTL || false,
+              quranRef: item.quranRef,
             };
             await storage.create(newQuestion);
           }
@@ -211,6 +231,7 @@ async function applyImportMode(
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             isRTL: item.isRTL || false,
+            quranRef: item.quranRef,
           };
 
           await storage.create(newQuestion);
@@ -247,6 +268,9 @@ export async function exportQuestions(
         soalImage: q.soalImage || '',
         jawabanImage: q.jawabanImage || '',
         catatan: q.catatan || '',
+        quranRef_surah: q.quranRef?.surah || '',
+        quranRef_surahName: q.quranRef?.surahName || '',
+        quranRef_ayat: q.quranRef?.ayat || '',
       }))
     );
 

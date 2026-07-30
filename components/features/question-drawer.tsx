@@ -8,10 +8,11 @@ import { RichTextEditor } from '@/components/ui/rich-text-editor';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { DraftRecoveryDialog } from '@/components/ui/draft-recovery-dialog';
 import { toast } from '@/components/ui/toast';
-import { X, Save, AlertCircle, Loader2 } from 'lucide-react';
+import { X, Save, AlertCircle, Loader2, BookOpen } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { v4 as uuidv4 } from 'uuid';
+import { SURAH_LIST } from '@/lib/quran/surah-list';
 
 interface QuestionDrawerProps {
   isOpen: boolean;
@@ -290,6 +291,77 @@ export function QuestionDrawer({ isOpen, question, onClose, onSave }: QuestionDr
                       className="w-full px-4 py-3 bg-card border border-border rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
                       placeholder="Catatan tambahan..."
                     />
+                  </div>
+
+                  <div className="border-t border-border pt-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <BookOpen className="w-4 h-4 text-primary" />
+                      <label className="text-sm font-medium text-foreground">
+                        Referensi Al-Quran (Opsional)
+                      </label>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs text-muted-foreground mb-2">
+                          Surah
+                        </label>
+                        <select
+                          value={formData.quranRef?.surah || ''}
+                          onChange={(e) => {
+                            const surahId = parseInt(e.target.value);
+                            const surah = SURAH_LIST.find(s => s.id === surahId);
+                            if (surah) {
+                              handleInputChange('quranRef', {
+                                surah: surahId,
+                                surahName: surah.transliteration,
+                                ayat: formData.quranRef?.ayat || '1'
+                              });
+                            } else {
+                              handleInputChange('quranRef', undefined);
+                            }
+                          }}
+                          className="w-full px-4 py-3 bg-card border border-border rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        >
+                          <option value="">-- Pilih Surah --</option>
+                          {SURAH_LIST.map((surah) => (
+                            <option key={surah.id} value={surah.id}>
+                              {surah.id}. {surah.transliteration}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs text-muted-foreground mb-2">
+                          Ayat (contoh: 1-4 atau 255)
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.quranRef?.ayat || ''}
+                          onChange={(e) => {
+                            if (formData.quranRef) {
+                              handleInputChange('quranRef', {
+                                ...formData.quranRef,
+                                ayat: e.target.value
+                              });
+                            }
+                          }}
+                          disabled={!formData.quranRef?.surah}
+                          className="w-full px-4 py-3 bg-card border border-border rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                          placeholder="1-4"
+                        />
+                      </div>
+                    </div>
+
+                    {formData.quranRef?.surah && (
+                      <div className="mt-3 p-3 bg-primary/5 border border-primary/20 rounded-lg text-xs text-muted-foreground">
+                        <span className="font-medium text-primary">
+                          {SURAH_LIST.find(s => s.id === formData.quranRef?.surah)?.name} - {formData.quranRef?.surahName}
+                        </span>
+                        {' · Ayat ' + formData.quranRef?.ayat}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -129,6 +129,11 @@ export interface QuestionEntry {
   createdAt?: string;
   updatedAt?: string;
   isRTL?: boolean;
+  quranRef?: {
+    surah: number;
+    surahName: string;
+    ayat: string;
+  };
 }
 
 export interface AppSettings {
@@ -158,6 +163,7 @@ interface QuestionStore {
   activeQuestion: number | null;
   showAnswer: boolean;
   answerText: string;
+  showQuranRef: boolean;
   connectionStatus: ConnectionStatus;
   clientCount: number;
   
@@ -169,6 +175,7 @@ interface QuestionStore {
   setActiveQuestion: (num: number, answer?: string, emit?: boolean) => void;
   markQuestionUsed: (num: number, emit?: boolean) => void;
   toggleAnswer: (emit?: boolean) => void;
+  toggleQuranRef: (emit?: boolean) => void;
   resetQuestion: (emit?: boolean) => void;
   resetUsedQuestions: (emit?: boolean) => void;
   setQuestions: (questions: QuestionEntry[], emit?: boolean) => void;
@@ -206,6 +213,7 @@ export const useQuestionStore = create<QuestionStore>()(
       activeQuestion: null,
       showAnswer: false,
       answerText: "",
+      showQuranRef: false,
       connectionStatus: 'disconnected',
       clientCount: 0,
 
@@ -317,10 +325,22 @@ export const useQuestionStore = create<QuestionStore>()(
         if (emit) emitStateUpdate(newState);
       },
 
+      toggleQuranRef: (emit = true) => {
+        const newState = { 
+          showQuranRef: !get().showQuranRef,
+          activeQuestion: get().activeQuestion,
+          activeProfileId: get().activeProfileId,
+          profiles: get().profiles
+        };
+        set(newState);
+        if (emit) emitStateUpdate(newState);
+      },
+
       resetQuestion: (emit = true) => {
         const newState = { 
           activeQuestion: null, 
           showAnswer: false,
+          showQuranRef: false,
           activeProfileId: get().activeProfileId,
           profiles: get().profiles
         };

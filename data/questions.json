@@ -13,7 +13,12 @@
     "soal": "أَنْ طَهِّرَا — Komentari lafadh tersebut, ada di surat apa, ayat berapa, dan juz berapa?",
     "soalImage": "/images/slides/Slide4.JPG",
     "jawaban": "أَنْ طَهِّرَا — Hati-hati ro-nya panjang tetap dibaca panjang; terdapat di Surat 2 Al-Baqoroh ayat 125 juz 1.",
-    "jawabanImage": "/images/slides/Slide5.JPG"
+    "jawabanImage": "/images/slides/Slide5.JPG",
+    "quranRef": {
+      "surah": 2,
+      "surahName": "Al-Baqoroh",
+      "ayat": "125"
+    }
   },
   {
     "nomor": 3,
@@ -21,7 +26,12 @@
     "soal": "مَنْ يَشَإِ اللَّهُ — Komentari: ada di surat, ayat, dan juz berapa lafadh tersebut?",
     "soalImage": "/images/slides/Slide6.JPG",
     "jawaban": "مَنْ يَشَإِ اللَّهُ — Hati-hati sya-nya panjang dibaca pendek; terdapat di Surat 6 Al-An’am ayat 39 juz 7.",
-    "jawabanImage": "/images/slides/Slide7.JPG"
+    "jawabanImage": "/images/slides/Slide7.JPG",
+    "quranRef": {
+      "surah": 6,
+      "surahName": "Al-Anam",
+      "ayat": "39"
+    }
   },
   {
     "nomor": 4,
@@ -29,7 +39,12 @@
     "soal": "ذَٰلِكَ لَمِنْ — Bagaimana komentar lafadh tersebut?",
     "soalImage": "/images/slides/Slide8.JPG",
     "jawaban": "ذَٰلِكَ لَمِنْ — Hati-hati ‘lamin’ bukan ‘liman’; terdapat di Surat 42 Asy-Syuura ayat 43 juz 25.",
-    "jawabanImage": "/images/slides/Slide9.JPG"
+    "jawabanImage": "/images/slides/Slide9.JPG",
+    "quranRef": {
+      "surah": 42,
+      "surahName": "Asy-Syuura",
+      "ayat": "43"
+    }
   },
   {
     "nomor": 5,
@@ -37,7 +52,12 @@
     "soal": "Bagaimanakah cara membaca Surat Bara’ah atau At-Taubah? Jelaskan secara lengkap!",
     "soalImage": "/images/slides/Slide10.JPG",
     "jawaban": "Awal Surat Bara’ah / At-Taubah tidak boleh membaca kalimat basmalah; terdapat di Surat 9 At-Taubah ayat 1 juz 10.",
-    "jawabanImage": "/images/slides/Slide11.JPG"
+    "jawabanImage": "/images/slides/Slide11.JPG",
+    "quranRef": {
+      "surah": 9,
+      "surahName": "At-Taubah",
+      "ayat": "1"
+    }
   },
   {
     "nomor": 6,
@@ -45,7 +65,12 @@
     "soal": "أَرِنَا الَّذَيْنِ — Komentari lafadh tersebut! Ada di surat apa, ayat, dan juz berapa?",
     "soalImage": "/images/slides/Slide12.JPG",
     "jawaban": "أَرِنَا الَّذَيْنِ — Hati-hati bukan arinalladziina; terdapat di Surat 41 Fushilat ayat 29 juz 24.",
-    "jawabanImage": "/images/slides/Slide13.JPG"
+    "jawabanImage": "/images/slides/Slide13.JPG",
+    "quranRef": {
+      "surah": 41,
+      "surahName": "Fushilat",
+      "ayat": "29"
+    }
   },
   {
     "nomor": 7,
@@ -53,7 +78,12 @@
     "soal": "فِي السَّمَاوَاتِ ائْتُونِي — Komentari bacaan di atas secara lengkap.",
     "soalImage": "/images/slides/Slide14.JPG",
     "jawaban": "فِي السَّمَاوَاتِ ائْتُونِي — Jika dibaca washal menjadi فِي السَّمَاوَاتِ ائْتُونِي; terdapat di Surat 46 Al-Ahqaf ayat 4 juz 26.",
-    "jawabanImage": "/images/slides/Slide15.JPG"
+    "jawabanImage": "/images/slides/Slide15.JPG",
+    "quranRef": {
+      "surah": 46,
+      "surahName": "Al-Ahqaf",
+      "ayat": "4"
+    }
   },
   {
     "nomor": 8,
@@ -61,7 +91,12 @@
     "soal": "إِلَّا اللَّائِي — Komentari lafadh tersebut! Terdapat dalam surat apa, ayat berapa, dan juz berapa?",
     "soalImage": "/images/slides/Slide16.JPG",
     "jawaban": "إِلَّا اللَّائِي — Hati-hati bukan illalliiya; terdapat di Surat 58 Al-Mujadalah ayat 2 juz 28.",
-    "jawabanImage": "/images/slides/Slide17.JPG"
+    "jawabanImage": "/images/slides/Slide17.JPG",
+    "quranRef": {
+      "surah": 58,
+      "surahName": "Al-Mujadalah",
+      "ayat": "2"
+    }
   },
   {
     "nomor": 9,
@@ -69,7 +104,12 @@
     "soal": "KOMENTARI BACAAN DIATAS ? TERDAPAT DALAM SURAT APA? AYAT BERAPA DAN JUZ BERAPA? | SEBUTKAN SECARA LENGKAP!",
     "soalImage": "/images/slides/Slide18.JPG",
     "jawaban": "BOLEH DIBACA TERDAPAT DI SURAT 30 AR RUM AYAT 54 JUZ 21",
-    "jawabanImage": "/images/slides/Slide19.JPG"
+    "jawabanImage": "/images/slides/Slide19.JPG",
+    "quranRef": {
+      "surah": 30,
+      "surahName": "AR RUM",
+      "ayat": "54"
+    }
   },
   {
     "nomor": 10,
@@ -77,7 +117,12 @@
     "soal": "بِئْسَ الِاسْمُ — Komentari bacaan diatas! Terdapat dalam surat apa? Ayat berapa dan juz berapa? Sebutkan secara lengkap!",
     "soalImage": "/images/slides/Slide20.JPG",
     "jawaban": "بِئْسَ الِاسْمُ — TULISAN DIBACA TARDAPAT SURAT 49 AL HUJURAT AYAT 11 JUZ 26",
-    "jawabanImage": "/images/slides/Slide21.JPG"
+    "jawabanImage": "/images/slides/Slide21.JPG",
+    "quranRef": {
+      "surah": 49,
+      "surahName": "Al-Hujurat",
+      "ayat": "11"
+    }
   },
   {
     "nomor": 11,
@@ -85,7 +130,12 @@
     "soal": "فِيهِ مُهَانًا — Komentari bacaan diatas! Terdapat dalam surat apa? Ayat berapa dan juz berapa? Sebutkan secara lengkap!",
     "soalImage": "/images/slides/Slide22.JPG",
     "jawaban": "فِيهِ مُهَانًا — HATI-HATI, HI-NYA DIBACA PANJANG TERDAPAT DI SURAT 25 AL FURQAN AYAT 69 JUZ 19",
-    "jawabanImage": "/images/slides/Slide23.JPG"
+    "jawabanImage": "/images/slides/Slide23.JPG",
+    "quranRef": {
+      "surah": 25,
+      "surahName": "Al-FURQAN",
+      "ayat": "69"
+    }
   },
   {
     "nomor": 12,
@@ -93,7 +143,12 @@
     "soal": "وَقِيلَ مَنْ ۜ رَاقٍ — Komentari bacaan diatas! Terdapat dalam surat apa? Ayat berapa dan juz berapa? Sebutkan secara lengkap!",
     "soalImage": "/images/slides/Slide24.JPG",
     "jawaban": "وَقِيلَ مَنْ ۜ رَاقٍ — SAKTAH, SAKTAH IALAH BERHENTI SEJENAK SEKEDAR SATU ALIF TANPA BERNAFAS TERDAPAT DI SURAT 75 AL QIYAMAH AYAT 27 JUZ 29",
-    "jawabanImage": "/images/slides/Slide25.JPG"
+    "jawabanImage": "/images/slides/Slide25.JPG",
+    "quranRef": {
+      "surah": 75,
+      "surahName": "Al-QIYAMAH",
+      "ayat": "27"
+    }
   },
   {
     "nomor": 13,
@@ -109,7 +164,12 @@
     "soal": "يَوْمَئِذٍ — Komentari bacaan tersebut! Terdapat dalam surat apa? Ayat berapa dan juz berapa?",
     "soalImage": "/images/slides/Slide28.JPG",
     "jawaban": "يَوْمَئِذٍ — HATI-HATI, BUKAN YAUMAIDZIN TERDAPAT DI SURAT 11 HUD AYAT 66 JUZ 12 DAN SURAT 70 AL. MA'ARIJ AYAT",
-    "jawabanImage": "/images/slides/Slide29.JPG"
+    "jawabanImage": "/images/slides/Slide29.JPG",
+    "quranRef": {
+      "surah": 11,
+      "surahName": "HUD",
+      "ayat": "66"
+    }
   },
   {
     "nomor": 15,
@@ -117,7 +177,12 @@
     "soal": "ثُمَّ آمِين — Komentari bacaan tersebut! Terdapat dalam surat apa? Ayat berapa dan juz berapa?",
     "soalImage": "/images/slides/Slide30.JPG",
     "jawaban": "ثُمَّ آمِين — HATI-HATI, BUKAN TSUMMA AMIININ TERDAPAT DI SURAT 81 AT TAKWIR AYAT 21 JUZ 30",
-    "jawabanImage": "/images/slides/Slide31.JPG"
+    "jawabanImage": "/images/slides/Slide31.JPG",
+    "quranRef": {
+      "surah": 81,
+      "surahName": "AT TAKWIR",
+      "ayat": "21"
+    }
   },
   {
     "nomor": 16,
@@ -125,7 +190,12 @@
     "soal": "خَالِدِينَ — Komentari bacaan tersebut! Terdapat dalam surat apa? Ayat berapa dan juz berapa?",
     "soalImage": "/images/slides/Slide32.JPG",
     "jawaban": "خَالِدِينَ — HATI-HATI, BUKAN KHOOLIDIINA. TERDAPAT DI SURAT 59 AL HASYR AYAT 17 JUZ 28",
-    "jawabanImage": "/images/slides/Slide33.JPG"
+    "jawabanImage": "/images/slides/Slide33.JPG",
+    "quranRef": {
+      "surah": 59,
+      "surahName": "Al-HASYR",
+      "ayat": "17"
+    }
   },
   {
     "nomor": 17,
@@ -133,7 +203,12 @@
     "soal": "لَا تَأْمَنَّا — Komentari bacaan tersebut! Terdapat dalam surat berapa? Ayat berapa?",
     "soalImage": "/images/slides/Slide34.JPG",
     "jawaban": "لَا تَأْمَنَّا — BACAAN ISYMAM. ISYMAM IALAH MECUCU DITENGAH-TENGAH DENGUNG SEBAGAI ISYARAT BUNYI DHOMMAH, TERDAPAT SURAT 12 YUSUF",
-    "jawabanImage": "/images/slides/Slide35.JPG"
+    "jawabanImage": "/images/slides/Slide35.JPG",
+    "quranRef": {
+      "surah": 12,
+      "surahName": "YUSUF",
+      "ayat": "1"
+    }
   },
   {
     "nomor": 18,
@@ -141,7 +216,12 @@
     "soal": "أَأَعْجَمِيٌّ — Komentari bacaan tersebut! Terdapat dalam surat berapa? Ayat berapa?",
     "soalImage": "/images/slides/Slide36.JPG",
     "jawaban": "أَأَعْجَمِيٌّ — TASHIL IALAH MERINGANKAN BACAAN HAMZAH YANG KEDUA. TERDAPAT DI SURAT 41 | FUSHILAT AYAT 44 JUZ 24",
-    "jawabanImage": "/images/slides/Slide37.JPG"
+    "jawabanImage": "/images/slides/Slide37.JPG",
+    "quranRef": {
+      "surah": 41,
+      "surahName": "Fushilat",
+      "ayat": "44"
+    }
   },
   {
     "nomor": 19,
@@ -149,7 +229,12 @@
     "soal": "مَجْرٰىهَا — Komentari bacaan tersebut! Terdapat dalam surat berapa? Ayat berapa?",
     "soalImage": "/images/slides/Slide38.JPG",
     "jawaban": "مَجْرٰىهَا — BACAAN IMALAH IMALAH IALAH MEMIRINGKAN BUNYI FATHAH PADA KASROH TERDAPAT DI SURAT 11 i _HUUD AYAT 41 JUZ 12",
-    "jawabanImage": "/images/slides/Slide39.JPG"
+    "jawabanImage": "/images/slides/Slide39.JPG",
+    "quranRef": {
+      "surah": 11,
+      "surahName": "Hud",
+      "ayat": "41"
+    }
   },
   {
     "nomor": 20,
@@ -157,7 +242,12 @@
     "soal": "قِنْوَانٌ — Komentari lafadh serta bertempat disurat apa? Ayat dan juz berapa?",
     "soalImage": "/images/slides/Slide40.JPG",
     "jawaban": "قِنْوَانٌ — IDHAR WAJIB TERDAPAT DI SURAT 6 AL AN'AM AYAT 99 JUZ 7",
-    "jawabanImage": "/images/slides/Slide41.JPG"
+    "jawabanImage": "/images/slides/Slide41.JPG",
+    "quranRef": {
+      "surah": 6,
+      "surahName": "Al-AN'AM",
+      "ayat": "99"
+    }
   },
   {
     "nomor": 21,
@@ -354,10 +444,15 @@
   {
     "nomor": 45,
     "kategori": "Imtihan 2025",
-    "soal": "BACA AKHIR SURAT AL 'ADIYAT DAN LANJUTKAN SURAT SETELAHNYA!",
+    "soal": "LANJUTKAN AYAT BERIKUT INI — كَلَّا لَيُنْبَذَنَّ فِي الْحُطَمَةِ",
     "soalImage": "/images/slides/Slide90.JPG",
-    "jawaban": "إِنَّ رَبَّهُم بِهِمْ يَوْمَئِذٍ لَّخَبِيرٌ — بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ الْقَارِعَةُ مَا الْقَارِعَةُ وَمَا أَدْرَاكَ مَا الْقَارِعَةُ",
-    "jawabanImage": "/images/slides/Slide91.JPG"
+    "jawaban": "وَمَا أَدْرَاكَ مَا الْحُطَمَةُ\nنَارُ اللَّهِ الْمُوقَدَةُ\nالَّتِي تَطَّلِعُ عَلَى الْأَفْئِدَةِ\nإِنَّهَا عَلَيْهِم مُّؤْصَدَةٌ\nفِي عَمَدٍ مُّمَدَّدَةٍ",
+    "jawabanImage": "/images/slides/Slide91.JPG",
+    "quranRef": {
+      "surah": 104,
+      "surahName": "Al-Humazah",
+      "ayat": "4-9"
+    }
   },
   {
     "nomor": 46,
@@ -370,10 +465,15 @@
   {
     "nomor": 47,
     "kategori": "Imtihan 2025",
-    "soal": "BACA AKHIR SURAT AL QORIPAH DAN LANJUTKAN SURAT SETELAHNYA!",
+    "soal": "LANJUTKAN AYAT BERIKUT INI — كَلَّا سَوْفَ تَعْلَمُونَ",
     "soalImage": "/images/slides/Slide94.JPG",
-    "jawaban": "EP eS FS alley Seal 4'\" GAb ons 98,73 be YIRADS BIA \\ 92 yo SB Gb WEN DIGS HEI BH '866 SSIES GSE Bb Ooles Sayles O orl Jorn U5 ' CAs OME",
-    "jawabanImage": "/images/slides/Slide95.JPG"
+    "jawaban": "ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ\nكَلَّا لَوْ تَعْلَمُونَ عِلْمَ الْيَقِينِ\nلَتَرَوُنَّ الْجَحِيمَ\nثُمَّ لَتَرَوُنَّهَا عَيْنَ الْيَقِينِ\nثُمَّ لَتُسْأَلُنَّ يَوْمَئِذٍ عَنِ النَّعِيمِ",
+    "jawabanImage": "/images/slides/Slide95.JPG",
+    "quranRef": {
+      "surah": 102,
+      "surahName": "At-Takatsur",
+      "ayat": "3-8"
+    }
   },
   {
     "nomor": 48,
@@ -386,34 +486,54 @@
   {
     "nomor": 49,
     "kategori": "Imtihan 2025",
-    "soal": "BACA AKHIR SURAT AL FIIL DAN LANJUTKAN SURAT SETELAHNYA!",
+    "soal": "BACAKAN SURAT AL-FIL DENGAN TARTIL",
     "soalImage": "/images/slides/Slide98.JPG",
-    "jawaban": "فَجَعَلَهُمْ كَعَصْفٍ مَّأْكُولٍ",
-    "jawabanImage": "/images/slides/Slide99.JPG"
+    "jawaban": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\n\nأَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ\nأَلَمْ يَجْعَلْ كَيْدَهُمْ فِي تَضْلِيلٍ\nوَأَرْسَلَ عَلَيْهِمْ طَيْرًا أَبَابِيلَ\nتَرْمِيهِم بِحِجَارَةٍ مِّن سِجِّيلٍ\nفَجَعَلَهُمْ كَعَصْفٍ مَّأْكُولٍ",
+    "jawabanImage": "/images/slides/Slide99.JPG",
+    "quranRef": {
+      "surah": 105,
+      "surahName": "Al-Fil",
+      "ayat": "1-5"
+    }
   },
   {
     "nomor": 50,
     "kategori": "Imtihan 2025",
-    "soal": "BACA AKHIR SURAT AL MA'UN DAN LANJUTKAN SURAT SETELAHNYA!",
+    "soal": "BACAKAN SURAT AL-MA'UN DENGAN TARTIL",
     "soalImage": "/images/slides/Slide100.JPG",
-    "jawaban": "وَيَمْنَعُونَ الْمَاعُونَ",
-    "jawabanImage": "/images/slides/Slide101.JPG"
+    "jawaban": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\n\nأَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ\nفَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ\nوَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ\nفَوَيْلٌ لِّلْمُصَلِّينَ\nالَّذِينَ هُمْ عَن صَلَاتِهِمْ سَاهُونَ\nالَّذِينَ هُمْ يُرَاءُونَ\nوَيَمْنَعُونَ الْمَاعُونَ",
+    "jawabanImage": "/images/slides/Slide101.JPG",
+    "quranRef": {
+      "surah": 107,
+      "surahName": "Al-Maun",
+      "ayat": "1-7"
+    }
   },
   {
     "nomor": 51,
     "kategori": "Imtihan 2025",
-    "soal": "BACA AKHIR SURAT AL KAUTSAR DAN LANJUTKAN SURAT SETELAHNYA!",
+    "soal": "BACAKAN SURAT AL-KAUTSAR DENGAN TARTIL",
     "soalImage": "/images/slides/Slide102.JPG",
-    "jawaban": "إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ",
-    "jawabanImage": "/images/slides/Slide103.JPG"
+    "jawaban": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\n\nإِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ\nفَصَلِّ لِرَبِّكَ وَانْحَرْ\nإِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ",
+    "jawabanImage": "/images/slides/Slide103.JPG",
+    "quranRef": {
+      "surah": 108,
+      "surahName": "Al-Kautsar",
+      "ayat": "1-3"
+    }
   },
   {
     "nomor": 52,
     "kategori": "Imtihan 2025",
-    "soal": "BACA AKHIR SURAT AL LAHAB DAN LANJUTKAN SURAT SETELAHNYA!",
+    "soal": "BACAKAN SURAT AL-LAHAB DENGAN TARTIL",
     "soalImage": "/images/slides/Slide104.JPG",
-    "jawaban": "فِي جِيدِهَا حَبْلٌ مِّن مَّسَدٍ",
-    "jawabanImage": "/images/slides/Slide105.JPG"
+    "jawaban": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\n\nتَبَّتْ يَدَا أَبِي لَهَبٍ وَتَبَّ\nمَا أَغْنَىٰ عَنْهُ مَالُهُ وَمَا كَسَبَ\nسَيَصْلَىٰ نَارًا ذَاتَ لَهَبٍ\nوَامْرَأَتُهُ حَمَّالَةَ الْحَطَبِ\nفِي جِيدِهَا حَبْلٌ مِّن مَّسَدٍ",
+    "jawabanImage": "/images/slides/Slide105.JPG",
+    "quranRef": {
+      "surah": 111,
+      "surahName": "Al-Lahab",
+      "ayat": "1-5"
+    }
   },
   {
     "nomor": 53,
@@ -450,73 +570,87 @@
   {
     "nomor": 57,
     "kategori": "Imtihan 2025",
-    "soal": "Bacakan Surat Adl Dluha dengan tartil.",
+    "soal": "BACAKAN SURAT AN-NASR DENGAN TARTIL",
     "soalImage": "/images/slides/Slide114.JPG",
-    "jawaban": "وَالضُّحَىٰ ۝ وَاللَّيْلِ إِذَا سَجَىٰ ۝ مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ ۝ وَلَلْآخِرَةُ خَيْرٌ لَّكَ مِنَ الْأُولَىٰ ۝ وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ ۝ أَلَمْ يَجِدْكَ يَتِيمًا فَآوَىٰ ۝ وَوَجَدَكَ ضَالًّا فَهَدَىٰ ۝ وَوَجَدَكَ عَائِلًا فَأَغْنَىٰ ۝ فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ ۝ وَأَمَّا السَّائِلَ فَلَا تَنْهَرْ ۝ وَأَمَّا بِنِعْمَةِ رَبِّكَ فَحَدِّثْ",
-    "jawabanImage": "/images/slides/Slide115.JPG"
+    "jawaban": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\n\nإِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ\nوَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا\nفَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ ۚ إِنَّهُ كَانَ تَوَّابًا",
+    "jawabanImage": "/images/slides/Slide115.JPG",
+    "quranRef": {
+      "surah": 110,
+      "surahName": "An-Nasr",
+      "ayat": "1-3"
+    }
   },
   {
     "nomor": 58,
     "kategori": "Imtihan 2025",
-    "soal": "BACAKAN SURAT AL QODR DENGAN TARTIL",
+    "soal": "BACAKAN SURAT AL-KAFIRUN DENGAN TARTIL",
     "soalImage": "/images/slides/Slide116.JPG",
-    "jawaban": "CIC us Si LIGA b BAG oll aC oNEE eg SRN cro mITTUNEN NG",
-    "jawabanImage": "/images/slides/Slide117.JPG"
+    "jawaban": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\n\nقُلْ يَا أَيُّهَا الْكَافِرُونَ\nلَا أَعْبُدُ مَا تَعْبُدُونَ\nوَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ\nوَلَا أَنَا عَابِدٌ مَّا عَبَدتُّمْ\nوَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ\nلَكُمْ دِينُكُمْ وَلِيَ دِينِ",
+    "jawabanImage": "/images/slides/Slide117.JPG",
+    "quranRef": {
+      "surah": 109,
+      "surahName": "Al-Kafirun",
+      "ayat": "1-6"
+    }
   },
   {
     "nomor": 59,
     "kategori": "Imtihan 2025",
-    "soal": "BACAKAN SURAT AL HUMAZAH DENGAN TARTIL",
+    "soal": "BACAKAN SURAT AL-'ASR DENGAN TARTIL",
     "soalImage": "/images/slides/Slide118.JPG",
-    "jawaban": "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيمِ\n\nوَيْلٌ لِكُلِّ هُمَزَةٍ لُمَزَةٍ\nالَّذِي جَمَعَ مَالًا وَعَدَّدَهُ\nيَحْسَبُ أَنَّ مَالَهُ أَخْلَدَهُ\nكَلَّا لَيُنْبَذَنَّ فِي الْحُطَمَةِ\nوَمَا أَدْرَاكَ مَا الْحُطَمَةُ\nنَارُ اللَّهِ الْمُوقَدَةُ\nالَّتِي تَطَّلِعُ عَلَى الْأَفْئِدَةِ\nإِنَّهَا عَلَيْهِمْ مُؤْصَدَةٌ\nفِي عَمَدٍ مُمَدَّدَةٍ",
-    "jawabanImage": "/images/slides/Slide119.JPG"
+    "jawaban": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\n\nوَالْعَصْرِ\nإِنَّ الْإِنسَانَ لَفِي خُسْرٍ\nإِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ",
+    "jawabanImage": "/images/slides/Slide119.JPG",
+    "quranRef": {
+      "surah": 103,
+      "surahName": "Al-Asr",
+      "ayat": "1-3"
+    }
   },
   {
     "nomor": 60,
     "kategori": "Imtihan 2025",
-    "soal": "LANJUTKAN AYAT BERIKUT INI\n\nوَمَا أَدْرَاكَ مَا الْحُطَمَةُ",
+    "soal": "BACAKAN SURAT QURAISY DENGAN TARTIL",
     "soalImage": "/images/slides/Slide120.JPG",
-    "jawaban": "نَارُ اللَّهِ الْمُوقَدَةِ\nالَّتِي تَطَّلِعُ عَلَى الْأَفْئِدَةِ\nإِنَّهَا عَلَيْهِمْ مُؤْصَدَةٌ\nفِي عَمَدٍ مُمَدَّدَةٍ",
-    "jawabanImage": "/images/slides/Slide121.JPG"
+    "jawaban": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\n\nلِإِيلَافِ قُرَيْشٍ\nإِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ\nفَلْيَعْبُدُوا رَبَّ هَٰذَا الْبَيْتِ\nالَّذِي أَطْعَمَهُم مِّن جُوعٍ وَآمَنَهُم مِّنْ خَوْفٍ",
+    "jawabanImage": "/images/slides/Slide121.JPG",
+    "quranRef": {
+      "surah": 106,
+      "surahName": "Quraisy",
+      "ayat": "1-4"
+    }
   },
   {
     "nomor": 61,
     "kategori": "Imtihan 2025",
     "soal": "BACAKAN DO'A AKAN BELAJAR",
     "soalImage": "/images/slides/Slide122.JPG",
-    "jawaban": "رَبِّ زِدْنِي عِلْمًا وَارْزُقْنِي فَهْمًا",
+    "jawaban": "رَبِّ زِدْنِي عِلْمًا وَارْزُقْنِي فَهْمًا",
     "jawabanImage": "/images/slides/Slide123.JPG"
   },
   {
     "nomor": 62,
     "kategori": "Imtihan 2025",
-    "soal": "BACAKAN DO'A MASUK KAMAR MANDI",
-    "soalImage": "/images/slides/Slide124.JPG",
-    "jawaban": "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ",
-    "jawabanImage": "/images/slides/Slide125.JPG"
+    "soal": "1. Bacakan doa sebelum makan.\n2. Bacakan doa sesudah makan.",
+    "jawaban": "**Sebelum makan:**\n\nاللَّهُمَّ بَارِكْ لَنَا فِيمَا رَزَقْتَنَا وَقِنَا عَذَابَ النَّارِ\n\n*Allāhumma bārik lanā fīmā razaqtanā wa qinā 'adzāban nār.*\n\n**Sesudah makan:**\n\nالْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مِنَ الْمُسْلِمِينَ\n\n*Alḥamdulillāhilladzī aṭ'amanā wa saqānā wa ja'alanā minal muslimīn.*"
   },
   {
     "nomor": 63,
     "kategori": "Imtihan 2025",
-    "soal": "BACAKAN DO'A KELUAR KAMAR MANDI",
-    "soalImage": "/images/slides/Slide126.JPG",
-    "jawaban": "الْحَمْدُ لِلَّهِ الَّذِي أَذْهَبَ عَنِّي الْأَذَى وَعَافَانِي",
-    "jawabanImage": "/images/slides/Slide127.JPG"
+    "soal": "Bacakan bacaan ketika sujud.",
+    "jawaban": "سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ\n\n*Subḥāna rabbiyal a'lā wa biḥamdih.*\n\n**Dibaca 3 kali atau lebih.**"
   },
   {
     "nomor": 64,
     "kategori": "Imtihan 2025",
-    "soal": "BACAKAN DO'A MASUK MASJID",
-    "soalImage": "/images/slides/Slide128.JPG",
-    "jawaban": "اللَّهُمَّ اغْفِرْ لِي ذُنُوبِي وَافْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
-    "jawabanImage": "/images/slides/Slide129.JPG"
+    "soal": "1. Bacakan doa masuk masjid.\n2. Bacakan doa keluar masjid.",
+    "jawaban": "**Masuk masjid:**\n\nاللَّهُمَّ اغْفِرْ لِي ذُنُوبِي وَافْتَحْ لِي أَبْوَابَ رَحْمَتِكَ\n\n*Allāhumma-ghfir lī dzunūbī waftaḥ lī abwāba raḥmatik.*\n\n**Keluar masjid:**\n\nاللَّهُمَّ اغْفِرْ لِي ذُنُوبِي وَافْتَحْ لِي أَبْوَابَ فَضْلِكَ\n\n*Allāhumma-ghfir lī dzunūbī waftaḥ lī abwāba faḍlik.*"
   },
   {
     "nomor": 65,
     "kategori": "Imtihan 2025",
     "soal": "BACAKAN DO'A KELUAR MASJID",
     "soalImage": "/images/slides/Slide130.JPG",
-    "jawaban": "اللَّهُمَّ اغْفِرْ لِي ذُنُوبِي وَافْتَحْ لِي أَبْوَابَ فَضْلِكَ",
+    "jawaban": "اللَّهُمَّ اغْفِرْ لِي ذُنُوبِي وَافْتَحْ لِي أَبْوَابَ فَضْلِكَ",
     "jawabanImage": "/images/slides/Slide131.JPG"
   },
   {
@@ -524,7 +658,7 @@
     "kategori": "Imtihan 2025",
     "soal": "BACAKAN DO'A MAU TIDUR",
     "soalImage": "/images/slides/Slide132.JPG",
-    "jawaban": "بِاسْمِكَ اللَّهُمَّ أَحْيَا وَبِكَ أَمُوتُ",
+    "jawaban": "بِاسْمِكَ اللَّهُمَّ أَحْيَا وَبِكَ أَمُوتُ",
     "jawabanImage": "/images/slides/Slide133.JPG"
   },
   {
@@ -532,7 +666,7 @@
     "kategori": "Imtihan 2025",
     "soal": "BACAKAN DO'A BANGUN TIDUR",
     "soalImage": "/images/slides/Slide134.JPG",
-    "jawaban": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+    "jawaban": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
     "jawabanImage": "/images/slides/Slide135.JPG"
   },
   {
@@ -540,7 +674,7 @@
     "kategori": "Imtihan 2025",
     "soal": "BACAKAN DOA MASUK RUMAH",
     "soalImage": "/images/slides/Slide136.JPG",
-    "jawaban": "اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ الْمَوْلَجِ وَخَيْرَ الْمَخْرَجِ بِسْمِ اللَّهِ وَلَجْنَا وَبِسْمِ اللَّهِ خَرَجْنَا وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا",
+    "jawaban": "اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ الْمَوْلَجِ وَخَيْرَ الْمَخْرَجِ بِسْمِ اللَّهِ وَلَجْنَا وَبِسْمِ اللَّهِ خَرَجْنَا وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا",
     "jawabanImage": "/images/slides/Slide137.JPG"
   },
   {
@@ -548,7 +682,7 @@
     "kategori": "Imtihan 2025",
     "soal": "BACAKAN DOA KELUAR RUMAH",
     "soalImage": "/images/slides/Slide138.JPG",
-    "jawaban": "بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ\nلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+    "jawaban": "بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ\nلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
     "jawabanImage": "/images/slides/Slide139.JPG"
   },
   {
@@ -556,24 +690,20 @@
     "kategori": "Imtihan 2025",
     "soal": "BACAKAN DOA MEMAKAI PAKAIAN",
     "soalImage": "/images/slides/Slide140.JPG",
-    "jawaban": "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ خَيْرِهِ وَخَيْرِ مَا هُوَ لَهُ\nوَأَعُوذُ بِكَ مِنْ شَرِّهِ وَشَرِّ مَا هُوَ لَهُ",
+    "jawaban": "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ خَيْرِهِ وَخَيْرِ مَا هُوَ لَهُ\nوَأَعُوذُ بِكَ مِنْ شَرِّهِ وَشَرِّ مَا هُوَ لَهُ",
     "jawabanImage": "/images/slides/Slide141.JPG"
   },
   {
     "nomor": 71,
     "kategori": "Imtihan 2025",
-    "soal": "BACAKAN DOA MELEPAS PAKAIAN",
-    "soalImage": "/images/slides/Slide142.JPG",
-    "jawaban": "بِسْمِ اللَّهِ الَّذِي لَا إِلَهَ إِلَّا هُوَ",
-    "jawabanImage": "/images/slides/Slide143.JPG"
+    "soal": "1. Bacakan doa sebelum belajar.\n2. Bacakan doa sesudah belajar.",
+    "jawaban": "**Sebelum belajar:**\n\nرَبِّ زِدْنِي عِلْمًا وَارْزُقْنِي فَهْمًا\n\n*Rabbi zidnī 'ilman wa-rzuqnī fahmā.*\n\n**Sesudah belajar:**\n\nاللَّهُمَّ انْفَعْنَا بِمَا عَلَّمْتَنَا، وَعَلِّمْنَا مَا يَنْفَعُنَا، وَزِدْنَا عِلْمًا، وَارْزُقْنَا فَهْمًا\n\n*Allāhumma nfa'nā bimā 'allamtanā, wa 'allimnā mā yanfa'unā, wa zidnā 'ilman, warzuqnā fahmā.*"
   },
   {
     "nomor": 72,
     "kategori": "Imtihan 2025",
-    "soal": "BACAKAN DOA LAPANG DADA",
-    "soalImage": "/images/slides/Slide144.JPG",
-    "jawaban": "رَبِّ اشْرَحْ لِي صَدْرِي\nوَيَسِّرْ لِي أَمْرِي\nوَاحْلُلْ عُقْدَةً مِنْ لِسَانِي\nيَفْقَهُوا قَوْلِي",
-    "jawabanImage": "/images/slides/Slide145.JPG"
+    "soal": "Bacakan doa memohon kelapangan dada.",
+    "jawaban": "رَبِّ اشْرَحْ لِي صَدْرِي ۝ وَيَسِّرْ لِي أَمْرِي ۝ وَاحْلُلْ عُقْدَةً مِنْ لِسَانِي ۝ يَفْقَهُوا قَوْلِي\n\n*Rabbi syraḥ lī ṣadrī, wa yassir lī amrī, waḥlul 'uqdatan min lisānī, yafqahū qawlī.*"
   },
   {
     "nomor": 73,
@@ -581,7 +711,12 @@
     "soal": "KOMENTARI LAFADH فَوَاكِهُ. BERTEMPAT DISURAT APA? AYAT DAN JUZ BERAPA?",
     "soalImage": "/images/slides/Slide146.JPG",
     "jawaban": "فَوَاكِهُ — Hati-hati 'hu' nya dibaca pendek, terdapat di Surat 23 Al-Mu'minun Ayat 19 Juz 18",
-    "jawabanImage": "/images/slides/Slide147.JPG"
+    "jawabanImage": "/images/slides/Slide147.JPG",
+    "quranRef": {
+      "surah": 23,
+      "surahName": "Al-Mu'minun",
+      "ayat": "19"
+    }
   },
   {
     "nomor": 74,
@@ -589,23 +724,24 @@
     "soal": "KOMENTARI LAFADH نُفْقَةٌ. BERTEMPAT DISURAT APA? AYAT DAN JUZ BERAPA?",
     "soalImage": "/images/slides/Slide148.JPG",
     "jawaban": "نُفْقَةٌ — Terdapat di Surat 11 Hud Ayat 91 Juz 12",
-    "jawabanImage": "/images/slides/Slide149.JPG"
+    "jawabanImage": "/images/slides/Slide149.JPG",
+    "quranRef": {
+      "surah": 11,
+      "surahName": "Hud",
+      "ayat": "91"
+    }
   },
   {
     "nomor": 75,
     "kategori": "Imtihan 2025",
-    "soal": "KOMENTARI LAFADH عَلَيْهِ. BERTEMPAT DISURAT APA? AYAT DAN JUZ BERAPA?",
-    "soalImage": "/images/slides/Slide150.JPG",
-    "jawaban": "عَلَيْهِ — Bukan 'alaihi, dibaca pendek. Terdapat di Surat 48 Al-Fath Ayat 10 Juz 26",
-    "jawabanImage": "/images/slides/Slide151.JPG"
+    "soal": "1. Bacakan doa sebelum tidur.\n2. Bacakan doa bangun tidur.",
+    "jawaban": "**Sebelum tidur:**\n\nبِاسْمِكَ اللَّهُمَّ وَأَحْيَا وَأَمُوتُ\n\n*Bismikallāhumma wa aḥyā wa amūt.*\n\n**Bangun tidur:**\n\nالْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ\n\n*Alḥamdulillāhilladzī aḥyānā ba'da mā amātanā wa ilaihin nusyūr.*"
   },
   {
     "nomor": 76,
     "kategori": "Imtihan 2025",
-    "soal": "KOMENTARI LAFADH سَلَاسِلَا. BERTEMPAT DISURAT APA? AYAT DAN JUZ BERAPA?",
-    "soalImage": "/images/slides/Slide152.JPG",
-    "jawaban": "سَلَاسِلَا — Lam yang kedua dibaca pendek. Terdapat di Surat 76 Ad-Dahr Ayat 4 Juz 29",
-    "jawabanImage": "/images/slides/Slide153.JPG"
+    "soal": "1. Bacakan doa masuk rumah.\n2. Bacakan doa keluar rumah.",
+    "jawaban": "**Masuk rumah:**\n\nاللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ الْمَوْلَجِ وَخَيْرَ الْمَخْرَجِ، بِاسْمِ اللَّهِ وَلَجْنَا، وَبِسْمِ اللَّهِ خَرَجْنَا، وَعَلَى رَبِّنَا تَوَكَّلْنَا\n\n**Keluar rumah:**\n\nبِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ"
   },
   {
     "nomor": 77,
@@ -613,7 +749,12 @@
     "soal": "KOMENTARI LAFADH ذَٰلِكُمُ النَّارُ. BERTEMPAT DISURAT APA? AYAT DAN JUZ BERAPA?",
     "soalImage": "/images/slides/Slide154.JPG",
     "jawaban": "ذَٰلِكُمُ النَّارُ — Jika dibaca washol. Terdapat di Surat 22 Al-Hajj Ayat 72 Juz 17",
-    "jawabanImage": "/images/slides/Slide155.JPG"
+    "jawabanImage": "/images/slides/Slide155.JPG",
+    "quranRef": {
+      "surah": 22,
+      "surahName": "Al-Hajj",
+      "ayat": "72"
+    }
   },
   {
     "nomor": 78,
@@ -621,7 +762,12 @@
     "soal": "KOMENTARI LAFADH لِيَبْلُوَا. BERTEMPAT DISURAT APA? AYAT DAN JUZ BERAPA?",
     "soalImage": "/images/slides/Slide156.JPG",
     "jawaban": "لِيَبْلُوَا — Wa-nya panjang dibaca pendek. Terdapat di Surat 47 Muhammad Ayat 4 Juz 26",
-    "jawabanImage": "/images/slides/Slide157.JPG"
+    "jawabanImage": "/images/slides/Slide157.JPG",
+    "quranRef": {
+      "surah": 47,
+      "surahName": "Muhammad",
+      "ayat": "4"
+    }
   },
   {
     "nomor": 79,
@@ -629,7 +775,12 @@
     "soal": "KOMENTARI LAFADH",
     "soalImage": "/images/slides/Slide158.JPG",
     "jawaban": "WA-NYA PANJANG DIBACA PENDEK, TERDAPAT DI SURAT 30 AR-RUUM_AYAT 39 JUZ 21",
-    "jawabanImage": "/images/slides/Slide159.JPG"
+    "jawabanImage": "/images/slides/Slide159.JPG",
+    "quranRef": {
+      "surah": 30,
+      "surahName": "Ar-Rum",
+      "ayat": "39"
+    }
   },
   {
     "nomor": 80,
@@ -637,7 +788,12 @@
     "soal": "KOMENTARI LAFADH",
     "soalImage": "/images/slides/Slide160.JPG",
     "jawaban": "WA-NYA PANJANG DIBACA PENDEK, TERDAPAT DI SURAT 13 AR-RO'DU. AYAT 30 JUZ 13",
-    "jawabanImage": "/images/slides/Slide161.JPG"
+    "jawabanImage": "/images/slides/Slide161.JPG",
+    "quranRef": {
+      "surah": 13,
+      "surahName": "Ar-Rad",
+      "ayat": "30"
+    }
   },
   {
     "nomor": 81,
@@ -645,7 +801,12 @@
     "soal": "KOMENTARI LAFADH",
     "soalImage": "/images/slides/Slide162.JPG",
     "jawaban": "WA-NYA PANJANG DIBACA PENDEK, TERDAPAT DI SURAT 47 MUHAMMAD AYAT 31 JUZ 26",
-    "jawabanImage": "/images/slides/Slide163.JPG"
+    "jawabanImage": "/images/slides/Slide163.JPG",
+    "quranRef": {
+      "surah": 47,
+      "surahName": "MUHAMMAD",
+      "ayat": "31"
+    }
   },
   {
     "nomor": 82,
@@ -653,7 +814,12 @@
     "soal": "KOMENTARI LAFADH",
     "soalImage": "/images/slides/Slide164.JPG",
     "jawaban": "WA-NYA PANJANG DIBACA PENDEK, TERDAPAT DI SURAT 18 AL-KAHFILAYAT 14 JUZ 15",
-    "jawabanImage": "/images/slides/Slide165.JPG"
+    "jawabanImage": "/images/slides/Slide165.JPG",
+    "quranRef": {
+      "surah": 18,
+      "surahName": "Al-Kahf",
+      "ayat": "14"
+    }
   },
   {
     "nomor": 83,
@@ -669,7 +835,12 @@
     "soal": "KOMENTARI LAFADH TERSEBUT!",
     "soalImage": "/images/slides/Slide168.JPG",
     "jawaban": "'FA'NYA PANJANG DIBACA PENDEK, TERDAPAT DI SURAT 3 ALI 'IMRON AYAT 144 JUZ 4 DAN DI SURAT 21 AL- ANBIYA' AYAT 34 JUZ 17 OF eam | 1) VN) H yy Ss ae ae 'a WN ANA Ng",
-    "jawabanImage": "/images/slides/Slide169.JPG"
+    "jawabanImage": "/images/slides/Slide169.JPG",
+    "quranRef": {
+      "surah": 3,
+      "surahName": "ALI 'IMRON",
+      "ayat": "144"
+    }
   },
   {
     "nomor": 85,
@@ -677,7 +848,12 @@
     "soal": "KOMENTARI LAFADH",
     "soalImage": "/images/slides/Slide170.JPG",
     "jawaban": "JIKA DIBACA WASHOL TERDAPAT DI SURAT 7 AL- A'ROF AYAT 176 JUZ 9",
-    "jawabanImage": "/images/slides/Slide171.JPG"
+    "jawabanImage": "/images/slides/Slide171.JPG",
+    "quranRef": {
+      "surah": 7,
+      "surahName": "AL- A'ROF",
+      "ayat": "176"
+    }
   },
   {
     "nomor": 86,
@@ -685,7 +861,12 @@
     "soal": "KOMENTARI LAFADH SERTA BERTEMPAT DISURAT AYAT DAN _JUZ BERAPA ?",
     "soalImage": "/images/slides/Slide172.JPG",
     "jawaban": "JIKA DIBACA WASHOL TERDAPAT DI SURAT 29 AL-ANKABUT AYAT 41 JUZ 20",
-    "jawabanImage": "/images/slides/Slide173.JPG"
+    "jawabanImage": "/images/slides/Slide173.JPG",
+    "quranRef": {
+      "surah": 29,
+      "surahName": "AL-ANKABUT",
+      "ayat": "41"
+    }
   },
   {
     "nomor": 87,
@@ -693,7 +874,12 @@
     "soal": "KOMENTARI LAFADH SERTA BERTEMPAT DISURAT AYAT DAN JUZ BERAPA ?",
     "soalImage": "/images/slides/Slide174.JPG",
     "jawaban": "HATI-HATI BUKAN WALLIIAA, TERDAPAT DI SURAT 65 AT-THOLAQ AYAT 4 JUZ 28",
-    "jawabanImage": "/images/slides/Slide175.JPG"
+    "jawabanImage": "/images/slides/Slide175.JPG",
+    "quranRef": {
+      "surah": 65,
+      "surahName": "AT-THOLAQ",
+      "ayat": "4"
+    }
   },
   {
     "nomor": 88,
@@ -765,7 +951,12 @@
     "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH BACALAH DENGAN TARTIL!",
     "soalImage": "/images/slides/Slide192.JPG",
     "jawaban": "Surat 2 Al Baqarah ayat 120-123 4S EN ascae 28S b- VIGNE e RY AVI7 'ate oo V, COBEN SS CAB SE SHDN OS SHEN DEEPEN SATB EKA ow Cod lish aint Bc Cnr, Fd AEG 2 ANG Ve 2 Lis Pres FELANFAG MLSs lca or cll 7 395 ZINK a aE 2 mrt 2.98 28 2) PE ere CHAE MOH IIS JOR GS So EK oD. oR FANN oa COB 'V2 We Fee WES ps CE SR CoG NNO CANOE 7 29779 GALE 2 Re W 2-42 I\\ yaad OQ Sessa sas EGRESS WRU",
-    "jawabanImage": "/images/slides/Slide193.JPG"
+    "jawabanImage": "/images/slides/Slide193.JPG",
+    "quranRef": {
+      "surah": 2,
+      "surahName": "Al-Baqarah",
+      "ayat": "120-123"
+    }
   },
   {
     "nomor": 97,
@@ -773,7 +964,12 @@
     "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH BACALAH DENGAN TARTIL!",
     "soalImage": "/images/slides/Slide194.JPG",
     "jawaban": "Surat 2 Al Baqarah Ayat 142-143 Be IISA SIG eos Ged os DS GAS SASS Ess Ba Athos Ch Woe haters SRIF JoeB in HONEA CAAA NGS EPR GyRsdah SALI SS EM GOES",
-    "jawabanImage": "/images/slides/Slide195.JPG"
+    "jawabanImage": "/images/slides/Slide195.JPG",
+    "quranRef": {
+      "surah": 2,
+      "surahName": "Al-Baqarah",
+      "ayat": "142-143"
+    }
   },
   {
     "nomor": 98,
@@ -781,7 +977,12 @@
     "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH BACALAH DENGAN TARTIL!",
     "soalImage": "/images/slides/Slide196.JPG",
     "jawaban": "Surat 2 Al Baqarah 168-171 ZG ish be Wi OEM aS 2 ODS 38 EN BO |",
-    "jawabanImage": "/images/slides/Slide197.JPG"
+    "jawabanImage": "/images/slides/Slide197.JPG",
+    "quranRef": {
+      "surah": 2,
+      "surahName": "Al-Baqarah",
+      "ayat": "168-171"
+    }
   },
   {
     "nomor": 99,

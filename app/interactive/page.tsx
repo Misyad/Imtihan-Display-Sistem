@@ -5,11 +5,12 @@ import { cn } from "@/lib/utils";
 import { useQuestionStore } from "@/lib/store";
 import { useNavbarToggle } from "@/lib/hooks/use-navbar-toggle";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, X, Award, CheckCircle2, RotateCcw } from "lucide-react";
+import { BookOpen, X, Award, CheckCircle2, RotateCcw, ArrowLeft } from "lucide-react";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SlideDisplay } from "@/components/features/slide-display";
 import { QuestionText } from "@/components/ui/question-text";
+import { QuranViewer } from "@/components/ui/quran-viewer";
 
 export default function InteractivePage() {
   const { 
@@ -17,6 +18,7 @@ export default function InteractivePage() {
     profiles,
     activeQuestion, 
     showAnswer, 
+    showQuranRef,
     setActiveQuestion, 
     toggleAnswer, 
     resetQuestion,
@@ -25,6 +27,7 @@ export default function InteractivePage() {
 
   const [mounted, setMounted] = useState(false);
   const [buttonScale, setButtonScale] = useState(100);
+  const [localShowQuran, setLocalShowQuran] = useState(false);
   const { isVisible: navbarVisible } = useNavbarToggle();
   const activeProfile = profiles[activeProfileId];
   const questions = activeProfile?.questions || [];
@@ -226,12 +229,21 @@ export default function InteractivePage() {
                                   <QuestionText text={currentQuestionData?.soal || ""} />
                               </p>
 
-                              <button 
-                                  onClick={() => toggleAnswer()}
-                                  className="px-6 py-3 sm:px-12 sm:py-5 text-xs sm:text-base rounded-full bg-emerald-600 text-white font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] hover:bg-emerald-500 transition-all shadow-xl shadow-emerald-600/20 active:scale-95 pointer-events-auto"
-                              >
-                                  Buka Jawaban
-                              </button>
+                              <div className="flex items-center gap-4">
+                                <button 
+                                    onClick={() => toggleAnswer()}
+                                    className="px-6 py-3 sm:px-12 sm:py-5 text-xs sm:text-base rounded-full bg-emerald-600 text-white font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] hover:bg-emerald-500 transition-all shadow-xl shadow-emerald-600/20 active:scale-95 pointer-events-auto"
+                                >
+                                    Buka Jawaban
+                                </button>
+                                <button 
+                                    onClick={handleClose}
+                                    className="px-4 py-3 sm:px-8 sm:py-5 text-xs sm:text-base rounded-full bg-zinc-800/50 text-zinc-400 font-black uppercase tracking-widest hover:bg-zinc-700 transition-all active:scale-95 pointer-events-auto border border-zinc-700/50 flex items-center gap-2"
+                                >
+                                    <ArrowLeft className="w-4 h-4" />
+                                    Reset
+                                </button>
+                              </div>
                             </motion.div>
                         ) : (
                             <motion.div
@@ -257,6 +269,23 @@ export default function InteractivePage() {
                                     )}>
                                         <QuestionText text={answerText} />
                                     </h1>
+                                    
+                                    {currentQuestionData?.quranRef && !showQuranRef && (
+                                      <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="flex justify-center"
+                                      >
+                                        <button
+                                          onClick={() => setLocalShowQuran(true)}
+                                          className="flex items-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-500 transition-colors shadow-lg pointer-events-auto"
+                                        >
+                                          <BookOpen className="w-5 h-5" />
+                                          📖 Lihat Referensi Al-Quran
+                                        </button>
+                                      </motion.div>
+                                    )}
+                                    
                                     <button 
                                         onClick={handleClose}
                                         className="mt-8 px-8 py-3 rounded-xl bg-amber-950/20 border border-amber-500/30 text-amber-500 font-bold uppercase tracking-widest hover:bg-amber-500/10 transition-all pointer-events-auto"
@@ -271,8 +300,18 @@ export default function InteractivePage() {
                     </div>
                </div>
             </motion.div>
-         )}
+          )}
       </AnimatePresence>
+
+      {/* Quran Viewer */}
+      {currentQuestionData?.quranRef && showAnswer && (
+        <QuranViewer
+          reference={currentQuestionData.quranRef}
+          isOpen={showQuranRef || localShowQuran}
+          onClose={() => setLocalShowQuran(false)}
+          mode="fullscreen"
+        />
+      )}
     </div>
   );
 }

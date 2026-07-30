@@ -20,6 +20,12 @@ export interface ActivityLog {
   status: 'success' | 'warning' | 'error';
 }
 
+export interface QuranReference {
+  surah: number;        // 1-114
+  surahName: string;    // "Al-Ikhlas"
+  ayat: string;         // "1-4" or "255"
+}
+
 export interface Question {
   id: string;
   nomor: number;
@@ -32,6 +38,7 @@ export interface Question {
   createdAt: string;
   updatedAt: string;
   isRTL?: boolean;
+  quranRef?: QuranReference;
 }
 
 export interface QuestionFilter {
