@@ -118,37 +118,47 @@ export default function DashboardPage() {
            </div>
         </section>
 
-        {/* Navigation Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-           <NavCard 
-             href="/operator" 
-             icon={Activity} 
-             title="Operator" 
-             desc="Pusat kendali utama untuk memilih soal dan mengelola jawaban secara live."
-             color="text-emerald-500"
-           />
-           <NavCard 
-             href="/display" 
-             icon={Monitor} 
-             title="Display" 
-             desc="Tampilan sinematik untuk audiens. Hubungkan laptop ke proyektor LCD."
-             color="text-blue-500"
-           />
-           <NavCard 
-             href="/interactive" 
-             icon={LayoutGrid} 
-             title="Interactive" 
-             desc="Mode All-in-One untuk skenario satu layar. Cocok untuk papan interaktif."
-             color="text-amber-500"
-           />
-           <NavCard 
-             href="/settings" 
-             icon={Settings} 
-             title="Settings" 
-             desc="Kelola multi-lembaga, identitas sekolah, tema warna, dan manajemen data."
-             color="text-rose-500"
-           />
-        </section>
+         {/* Navigation Grid */}
+         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <NavCard 
+              href="/operator" 
+              icon={Activity} 
+              title="Operator" 
+              desc="Pusat kendali utama untuk memilih soal dan mengelola jawaban secara live."
+              color="text-emerald-500"
+            />
+            <NavCard 
+              href="/display" 
+              icon={Monitor} 
+              title="Display" 
+              desc="Tampilan sinematik untuk audiens. Hubungkan laptop ke proyektor LCD."
+              color="text-blue-500"
+            />
+            <NavCard 
+              href="/interactive" 
+              icon={LayoutGrid} 
+              title="Interactive" 
+              desc="Mode All-in-One untuk skenario satu layar. Cocok untuk papan interaktif."
+              color="text-amber-500"
+            />
+            <NavCard 
+              href="/bank-soal" 
+              icon={BookOpen} 
+              title="Bank Soal" 
+              desc="Kelola bank soal: tambah, edit, hapus, dan organisasi soal dengan mudah."
+              color="text-purple-500"
+            />
+         </section>
+         
+         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <NavCard 
+              href="/settings" 
+              icon={Settings} 
+              title="Settings" 
+              desc="Kelola multi-lembaga, identitas sekolah, tema warna, dan manajemen data."
+              color="text-rose-500"
+            />
+         </section>
 
         {/* Footer Statistics */}
         <footer className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 border-t border-slate-200 dark:border-zinc-800">

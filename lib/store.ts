@@ -123,8 +123,12 @@ export interface QuestionEntry {
   kategori: string;
   soal: string;
   jawaban: string;
-  soalImage?: string;      // Optional: path to question slide image
-  jawabanImage?: string;   // Optional: path to answer slide image
+  soalImage?: string;
+  jawabanImage?: string;
+  catatan?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  isRTL?: boolean;
 }
 
 export interface AppSettings {

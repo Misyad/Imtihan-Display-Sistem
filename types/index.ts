@@ -19,3 +19,48 @@ export interface ActivityLog {
   action: string;
   status: 'success' | 'warning' | 'error';
 }
+
+export interface Question {
+  id: string;
+  nomor: number;
+  kategori: string;
+  soal: string;
+  jawaban: string;
+  soalImage?: string;
+  jawabanImage?: string;
+  catatan?: string;
+  createdAt: string;
+  updatedAt: string;
+  isRTL?: boolean;
+}
+
+export interface QuestionFilter {
+  search?: string;
+  kategori?: string;
+  sortBy: 'nomor' | 'terbaru' | 'terlama' | 'a-z' | 'z-a';
+}
+
+export interface QuestionDraft {
+  id: string;
+  data: Partial<Question>;
+  savedAt: string;
+}
+
+export type ImportMode = 'merge' | 'replace' | 'append';
+export type ExportFormat = 'json' | 'excel';
+
+export interface ImportResult {
+  success: number;
+  failed: number;
+  errors?: string[];
+}
+
+export interface QuestionStorageAdapter {
+  getAll(): Promise<Question[]>;
+  getById(id: string): Promise<Question | null>;
+  create(data: Partial<Question>): Promise<Question>;
+  update(id: string, data: Partial<Question>): Promise<Question>;
+  delete(id: string): Promise<void>;
+  search(query: string): Promise<Question[]>;
+  reorder(ids: string[]): Promise<void>;
+}

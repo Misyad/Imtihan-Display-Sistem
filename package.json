@@ -11,6 +11,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tiptap/extension-placeholder": "^3.29.2",
+    "@tiptap/extension-underline": "^3.29.2",
+    "@tiptap/react": "^3.29.2",
+    "@tiptap/starter-kit": "^3.29.2",
     "clsx": "^2.1.1",
     "concurrently": "^9.2.1",
     "cors": "^2.8.6",
@@ -24,7 +28,10 @@
     "react-dom": "19.2.4",
     "socket.io": "^4.8.3",
     "socket.io-client": "^4.8.3",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
+    "use-debounce": "^10.1.1",
+    "uuid": "^14.0.1",
     "xlsx": "^0.18.5",
     "zustand": "^5.0.13"
   },
