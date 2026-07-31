@@ -65,13 +65,13 @@ export default function InteractivePage() {
 
   if (!activeProfile) {
     return (
-      <div className="fixed inset-0 bg-display-bg flex flex-col items-center justify-center text-white p-6 z-50">
+      <div className="fixed inset-0 bg-background flex flex-col items-center justify-center text-foreground p-6 z-50">
         <div className="text-center space-y-4 max-w-md">
           <div className="w-16 h-16 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 mx-auto animate-pulse">
             <Award className="w-8 h-8" />
           </div>
-          <h2 className="text-xl font-black uppercase tracking-tight text-white">Sinkronisasi Data...</h2>
-          <p className="text-xs text-display-muted leading-relaxed font-medium">
+          <h2 className="text-xl font-black uppercase tracking-tight text-foreground">Sinkronisasi Data...</h2>
+          <p className="text-xs text-muted-foreground leading-relaxed font-medium">
             Belum ada profil instansi yang tersinkronisasi. Silakan buka dashboard **Operator** atau **Settings** di laptop utama untuk memicu sinkronisasi data awal via jaringan lokal.
           </p>
         </div>
@@ -81,11 +81,11 @@ export default function InteractivePage() {
 
   return (
     <div className={cn(
-          "fixed inset-x-0 bottom-0 flex flex-col overflow-hidden font-sans transition-[top] duration-300 bg-display-bg",
+          "fixed inset-x-0 bottom-0 flex flex-col overflow-hidden font-sans transition-[top] duration-300 bg-background",
           navbarVisible ? "top-16" : "top-0"
         )}>
       {/* Background Cinematic */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-950/20 via-zinc-950 to-black" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-background to-background" />
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/islamic-art.png')]" />
 
       {/* Header */}
@@ -126,11 +126,11 @@ export default function InteractivePage() {
                   <RotateCcw className="h-3.5 w-3.5" />
                </button>
             </div>
-            <div className="hidden text-right text-white md:block">
+            <div className="hidden text-right text-foreground md:block">
                <p className="text-[10px] sm:text-xs font-bold opacity-50 uppercase tracking-widest">Selesai</p>
                <p className="text-xl font-black">{usedQuestions.length} <span className="opacity-30 text-sm">/ {questions.length}</span></p>
             </div>
-            <div className="hidden h-8 w-px bg-white/10 sm:block" />
+            <div className="hidden h-8 w-px bg-border sm:block" />
             <StatusBadge variant="emerald" icon={<div className="w-2 h-2 rounded-full animate-pulse bg-emerald-400" />}>
                 REALTIME SYNCED
              </StatusBadge>
@@ -161,7 +161,7 @@ export default function InteractivePage() {
                            "relative flex items-center justify-center font-black transition-all duration-300 border-2 rounded-xl select-none touch-manipulation",
                            (isUsed || isActive || !hasData) ? "cursor-not-allowed" : "cursor-pointer",
                            sizeClass,
-                           !isUsed && hasData && "bg-display-bg-elevated/50 border-display-border text-display-muted hover:border-emerald-500/50 hover:text-emerald-400 cursor-pointer",
+                           !isUsed && hasData && "bg-card border-border text-muted-foreground hover:border-emerald-500/50 hover:text-emerald-400 cursor-pointer",
                            isUsed && "bg-rose-500/10 border-rose-500/30 text-rose-500 cursor-not-allowed",
                            isActive && "bg-emerald-600 border-emerald-400 text-white shadow-xl shadow-emerald-600/40 cursor-not-allowed",
                            !hasData && "opacity-20 grayscale cursor-not-allowed pointer-events-none"
@@ -170,7 +170,7 @@ export default function InteractivePage() {
                         {num}
                         {isUsed && (
                            <CheckCircle2 className={cn(
-                             "absolute bg-display-bg rounded-full text-rose-500",
+                             "absolute bg-background rounded-full text-rose-500",
                              gridCount <= 20 ? "-top-3 -right-3 w-8 h-8" : "-top-1.5 -right-1.5 w-4 h-4"
                            )} />
                         )}
@@ -181,7 +181,7 @@ export default function InteractivePage() {
          </div>
       </main>
 
-            <footer className="hidden sm:block relative z-10 p-4 md:p-6 text-center text-[10px] sm:text-xs font-bold text-display-muted uppercase tracking-[0.4em] bg-black/20">
+            <footer className="hidden sm:block relative z-10 p-4 md:p-6 text-center text-[10px] sm:text-xs font-bold text-muted-foreground uppercase tracking-[0.4em] bg-muted/40">
           &copy; 2024 Imtihan Display &bull; MULTI-MODE INTEGRATED
       </footer>
 
