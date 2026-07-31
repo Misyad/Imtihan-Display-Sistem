@@ -61,7 +61,7 @@ export const QuestionDisplay = ({
             <div className="relative">
               <h1 className={cn(
                 "font-black leading-none tracking-tighter text-white drop-shadow-2xl italic",
-                layout === "full" ? "text-[15rem] md:text-[20rem]" : "text-6xl md:text-8xl text-amber-400"
+                layout === "full" ? "text-[15rem] md:text-[20rem]" : "text-6xl md:text-8xl text-gold-400"
               )}>
                 {activeQuestion.toString().padStart(2, '0')}
               </h1>

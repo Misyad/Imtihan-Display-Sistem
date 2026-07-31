@@ -68,7 +68,7 @@ export default function RemotePage() {
   if (!mounted) return null;
 
   return (
-    <div className="fixed inset-0 bg-zinc-950 text-white flex flex-col p-6 safe-area-inset">
+    <div className="fixed inset-0 bg-display-bg text-display-text flex flex-col p-6 safe-area-inset">
       {/* Header Info */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
@@ -77,11 +77,11 @@ export default function RemotePage() {
           </div>
           <div className="text-left">
             <h2 className="font-bold text-sm uppercase tracking-widest text-emerald-500">Smart Remote</h2>
-            <p className="text-[10px] sm:text-xs text-zinc-500 font-medium tracking-widest">IMTIHAN SYSTEM</p>
+            <p className="text-[10px] sm:text-xs text-display-muted font-medium tracking-widest">IMTIHAN SYSTEM</p>
           </div>
         </div>
         <div className="text-right">
-          <p className="text-[10px] sm:text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Status</p>
+          <p className="text-[10px] sm:text-xs font-bold text-display-muted uppercase tracking-widest mb-1">Status</p>
           <div className="flex items-center gap-2 justify-end">
             <div className="w-2 h-2 rounded-full bg-emerald-50 animate-pulse" />
             <span className="text-xs font-black tracking-tighter">ONLINE</span>
@@ -91,14 +91,14 @@ export default function RemotePage() {
 
       {/* Main Display Info */}
       <div className="flex-1 flex flex-col items-center justify-center mb-8">
-        <div className="w-full aspect-video rounded-[2.5rem] bg-zinc-900 border border-white/5 flex flex-col items-center justify-center relative overflow-hidden group shadow-2xl">
+        <div className="w-full aspect-video rounded-[2.5rem] bg-display-bg-elevated border border-display-border flex flex-col items-center justify-center relative overflow-hidden group shadow-2xl">
           {/* Subtle Glow */}
           <div className={cn(
              "absolute inset-0 transition-opacity duration-1000",
              showAnswer ? "bg-amber-500/10 opacity-100" : "opacity-0"
           )} />
           
-          <p className="text-xs font-bold text-zinc-600 uppercase tracking-[0.3em] mb-4">Current Screen</p>
+          <p className="text-xs font-bold text-display-muted uppercase tracking-[0.3em] mb-4">Current Screen</p>
           
           {activeQuestion ? (
             <div className="text-center">
@@ -112,7 +112,7 @@ export default function RemotePage() {
               )}
             </div>
           ) : (
-            <MonitorOff className="w-16 h-16 text-zinc-800" />
+            <MonitorOff className="w-16 h-16 text-display-muted" />
           )}
         </div>
       </div>
@@ -126,7 +126,7 @@ export default function RemotePage() {
             "h-32 rounded-[2rem] flex flex-col items-center justify-center gap-3 transition-all active:scale-95 shadow-xl",
             showAnswer 
               ? "bg-amber-400 text-amber-950 shadow-amber-400/20" 
-              : "bg-zinc-800 text-white border border-white/5",
+              : "bg-display-bg-elevated text-display-text border border-display-border",
             !activeQuestion && "opacity-20 grayscale"
           )}
         >
@@ -136,7 +136,7 @@ export default function RemotePage() {
 
         <button 
           onClick={() => handleAction(handleJump)}
-          className="h-32 rounded-[2rem] bg-zinc-800 border border-white/5 text-white flex flex-col items-center justify-center gap-3 transition-all active:scale-95 shadow-xl"
+          className="h-32 rounded-[2rem] bg-display-bg-elevated border border-display-border text-display-text flex flex-col items-center justify-center gap-3 transition-all active:scale-95 shadow-xl"
         >
           <Hash className="w-8 h-8" />
           <span className="text-xs font-black uppercase tracking-[0.2em]">Jump To</span>
@@ -148,7 +148,7 @@ export default function RemotePage() {
         <button 
           onClick={() => handleAction(handlePrev)}
           disabled={!activeQuestion || activeQuestion <= 1}
-          className="h-24 rounded-[2rem] bg-zinc-900 border border-white/5 text-white flex items-center justify-center gap-4 transition-all active:scale-95 disabled:opacity-20"
+          className="h-24 rounded-[2rem] bg-display-bg-elevated border border-display-border text-display-text flex items-center justify-center gap-4 transition-all active:scale-95 disabled:opacity-20"
         >
           <SkipBack className="w-6 h-6" />
           <span className="text-xs font-black uppercase tracking-widest">Prev</span>
@@ -174,7 +174,7 @@ export default function RemotePage() {
       </button>
 
       {/* Feedback Hint */}
-      <div className="flex items-center justify-center gap-2 text-zinc-700">
+      <div className="flex items-center justify-center gap-2 text-display-muted">
         <Vibrate className="w-3 h-3" />
         <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest">Haptic Feedback Enabled</span>
       </div>

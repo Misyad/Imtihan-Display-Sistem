@@ -146,6 +146,9 @@ export interface AppSettings {
   fontSize: "normal" | "large" | "extra-large";
   showFooter: boolean;
   layoutTheme: "classic" | "game";
+  themeMode: "light" | "dark" | "ceremonial";
+  density: "comfortable" | "compact";
+  motionEnabled: boolean;
   categoryQuotas: { name: string; quota: number }[];
 }
 
@@ -196,6 +199,9 @@ const defaultSettings = (id: string, name: string): AppSettings => ({
   fontSize: "normal",
   showFooter: true,
   layoutTheme: "classic",
+  themeMode: "light",
+  density: "comfortable",
+  motionEnabled: true,
   categoryQuotas: [],
 });
 

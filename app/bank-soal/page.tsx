@@ -50,7 +50,7 @@ export default function BankSoalPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 p-6 md:p-12 transition-colors duration-500">
+    <div className="min-h-screen bg-background p-6 md:p-12 transition-colors duration-500">
       <Toaster />
       
       <div className="max-w-7xl mx-auto space-y-8">
@@ -60,10 +60,10 @@ export default function BankSoalPage() {
               <BookOpen className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white uppercase">
+              <h1 className="text-3xl font-black tracking-tight text-foreground uppercase">
                 Bank Soal
               </h1>
-              <p className="text-slate-500 dark:text-zinc-400 font-medium">
+              <p className="text-muted-foreground font-medium">
                 Kelola bank soal dengan mudah
               </p>
             </div>

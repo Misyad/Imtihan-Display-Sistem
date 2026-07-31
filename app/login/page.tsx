@@ -46,7 +46,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center p-6 relative overflow-hidden bg-slate-50 dark:bg-zinc-950 transition-colors duration-500">
+    <div className="min-h-[85vh] flex items-center justify-center p-6 relative overflow-hidden bg-background transition-colors duration-500">
       {/* Decorative Blur Orbs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-30 pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl opacity-35 pointer-events-none" />

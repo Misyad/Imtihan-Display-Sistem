@@ -16,10 +16,10 @@ export const GlassCard = ({
   ...props 
 }: GlassCardProps) => {
   const variants = {
-    emerald: "bg-emerald-950/40 border-emerald-500/20 text-white",
-    gold: "bg-amber-950/40 border-amber-500/20 text-white",
-    zinc: "bg-zinc-900/50 border-white/10 text-white",
-    transparent: "bg-white/5 border-white/5 text-white",
+    emerald: "bg-display-bg-elevated/40 border-display-border-emerald text-display-text",
+    gold: "bg-display-bg-elevated/40 border-display-border-gold text-display-text",
+    zinc: "bg-display-bg-elevated/50 border-display-border text-display-text",
+    transparent: "bg-display-text/5 border-display-border text-display-text",
   };
 
   return (

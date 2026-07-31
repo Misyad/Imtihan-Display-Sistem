@@ -34,9 +34,10 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
+          themes={["light", "dark", "ceremonial"]}
         >
           <div className="relative min-h-screen flex flex-col">
             <Navbar />

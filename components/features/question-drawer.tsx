@@ -371,7 +371,7 @@ export function QuestionDrawer({ isOpen, question, onClose, onSave }: QuestionDr
                   <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
                     Live Preview
                   </h3>
-                  <div className="bg-zinc-900 rounded-2xl p-8 min-h-[400px] flex flex-col items-center justify-center">
+                  <div className="bg-display-bg-elevated rounded-2xl p-8 min-h-[400px] flex flex-col items-center justify-center">
                     <div className="text-center space-y-6">
                       <span className="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-widest">
                         {formData.kategori || 'Kategori'}

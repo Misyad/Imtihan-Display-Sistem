@@ -65,13 +65,13 @@ export default function InteractivePage() {
 
   if (!activeProfile) {
     return (
-      <div className="fixed inset-0 bg-zinc-950 flex flex-col items-center justify-center text-white p-6 z-50">
+      <div className="fixed inset-0 bg-display-bg flex flex-col items-center justify-center text-white p-6 z-50">
         <div className="text-center space-y-4 max-w-md">
           <div className="w-16 h-16 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 mx-auto animate-pulse">
             <Award className="w-8 h-8" />
           </div>
           <h2 className="text-xl font-black uppercase tracking-tight text-white">Sinkronisasi Data...</h2>
-          <p className="text-xs text-zinc-400 leading-relaxed font-medium">
+          <p className="text-xs text-display-muted leading-relaxed font-medium">
             Belum ada profil instansi yang tersinkronisasi. Silakan buka dashboard **Operator** atau **Settings** di laptop utama untuk memicu sinkronisasi data awal via jaringan lokal.
           </p>
         </div>
@@ -81,7 +81,7 @@ export default function InteractivePage() {
 
   return (
     <div className={cn(
-          "fixed inset-x-0 bottom-0 flex flex-col overflow-hidden font-sans transition-[top] duration-300 bg-zinc-950",
+          "fixed inset-x-0 bottom-0 flex flex-col overflow-hidden font-sans transition-[top] duration-300 bg-display-bg",
           navbarVisible ? "top-16" : "top-0"
         )}>
       {/* Background Cinematic */}
@@ -89,20 +89,20 @@ export default function InteractivePage() {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/islamic-art.png')]" />
 
       {/* Header */}
-      <header className="relative z-10 border-b border-slate-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+      <header className="relative z-10 border-b border-border bg-card p-4">
           <div className="mx-auto flex w-full max-w-[1600px] flex-col items-center justify-between gap-4 md:flex-row">
          <div className="flex min-w-0 items-center gap-4 md:w-auto">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg bg-emerald-600 shadow-emerald-600/20">
                <Award className="w-6 h-6 text-white" />
             </div>
             <div>
-               <h1 className="truncate text-sm sm:text-lg font-black text-zinc-900 dark:text-white uppercase tracking-tighter">{settings?.instituteName || "Interactive Board"}</h1>
+               <h1 className="truncate text-sm sm:text-lg font-black text-foreground uppercase tracking-tighter">{settings?.instituteName || "Interactive Board"}</h1>
                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-emerald-500">{settings?.eventName || "Synced Mode"}</p>
             </div>
          </div>
          <div className="flex w-full items-center justify-between sm:justify-end gap-2 sm:gap-4 md:w-auto">
-            <div className="flex min-w-0 flex-1 items-center justify-center gap-3 rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 px-3 py-2 text-zinc-800 dark:text-white sm:flex-none">
-               <label htmlFor="question-button-scale" className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+            <div className="flex min-w-0 flex-1 items-center justify-center gap-3 rounded-2xl border border-border bg-muted px-3 py-2 text-foreground sm:flex-none">
+               <label htmlFor="question-button-scale" className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-muted-foreground">
                   Tombol {buttonScale}%
                </label>
                <input
@@ -119,7 +119,7 @@ export default function InteractivePage() {
                <button
                   type="button"
                   onClick={() => setButtonScale(100)}
-                  className="rounded-lg p-1.5 text-zinc-500 dark:text-zinc-400 transition-colors hover:bg-zinc-200 dark:hover:bg-white/10 hover:text-zinc-800 dark:hover:text-white"
+                  className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   title="Reset ukuran tombol"
                   aria-label="Reset ukuran tombol ke 100 persen"
                >
@@ -161,7 +161,7 @@ export default function InteractivePage() {
                            "relative flex items-center justify-center font-black transition-all duration-300 border-2 rounded-xl select-none touch-manipulation",
                            (isUsed || isActive || !hasData) ? "cursor-not-allowed" : "cursor-pointer",
                            sizeClass,
-                           !isUsed && hasData && "bg-zinc-900/50 border-white/5 text-zinc-500 hover:border-emerald-500/50 hover:text-emerald-400 cursor-pointer",
+                           !isUsed && hasData && "bg-display-bg-elevated/50 border-display-border text-display-muted hover:border-emerald-500/50 hover:text-emerald-400 cursor-pointer",
                            isUsed && "bg-rose-500/10 border-rose-500/30 text-rose-500 cursor-not-allowed",
                            isActive && "bg-emerald-600 border-emerald-400 text-white shadow-xl shadow-emerald-600/40 cursor-not-allowed",
                            !hasData && "opacity-20 grayscale cursor-not-allowed pointer-events-none"
@@ -170,7 +170,7 @@ export default function InteractivePage() {
                         {num}
                         {isUsed && (
                            <CheckCircle2 className={cn(
-                             "absolute bg-zinc-950 rounded-full text-rose-500",
+                             "absolute bg-display-bg rounded-full text-rose-500",
                              gridCount <= 20 ? "-top-3 -right-3 w-8 h-8" : "-top-1.5 -right-1.5 w-4 h-4"
                            )} />
                         )}
@@ -181,7 +181,7 @@ export default function InteractivePage() {
          </div>
       </main>
 
-            <footer className="hidden sm:block relative z-10 p-4 md:p-6 text-center text-[10px] sm:text-xs font-bold text-zinc-600 uppercase tracking-[0.4em] bg-black/20">
+            <footer className="hidden sm:block relative z-10 p-4 md:p-6 text-center text-[10px] sm:text-xs font-bold text-display-muted uppercase tracking-[0.4em] bg-black/20">
           &copy; 2024 Imtihan Display &bull; MULTI-MODE INTEGRATED
       </footer>
 
@@ -238,7 +238,7 @@ export default function InteractivePage() {
                                 </button>
                                 <button 
                                     onClick={handleClose}
-                                    className="px-4 py-3 sm:px-8 sm:py-5 text-xs sm:text-base rounded-full bg-zinc-800/50 text-zinc-400 font-black uppercase tracking-widest hover:bg-zinc-700 transition-all active:scale-95 pointer-events-auto border border-zinc-700/50 flex items-center gap-2"
+                                    className="px-4 py-3 sm:px-8 sm:py-5 text-xs sm:text-base rounded-full bg-display-bg-elevated/50 text-display-muted font-black uppercase tracking-widest hover:bg-display-bg-elevated transition-all active:scale-95 pointer-events-auto border border-display-border flex items-center gap-2"
                                 >
                                     <ArrowLeft className="w-4 h-4" />
                                     Reset

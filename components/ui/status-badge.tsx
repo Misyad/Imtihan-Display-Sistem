@@ -21,7 +21,7 @@ export const StatusBadge = ({
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-400",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-400",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-400",
-    zinc: "bg-white/5 border-white/10 text-zinc-400",
+    zinc: "bg-display-text/5 border-display-border text-display-muted",
   };
 
   return (

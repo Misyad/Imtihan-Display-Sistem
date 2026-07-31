@@ -21,7 +21,7 @@ export default function ObsSplitPage() {
   if (!mounted) return null;
 
   return (
-    <div className="fixed inset-0 bg-zinc-950 flex flex-col items-center justify-center overflow-hidden font-sans">
+    <div className="fixed inset-0 bg-display-bg flex flex-col items-center justify-center overflow-hidden font-sans">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-950/20 via-zinc-950 to-black" />
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/islamic-art.png')]" />
 
@@ -66,7 +66,7 @@ export default function ObsSplitPage() {
                  </div>
               </div>
               <div className="text-right">
-                 <span className="text-[10px] sm:text-xs font-black text-zinc-500 uppercase tracking-[0.3em] block">No. Soal</span>
+                 <span className="text-[10px] sm:text-xs font-black text-display-muted uppercase tracking-[0.3em] block">No. Soal</span>
                  <span className="text-5xl font-black text-amber-400 italic">
                     {activeQuestion?.toString().padStart(2, '0') || "--"}
                  </span>
