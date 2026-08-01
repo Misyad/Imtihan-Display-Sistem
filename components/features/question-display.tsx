@@ -7,6 +7,7 @@ import { BookOpen } from "lucide-react";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { GlassCard } from "@/components/ui/glass-card";
 import { QuestionText } from "@/components/ui/question-text";
+import { AutoScaleText } from "@/components/ui/auto-scale-text";
 import { QuranViewer } from "@/components/ui/quran-viewer";
 import { useQuestionStore } from "@/lib/store";
 import type { QuranReference } from "@/types/index";
@@ -47,7 +48,7 @@ export const QuestionDisplay = ({
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
             className={cn(
-              "flex flex-col items-center justify-center space-y-8 w-full",
+              "flex flex-col items-center justify-center space-y-8 w-full h-full",
               layout === "split" && "items-start text-left space-y-6",
               layout === "overlay" && "items-start text-left space-y-2"
             )}
@@ -68,36 +69,39 @@ export const QuestionDisplay = ({
             </div>
 
             {questionData && (
-              <div className={cn("max-w-4xl", layout === "overlay" && "max-w-full")}>
-                <p className={cn(
-                  "font-bold leading-tight text-white tracking-tight whitespace-pre-line",
-                  layout === "full" ? "text-4xl md:text-6xl" : "text-2xl md:text-4xl"
-                )}>
+              <div className={cn("w-full flex-1 min-h-0 max-w-4xl", layout === "overlay" && "max-w-full")}>
+                <AutoScaleText
+                  className="font-bold leading-tight text-white tracking-tight"
+                  align={layout === "full" ? "center" : "left"}
+                  maxSize={layout === "full" ? 72 : 44}
+                  minSize={14}
+                >
                   <QuestionText text={questionData.soal} />
-                </p>
+                </AutoScaleText>
               </div>
             )}
           </motion.div>
         ) : (
-          <div key={`a-${activeQuestion}`} className="w-full space-y-6">
+          <div key={`a-${activeQuestion}`} className="w-full h-full flex flex-col justify-center space-y-6">
             <GlassCard 
               variant="gold"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 1.05 }}
               className={cn(
-                "p-12 w-full",
+                "p-12 w-full flex-1 min-h-0 flex flex-col justify-center",
                 layout === "full" ? "py-20 px-24" : "p-10"
               )}
             >
-              <div className="relative z-10 space-y-4">
+              <div className="relative z-10 space-y-4 flex flex-col justify-center flex-1 min-h-0">
                 <h3 className="text-amber-500 text-xs font-black uppercase tracking-[0.5em]">Jawaban Benar</h3>
-                <h1 className={cn(
-                  "font-black text-amber-950 tracking-tight",
-                  layout === "full" ? "text-7xl md:text-9xl" : "text-4xl md:text-6xl"
-                )}>
+                <AutoScaleText
+                  className="font-black text-amber-950 tracking-tight"
+                  maxSize={layout === "full" ? 128 : 72}
+                  minSize={14}
+                >
                   <QuestionText text={questionData?.jawaban || "MUMTAZ"} />
-                </h1>
+                </AutoScaleText>
               </div>
             </GlassCard>
 

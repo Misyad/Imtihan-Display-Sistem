@@ -34,7 +34,7 @@ export default function DisplayPage() {
            </StatusBadge>
         </div>
 
-        <div className="relative w-full flex items-center justify-center min-h-[60vh]">
+        <div className="relative w-full flex items-center justify-center h-[60vh]">
           <QuestionDisplay 
             activeQuestion={activeQuestion}
             questionData={currentQuestionData}

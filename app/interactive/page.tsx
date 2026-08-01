@@ -10,6 +10,7 @@ import { StatusBadge } from "@/components/ui/status-badge";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SlideDisplay } from "@/components/features/slide-display";
 import { QuestionText } from "@/components/ui/question-text";
+import { AutoScaleText } from "@/components/ui/auto-scale-text";
 import { QuranViewer } from "@/components/ui/quran-viewer";
 
 export default function InteractivePage() {
@@ -204,7 +205,7 @@ export default function InteractivePage() {
                </button>
 
                <div className="relative z-[110] w-full max-w-6xl h-full flex items-center justify-center">
-                  <div className="flex flex-col items-center justify-center text-center">
+                  <div className="flex flex-col items-center justify-center text-center h-full w-full">
                     <AnimatePresence mode="wait">
                       {!showAnswer ? (
                             <motion.div 
@@ -212,7 +213,7 @@ export default function InteractivePage() {
                               initial={{ opacity: 0, scale: 0.9, y: 20 }}
                               animate={{ opacity: 1, scale: 1, y: 0 }}
                               exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
-                              className="flex flex-col items-center space-y-12 w-full"
+                              className="flex flex-col items-center justify-center space-y-8 sm:space-y-12 w-full h-full"
                             >
                               <StatusBadge icon={<BookOpen />} variant="emerald">
                                   {currentQuestionData?.kategori || "UMUM"}
@@ -225,9 +226,15 @@ export default function InteractivePage() {
                                   </h1>
                               </div>
 
-                              <p dir="auto" className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-4xl tracking-tight whitespace-pre-line px-2">
-                                  <QuestionText text={currentQuestionData?.soal || ""} />
-                              </p>
+                              <div dir="auto" className="w-full flex-1 min-h-0 max-w-4xl px-2">
+                                  <AutoScaleText
+                                    className="font-bold text-white leading-tight tracking-tight"
+                                    maxSize={60}
+                                    minSize={14}
+                                  >
+                                    <QuestionText text={currentQuestionData?.soal || ""} />
+                                  </AutoScaleText>
+                              </div>
 
                               <div className="flex items-center gap-4">
                                 <button 
@@ -253,22 +260,19 @@ export default function InteractivePage() {
                               exit={{ opacity: 0, scale: 1.1 }}
                               className="w-full"
                             >
-                              <GlassCard variant="gold" className="py-10 px-6 sm:py-20 sm:px-12 md:px-24 mx-auto max-w-5xl w-full max-h-[85vh] overflow-y-auto custom-scrollbar">
+                              <GlassCard variant="gold" className="py-8 px-6 sm:py-12 sm:px-12 md:px-20 mx-auto max-w-5xl w-full h-[85vh] flex flex-col">
                                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(251,191,36,0.1),_transparent)] animate-pulse" />
-                                  <div className="relative z-10 space-y-8">
+                                  <div className="relative z-10 space-y-6 sm:space-y-8 h-full flex flex-col">
                                     <h3 className="text-amber-500 text-xl md:text-3xl font-bold uppercase tracking-[0.6em]">Natijah Imtihan</h3>
-                                    <h1 className={cn(
-                                      "font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-amber-200 via-amber-400 to-amber-600 whitespace-pre-line break-words",
-                                      answerText.length > 300
-                                        ? "text-lg sm:text-2xl md:text-3xl"
-                                        : answerText.length > 150
-                                          ? "text-xl sm:text-3xl md:text-4xl"
-                                          : answerText.length > 70
-                                            ? "text-2xl sm:text-4xl md:text-5xl"
-                                            : "text-4xl sm:text-6xl md:text-8xl"
-                                    )}>
+                                    <div className="flex-1 min-h-0">
+                                      <AutoScaleText
+                                        className="font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-amber-200 via-amber-400 to-amber-600"
+                                        maxSize={96}
+                                        minSize={14}
+                                      >
                                         <QuestionText text={answerText} />
-                                    </h1>
+                                      </AutoScaleText>
+                                    </div>
                                     
                                     {currentQuestionData?.quranRef && !showQuranRef && (
                                       <motion.div

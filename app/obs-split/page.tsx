@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { cn, formatQuestionText } from "@/lib/utils";
+import { formatQuestionText } from "@/lib/utils";
 import { useQuestionStore } from "@/lib/store";
 import { BookOpen, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { AutoScaleText } from "@/components/ui/auto-scale-text";
 
 export default function ObsSplitPage() {
   const { activeProfileId, profiles, activeQuestion, showAnswer } = useQuestionStore();
@@ -73,7 +74,7 @@ export default function ObsSplitPage() {
               </div>
            </motion.div>
 
-           <div className="relative min-h-[500px] flex items-center justify-center p-12 rounded-[3.5rem] bg-zinc-900/50 backdrop-blur-3xl border border-white/10 shadow-2xl overflow-hidden">
+           <div className="relative h-[70vh] flex items-center justify-center p-12 rounded-[3.5rem] bg-zinc-900/50 backdrop-blur-3xl border border-white/10 shadow-2xl overflow-hidden">
               <AnimatePresence mode="wait">
                 {activeQuestion ? (
                    !showAnswer ? (
@@ -83,11 +84,16 @@ export default function ObsSplitPage() {
                         animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                         exit={{ opacity: 0, x: -30, filter: "blur(10px)" }}
                         transition={{ duration: 0.6 }}
-                        className="w-full"
+                        className="w-full h-full"
                       >
-                         <p className="text-4xl md:text-5xl font-bold text-white leading-tight text-left drop-shadow-sm">
-                            {formatQuestionText(currentQuestionData?.soal || "")}
-                         </p>
+                         <AutoScaleText
+                           className="font-bold text-white leading-tight drop-shadow-sm"
+                           align="left"
+                           maxSize={48}
+                           minSize={14}
+                         >
+                           {formatQuestionText(currentQuestionData?.soal || "")}
+                         </AutoScaleText>
                       </motion.div>
                    ) : (
                       <motion.div 
@@ -96,12 +102,18 @@ export default function ObsSplitPage() {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 1.1 }}
                         transition={{ duration: 0.6, type: "spring", damping: 15 }}
-                        className="px-12 py-10 rounded-[2.5rem] bg-gradient-to-br from-amber-400 to-amber-600 shadow-[0_0_80px_rgba(251,191,36,0.3)] text-center w-full"
+                        className="px-12 py-10 rounded-[2.5rem] bg-gradient-to-br from-amber-400 to-amber-600 shadow-[0_0_80px_rgba(251,191,36,0.3)] text-center w-full h-full flex flex-col justify-center"
                       >
                          <span className="block text-amber-950/60 text-xs font-black uppercase tracking-[0.5em] mb-4">Jawaban Benar</span>
-                         <h1 className="text-6xl md:text-7xl font-black text-amber-950 tracking-tight">
-                            {formatQuestionText(currentQuestionData?.jawaban || "MUMTAZ")}
-                         </h1>
+                         <div className="flex-1 min-h-0">
+                            <AutoScaleText
+                              className="font-black text-amber-950 tracking-tight"
+                              maxSize={72}
+                              minSize={14}
+                            >
+                              {formatQuestionText(currentQuestionData?.jawaban || "MUMTAZ")}
+                            </AutoScaleText>
+                         </div>
                       </motion.div>
                    )
                 ) : (
