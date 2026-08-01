@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { QuranService } from '@/lib/quran/quran-service';
+import { getBoxesForRefOnPage, unionBoxes, QURAN_IMG_W, QURAN_IMG_H } from '@/lib/quran/quran-coords';
 import type { QuranReference } from '@/types/index';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, BookOpen, Loader2, ArrowLeft } from 'lucide-react';
@@ -19,7 +20,22 @@ export function QuranViewer({ reference, isOpen, onClose, mode = 'slide-up', zIn
   const [loading, setLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [showText, setShowText] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [fitPending, setFitPending] = useState(false);
+  const [viewSize, setViewSize] = useState<{
+    cW: number;
+    cH: number;
+    imgW: number;
+    imgH: number;
+    imgLeft: number;
+    imgTop: number;
+  } | null>(null);
+  const dragRef = useRef<{ startX: number; startY: number; origX: number; origY: number; active: boolean } | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const MIN_SCALE = 1;
+  const MAX_SCALE = 5;
 
   const displayData = QuranService.getDisplayData(reference);
   const { verses, page, surahInfo, imageUrl } = displayData;
@@ -29,6 +45,7 @@ export function QuranViewer({ reference, isOpen, onClose, mode = 'slide-up', zIn
       setCurrentPage(page);
       setLoading(true);
       setImageError(false);
+      setFitPending(true);
     }
   }, [isOpen, page]);
 
@@ -46,7 +63,121 @@ export function QuranViewer({ reference, isOpen, onClose, mode = 'slide-up', zIn
     setCurrentPage(newPage);
     setLoading(true);
     setImageError(false);
+    setFitPending(true);
   };
+
+  const zoomAt = (delta: number) => {
+    if (!viewSize) return;
+    const next = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale + delta));
+    const ss = viewSize.imgW / QURAN_IMG_W;
+    const ccX = viewSize.cW / 2;
+    const ccY = viewSize.cH / 2;
+    const px = (ccX - viewSize.imgLeft - offset.x) / (scale * ss);
+    const py = (ccY - viewSize.imgTop - offset.y) / (scale * ss);
+    setScale(next);
+    setOffset({
+      x: ccX - viewSize.imgLeft - px * ss * next,
+      y: ccY - viewSize.imgTop - py * ss * next,
+    });
+  };
+
+  const resetZoom = () => {
+    setScale(1);
+    setOffset({ x: 0, y: 0 });
+  };
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (scale <= 1) return;
+    dragRef.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      origX: offset.x,
+      origY: offset.y,
+      active: true,
+    };
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag || !drag.active) return;
+    setOffset({
+      x: drag.origX + (e.clientX - drag.startX),
+      y: drag.origY + (e.clientY - drag.startY),
+    });
+  };
+
+  const endDrag = () => {
+    if (dragRef.current) dragRef.current.active = false;
+  };
+
+  // measure the mushaf display area and image size
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!isOpen || !el) return;
+    const compute = () => {
+      const r = el.getBoundingClientRect();
+      const baseH = Math.min(r.height, window.innerHeight * 0.8);
+      const imgW = baseH * (QURAN_IMG_W / QURAN_IMG_H);
+      setViewSize({
+        cW: r.width,
+        cH: r.height,
+        imgW,
+        imgH: baseH,
+        imgLeft: (r.width - imgW) / 2,
+        imgTop: (r.height - baseH) / 2,
+      });
+    };
+    compute();
+    const ro = new ResizeObserver(compute);
+    ro.observe(el);
+    window.addEventListener('resize', compute);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', compute);
+    };
+  }, [isOpen]);
+
+  // auto-zoom to the annotated ayah region once the image is ready
+  useEffect(() => {
+    if (!isOpen || !fitPending || loading || !viewSize) return;
+    const boxes = getBoxesForRefOnPage(reference.surah, reference.ayat, currentPage);
+    const u = unionBoxes(boxes);
+    if (!u) {
+      setScale(1);
+      setOffset({ x: 0, y: 0 });
+      setFitPending(false);
+      return;
+    }
+    const { cW, cH, imgW, imgLeft, imgTop } = viewSize;
+    const ss = imgW / QURAN_IMG_W;
+    let s = Math.min(cW / (u.w * ss), cH / (u.h * ss)) * 0.85;
+    s = Math.max(MIN_SCALE, Math.min(MAX_SCALE, s));
+    const cx = u.x + u.w / 2;
+    const cy = u.y + u.h / 2;
+    setScale(s);
+    setOffset({
+      x: cW / 2 - imgLeft - cx * ss * s,
+      y: cH / 2 - imgTop - cy * ss * s,
+    });
+    setFitPending(false);
+  }, [isOpen, fitPending, loading, viewSize, currentPage, reference]);
+
+  const targetBox = useMemo(() => {
+    if (!isOpen) return null;
+    return unionBoxes(getBoxesForRefOnPage(reference.surah, reference.ayat, currentPage));
+  }, [isOpen, reference, currentPage]);
+
+  const highlightStyle = useMemo(() => {
+    if (!targetBox || !viewSize) return null;
+    const ss = viewSize.imgW / QURAN_IMG_W;
+    return {
+      left: viewSize.imgLeft + targetBox.x * ss * scale + offset.x,
+      top: viewSize.imgTop + targetBox.y * ss * scale + offset.y,
+      width: targetBox.w * ss * scale,
+      height: targetBox.h * ss * scale,
+    };
+  }, [targetBox, viewSize, scale, offset]);
 
   const currentImageUrl = QuranService.getPageImageUrl(currentPage);
 
@@ -120,17 +251,27 @@ export function QuranViewer({ reference, isOpen, onClose, mode = 'slide-up', zIn
               </p>
             </div>
 
-            {/* Mushaf Image - main focus */}
-            <div className="flex-1 flex items-center justify-center p-4 min-h-0">
+            {/* Mushaf image with auto-zoom + manual zoom */}
+            <div
+              ref={containerRef}
+              className={cn(
+                'relative flex-1 min-h-0 overflow-hidden bg-zinc-100',
+                scale > 1 ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'
+              )}
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={endDrag}
+              onPointerCancel={endDrag}
+            >
               {loading && (
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 z-10 flex items-center justify-center">
                   <Loader2 className="w-12 h-12 text-emerald-500 animate-spin" />
                 </div>
               )}
-              
+
               {imageError ? (
-                <div className="text-center p-8">
-                  <p className="text-zinc-600 mb-4">Gagal memuat gambar mushaf</p>
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                  <p className="text-zinc-600">Gagal memuat gambar mushaf</p>
                   <button
                     onClick={() => {
                       setImageError(false);
@@ -141,56 +282,87 @@ export function QuranViewer({ reference, isOpen, onClose, mode = 'slide-up', zIn
                     Coba Lagi
                   </button>
                 </div>
-              ) : (
-                <img
-                  src={currentImageUrl}
-                  alt={`Quran page ${currentPage}`}
-                  onLoad={handleImageLoad}
-                  onError={handleImageError}
-                  className={cn(
-                    'w-auto h-full object-contain max-h-[80vh] transition-opacity shadow-2xl',
-                    loading ? 'opacity-0' : 'opacity-100'
+              ) : viewSize ? (
+                <>
+                  <img
+                    src={currentImageUrl}
+                    alt={`Quran page ${currentPage}`}
+                    draggable={false}
+                    onLoad={handleImageLoad}
+                    onError={handleImageError}
+                    className="absolute select-none shadow-2xl"
+                    style={{
+                      left: viewSize.imgLeft,
+                      top: viewSize.imgTop,
+                      width: viewSize.imgW,
+                      height: viewSize.imgH,
+                      transformOrigin: '0 0',
+                      transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
+                      opacity: loading ? 0 : 1,
+                    }}
+                  />
+                  {highlightStyle && scale > 1.01 && (
+                    <div
+                      className="absolute pointer-events-none rounded-md border-[3px] border-emerald-500/80 shadow-[0_0_0_1px_rgba(255,255,255,0.7)]"
+                      style={highlightStyle}
+                    />
                   )}
-                />
-              )}
+                </>
+              ) : null}
             </div>
 
-            {/* Bottom navigation */}
-            <div className="flex items-center justify-center gap-6 pb-6 px-4">
-              <button
-                onClick={() => goToPage(-1)}
-                disabled={currentPage <= 1}
-                className="p-3 rounded-xl bg-zinc-100 hover:bg-zinc-200 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-              >
-                <ChevronLeft className="w-6 h-6 text-zinc-700" />
-              </button>
-              
-              <div className="flex items-center gap-4">
-                <span className="text-lg font-bold text-zinc-900">
-                  Halaman {currentPage} / 604
-                </span>
-                <span className="text-sm text-zinc-500">
-                  Juz {verses[0]?.juz || 1}
-                </span>
+            {/* Bottom controls */}
+            <div className="flex items-center justify-center gap-4 pb-6 px-4 flex-wrap">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => zoomAt(-1)}
+                  disabled={scale <= MIN_SCALE}
+                  className="w-11 h-11 rounded-xl bg-zinc-100 hover:bg-zinc-200 disabled:opacity-30 disabled:cursor-not-allowed text-xl font-bold text-zinc-700 transition-colors"
+                >
+                  −
+                </button>
+                <button
+                  onClick={resetZoom}
+                  className="h-11 px-3 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-sm font-semibold text-zinc-700 transition-colors"
+                >
+                  {Math.round(scale * 100)}%
+                </button>
+                <button
+                  onClick={() => zoomAt(1)}
+                  disabled={scale >= MAX_SCALE}
+                  className="w-11 h-11 rounded-xl bg-zinc-100 hover:bg-zinc-200 disabled:opacity-30 disabled:cursor-not-allowed text-xl font-bold text-zinc-700 transition-colors"
+                >
+                  +
+                </button>
               </div>
-              
-              <button
-                onClick={() => goToPage(1)}
-                disabled={currentPage >= 604}
-                className="p-3 rounded-xl bg-zinc-100 hover:bg-zinc-200 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-              >
-                <ChevronRight className="w-6 h-6 text-zinc-700" />
-              </button>
-            </div>
 
-            {/* Text toggle button */}
-            <div className="flex justify-center gap-4 pb-4">
-              <button
-                onClick={() => setShowText(!showText)}
-                className="px-6 py-2 rounded-xl bg-purple-600 text-white font-semibold hover:bg-purple-500 transition-colors shadow-lg"
-              >
-                {showText ? 'Sembunyikan' : 'Lihat'} Teks Ayat
-              </button>
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => goToPage(-1)}
+                  disabled={currentPage <= 1}
+                  className="p-3 rounded-xl bg-zinc-100 hover:bg-zinc-200 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronLeft className="w-6 h-6 text-zinc-700" />
+                </button>
+
+                <div className="flex items-center gap-4">
+                  <span className="text-lg font-bold text-zinc-900">
+                    Halaman {currentPage} / 604
+                  </span>
+                  <span className="text-sm text-zinc-500">
+                    Juz {verses[0]?.juz || 1}
+                  </span>
+                </div>
+
+                <button
+                  onClick={() => goToPage(1)}
+                  disabled={currentPage >= 604}
+                  className="p-3 rounded-xl bg-zinc-100 hover:bg-zinc-200 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronRight className="w-6 h-6 text-zinc-700" />
+                </button>
+              </div>
+
               <button
                 onClick={onClose}
                 className="px-6 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-semibold transition-colors shadow-lg flex items-center gap-2"
@@ -199,43 +371,6 @@ export function QuranViewer({ reference, isOpen, onClose, mode = 'slide-up', zIn
                 Kembali ke Soal
               </button>
             </div>
-
-            {/* Verse text overlay */}
-            <AnimatePresence>
-              {showText && (
-                <motion.div
-                  initial={{ y: '100%' }}
-                  animate={{ y: 0 }}
-                  exit={{ y: '100%' }}
-                  transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                  className="absolute bottom-0 left-0 right-0 bg-white/98 backdrop-blur-md border-t border-zinc-200 shadow-2xl max-h-[50vh] overflow-y-auto"
-                >
-                  <div className="p-6 space-y-4">
-                    {verses.map((verse) => (
-                      <div
-                        key={verse.id}
-                        className="p-4 bg-zinc-50 rounded-xl space-y-3"
-                      >
-                        <div className="flex items-center gap-2">
-                          <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold">
-                            Ayat {verse.ayah}
-                          </span>
-                        </div>
-                        <p
-                          className="text-right text-2xl leading-loose font-arabic text-zinc-900"
-                          dir="rtl"
-                        >
-                          {verse.text_arabic}
-                        </p>
-                        <p className="text-sm text-zinc-600 leading-relaxed">
-                          {verse.translation_id}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>
