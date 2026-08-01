@@ -60,12 +60,18 @@ export function AutoScaleText({
   }, [fit]);
 
   return (
-    <div ref={wrapRef} className="relative w-full h-full overflow-hidden">
+    <div
+      ref={wrapRef}
+      className={cn(
+        "relative w-full h-full overflow-hidden flex items-center",
+        align === "left" ? "justify-start" : "justify-center"
+      )}
+    >
       <div
         ref={innerRef}
         className={cn(
-          "absolute inset-0 flex items-center justify-center whitespace-pre-line break-words",
-          align === "left" ? "text-left justify-start" : "text-center",
+          "min-w-0 max-w-full whitespace-pre-line break-words",
+          align === "left" ? "text-left" : "text-center",
           className
         )}
         style={{ fontSize }}
