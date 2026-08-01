@@ -63,14 +63,14 @@ export function AutoScaleText({
     <div
       ref={wrapRef}
       className={cn(
-        "relative w-full h-full overflow-hidden flex items-center",
+        "relative w-full h-full overflow-hidden flex py-2",
         align === "left" ? "justify-start" : "justify-center"
       )}
     >
       <div
         ref={innerRef}
         className={cn(
-          "min-w-0 max-w-full whitespace-pre-line break-words",
+          "my-auto min-w-0 max-w-full whitespace-pre-line break-words",
           align === "left" ? "text-left" : "text-center",
           className
         )}
