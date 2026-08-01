@@ -101,7 +101,7 @@
   {
     "nomor": 9,
     "kategori": "Imtihan 2025",
-    "soal": "KOMENTARI BACAAN DIATAS ? TERDAPAT DALAM SURAT APA? AYAT BERAPA DAN JUZ BERAPA? | SEBUTKAN SECARA LENGKAP!",
+    "soal": "ضَعْفٍ — KOMENTARI BACAAN DIATAS ? TERDAPAT DALAM SURAT APA? AYAT BERAPA DAN JUZ BERAPA? | SEBUTKAN SECARA LENGKAP!",
     "soalImage": "/images/slides/Slide18.JPG",
     "jawaban": "BOLEH DIBACA TERDAPAT DI SURAT 30 AR RUM AYAT 54 JUZ 21",
     "jawabanImage": "/images/slides/Slide19.JPG",
@@ -262,7 +262,7 @@
     "kategori": "Imtihan 2025",
     "soal": "ADA BERAPAKAH HURUF QOLQOLAH ITU ? ADA BERAPA PEMBAGIANNYA! JELASKAN DAN BERIKAN CONTOHNYA MASING-MASING!",
     "soalImage": "/images/slides/Slide44.JPG",
-    "jawaban": "Huruf-huruf idgham mutaqoribain:\n\nث ذ ب م ق ك\n\nQalqalah\n\nHuruf qalqalah ada 5, yaitu:\n\nق (Qaf), ط (Tha'), ب (Ba'), ج (Jim), د (Dal).\n\nQalqalah dibagi menjadi 2, yaitu Qalqalah Shughra dan Qalqalah Kubra.\n\nQalqalah Shughra\n\nQalqalah yang matinya asli.\n\nContoh:\n\nيَقْرَأُ\nيَطْهَرُ\nيَجْعَلُ\nيَعْمَلُ\nيَبْخَلُ\nQalqalah Kubra\n\nQalqalah yang matinya mendatang disebabkan dibaca waqaf.\n\nContoh:\n\nأَحَدْ — أَحَدٌ\nخَلَقْ — خَلَقَ",
+    "jawaban": "Qalqalah\n\nHuruf qalqalah ada 5, yaitu:\n\nق (Qaf), ط (Tha'), ب (Ba'), ج (Jim), د (Dal).\n\nQalqalah dibagi menjadi 2, yaitu Qalqalah Shughra dan Qalqalah Kubra.\n\nQalqalah Shughra : Qalqalah yang matinya asli.\n\nContoh : يَقْرَأُ يَطْهَرُ يَبْخَلُ يَجْعَلُ يَدْخُلُ\nQalqalah Kubra : Qalqalah yang matinya mendatang disebabkan dibaca waqaf.\n\nContoh:\n\nأَحَدْ - أَحَدٌ, خَلَقْ - خَلَقَ",
     "jawabanImage": "/images/slides/Slide45.JPG"
   },
   {
@@ -270,7 +270,7 @@
     "kategori": "Imtihan 2025",
     "soal": "APAKAH YANG DINAMAKAN MAD FARQ? BERAPA PANJANGNYA? DAN BERIKAN CONTOHNYA!",
     "soalImage": "/images/slides/Slide46.JPG",
-    "jawaban": "MAD FARQ : MAD BADAL BERTEMU TASYDID, PANJANGNYA 3 ALIF (6 HARAKAT) CONTOH : ءَآللَّهُ",
+    "jawaban": "MAD FARQ : MAD BADAL BERTEMU TASYDID, PANJANGNYA 3 ALIF (6 HARAKAT) CONTOH : قُلْ آللَّهُ       قُلْ آلذَّكَرَيْنِ",
     "jawabanImage": "/images/slides/Slide47.JPG"
   },
   {
@@ -310,7 +310,7 @@
     "kategori": "Imtihan 2025",
     "soal": "HUKUM LAFADH ALLAH ADA BERAPA? SEBUTKAN DAN JELASKAN SECARA LENGKAP !",
     "soalImage": "/images/slides/Slide56.JPG",
-    "jawaban": "HUKUM LAFDHUL JALALAH DI BAGI 2 TAFKHIM DAN TARQIQ DIBACA TAFKHIM : JIKA LAFDHUL JALALAH DIDAHULUI HAROKAT FATHAH ATAU DLOMMAH. CONTOH TAFKHIM : اللَّهُ\nرَسُولُ اللَّهِ\nنَصْرُ اللَّهِ DIBACA TARQIQ : JIKA LAFDHUL JALALAH DIDAHULUI HAROKAT KASROH. CONTOH TARQIQ : بِاللَّهِ\nبِسْمِ اللَّهِ",
+    "jawaban": "HUKUM LAFDHUL JALALAH DI BAGI 2 TAFKHIM DAN TARQIQ DIBACA TAFKHIM : JIKA LAFADZ ALLAH DIDAHULUI HAROKAT FATHAH ATAU DLOMMAH. CONTOH TAFKHIM :وَاللهُ  نَصْرُ اللَّهِ DIBACA TARQIQ : JIKA LAFADZ ALLAH DIDAHULUI HAROKAT KASROH. CONTOH :بِاللَّهِ     بِسْمِ اللَّهِ",
     "jawabanImage": "/images/slides/Slide57.JPG"
   },
   {
@@ -318,7 +318,7 @@
     "kategori": "Imtihan 2025",
     "soal": "APA YANG DI SEBUT DENGAN ASY SYAMSIYAH ? ADA BERAPA HURUFNYA DAN BERIKAN CONTOHNYA",
     "soalImage": "/images/slides/Slide58.JPG",
-    "jawaban": "SETIAP AL BERTEMU HURUF SYAMSIYAH, HURUF SYAMSIYAH ADA 14 CONTOH ASY SYAMSIYAH : وَالتِّينِ\nالدُّنْيَا\nالصَّلَاةُ\nالشَّمْسُ\nالرَّحْمٰنُ\nالضَّالِّينَ",
+    "jawaban": "SETIAP AL BERTEMU HURUF SYAMSIYAH, HURUF SYAMSIYAH ADA 14 ت ث د ذ ر ز س ش ص ض ط ظ ل ن \n CONTOH:\n وَالتِّيْنُ الدُّنْيَا الصَّلٰوةُ وَالشَّمْسُ \n اَلرَّحْمٰنُ النِّعْمَةُ الضَّلَالُ وَالثَّمَرَاتُ",
     "jawabanImage": "/images/slides/Slide59.JPG"
   },
   {
@@ -334,7 +334,7 @@
     "kategori": "Imtihan 2025",
     "soal": "APAKAH YANG DINAMAKAN MAD BADAL? BERAPA PANJANGNYA DAN BERIKAN CONTOHNYA!",
     "soalImage": "/images/slides/Slide62.JPG",
-    "jawaban": "MAD BADAL : SETIAP AA, II, UU YANG DIBACA PANJANG PANJANGNYA SATU ALIF CONTOH : آمَنُوا\nإِيمَانًا\nأُوتُوا",
+    "jawaban": "MAD BADAL : \n SETIAP AA, II, UU YANG DIBACA PANJANG PANJANGNYA SATU ALIF \n\n CONTOH : \nاٰمَنُوْا اِيْتُوْنِيْ اُوْتِيَ",
     "jawabanImage": "/images/slides/Slide63.JPG"
   },
   {
@@ -342,7 +342,7 @@
     "kategori": "Imtihan 2025",
     "soal": "APAKAH YANG DINAMAKAN IQLAB? BERIKAN CONTOHNYA!",
     "soalImage": "/images/slides/Slide64.JPG",
-    "jawaban": "IQLAB : NUN SUKUN ATAU TANWIN BERTEMU BA' CONTOH : مِنۢ بَعْدِ\nأَنْبِئْهُمْ\nجَزَاءًۢ بِمَا\nمِنۢ بَاقِيَةٍ",
+    "jawaban": "IQLAB : NUN SUKUN ATAU TANWIN BERTEMU BA' CONTOH : مَنْ بَخِلَ    يَنْبُتُ    جَزَاءً بِمَا \n مِنْ بَاقِيَةٍ اَنْبَتَكُمْ عَوَانٌ بَيْنَ",
     "jawabanImage": "/images/slides/Slide65.JPG"
   },
   {
@@ -366,7 +366,7 @@
     "kategori": "Imtihan 2025",
     "soal": "APA YANG DINAMAKAN IDGHOM BILAGHUNNAH? BERIKAN CONTOHNYA?",
     "soalImage": "/images/slides/Slide70.JPG",
-    "jawaban": "IDGHAM BILAGHUNNAH: NUN SUKUN DAN TANWIN BERTEMU LAM DAN RA CONTOH BERTEMU LAM : مِن لَّدُنكَ\nقَلِيلٌ لِّيُصْبِحُنَّ\nلَمَّا ذِكْرُ الْعَالَمِينَ BERTEMU RA' : فَمَن رَّبِّكُمَا\nعِشْرَ رَضِيَةً\nغَفُورٌ رَّحِيمٌ",
+    "jawaban": "IDGHAM BILAGHUNNAH: NUN SUKUN DAN TANWIN BERTEMU LAM DAN RA CONTOH BERTEMU LAM :\nمِنْ لَدُنْكَ     قَلِيْلٌ لِيُصْبِحَنَّ \n لَطِيْفٌ لِمَا    ذِكْرٌ لِلْعَالَمِيْنَ\n BERTEMU RA' : فَمِنْ رَبِّكُمَا     عِيْشَةٍ رَاضِيَةٍ\n غَفُوْرٌ رَحِيْمٌ         مِنْ رَبٍّ رَحِيْمٍ",
     "jawabanImage": "/images/slides/Slide71.JPG"
   },
   {
@@ -374,7 +374,7 @@
     "kategori": "Imtihan 2025",
     "soal": "APA YANG DI SEBUT DENGAN AL QOMARIYAH ITU? SEBUTKAN BERAPAKAH HURUFNYA! BERIKAN CONTOHNYA?",
     "soalImage": "/images/slides/Slide72.JPG",
-    "jawaban": "SETIAP AL BERTEMU HURUF QOMARIYAH HURUF QOMARIYAH ADA 14 : ا ب ج ح خ ع غ ف ق ك م هـ و ي CONTOH AL QOMARIYAH : الْبَلَاغُ\nالْجَدِيدُ\nالْجُمُعَةُ\nالْخَبِيرُ\nالْوَاحِدُ\nالْفِيلُ\nالْكَبِيرُ\nالْعَزِيزُ",
+    "jawaban": "SETIAP AL BERTEMU HURUF QOMARIYAH HURUF QOMARIYAH ADA 14 : \n  ب ج ح خ ع غ ف ق ك م و هـ ء ي \n CONTOH AL QOMARIYAH :\n الْبَلَاغُ      الْحَمِيْدُ      الْجُمُعَةُ      الْخَبِيْرُ \n الْوَاحِدُ      الْفِيْلُ      الْكَبِيْرُ      الْعَزِيْزُ",
     "jawabanImage": "/images/slides/Slide73.JPG"
   },
   {
@@ -948,9 +948,9 @@
   {
     "nomor": 96,
     "kategori": "Imtihan 2025",
-    "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH BACALAH DENGAN TARTIL!",
+    "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH AYAT 120-123 BACALAH DENGAN TARTIL!",
     "soalImage": "/images/slides/Slide192.JPG",
-    "jawaban": "Surat 2 Al Baqarah ayat 120-123 4S EN ascae 28S b- VIGNE e RY AVI7 'ate oo V, COBEN SS CAB SE SHDN OS SHEN DEEPEN SATB EKA ow Cod lish aint Bc Cnr, Fd AEG 2 ANG Ve 2 Lis Pres FELANFAG MLSs lca or cll 7 395 ZINK a aE 2 mrt 2.98 28 2) PE ere CHAE MOH IIS JOR GS So EK oD. oR FANN oa COB 'V2 We Fee WES ps CE SR CoG NNO CANOE 7 29779 GALE 2 Re W 2-42 I\\ yaad OQ Sessa sas EGRESS WRU",
+    "jawaban": "Surat 2 Al Baqarah ayat 120-123\nوَلَن تَرۡضَىٰ عَنكَ ٱلۡيَهُودُ وَلَا ٱلنَّصَٰرَىٰ حَتَّىٰ تَتَّبِعَ مِلَّتَهُمۡۗ قُلۡ إِنَّ هُدَى ٱللَّهِ هُوَ ٱلۡهُدَىٰۗ وَلَئِنِ ٱتَّبَعۡتَ أَهۡوَآءَهُم بَعۡدَ ٱلَّذِي جَآءَكَ مِنَ ٱلۡعِلۡمِ مَا لَكَ مِنَ ٱللَّهِ مِن وَلِيّٖ وَلَا نَصِيرٍ\nٱلَّذِينَ ءَاتَيۡنَٰهُمُ ٱلۡكِتَٰبَ يَتۡلُونَهُۥ حَقَّ تِلَاوَتِهِۦٓ أُوْلَـٰٓئِكَ يُؤۡمِنُونَ بِهِۦۗ وَمَن يَكۡفُرۡ بِهِۦ فَأُوْلَـٰٓئِكَ هُمُ ٱلۡخَٰسِرُونَ\nيَٰبَنِيٓ إِسۡرَـٰٓءِيلَ ٱذۡكُرُواْ نِعۡمَتِيَ ٱلَّتِيٓ أَنۡعَمۡتُ عَلَيۡكُمۡ وَأَنِّي فَضَّلۡتُكُمۡ عَلَى ٱلۡعَٰلَمِينَ\nوَٱتَّقُواْ يَوۡمٗا لَّا تَجۡزِي نَفۡسٌ عَن نَّفۡسٖ شَيۡـٔٗا وَلَا يُقۡبَلُ مِنۡهَا عَدۡلٞ وَلَا تَنفَعُهَا شَفَٰعَةٞ وَلَا هُمۡ يُنصَرُونَ",
     "jawabanImage": "/images/slides/Slide193.JPG",
     "quranRef": {
       "surah": 2,
@@ -961,9 +961,9 @@
   {
     "nomor": 97,
     "kategori": "Imtihan 2025",
-    "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH BACALAH DENGAN TARTIL!",
+    "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH AYAT 142-143 BACALAH DENGAN TARTIL!",
     "soalImage": "/images/slides/Slide194.JPG",
-    "jawaban": "Surat 2 Al Baqarah Ayat 142-143 Be IISA SIG eos Ged os DS GAS SASS Ess Ba Athos Ch Woe haters SRIF JoeB in HONEA CAAA NGS EPR GyRsdah SALI SS EM GOES",
+    "jawaban": "Surat 2 Al Baqarah Ayat 142-143\n۞سَيَقُولُ ٱلسُّفَهَآءُ مِنَ ٱلنَّاسِ مَا وَلَّىٰهُمۡ عَن قِبۡلَتِهِمُ ٱلَّتِي كَانُواْ عَلَيۡهَاۚ قُل لِّلَّهِ ٱلۡمَشۡرِقُ وَٱلۡمَغۡرِبُۚ يَهۡدِي مَن يَشَآءُ إِلَىٰ صِرَٰطٖ مُّسۡتَقِيمٖ\nوَكَذَٰلِكَ جَعَلۡنَٰكُمۡ أُمَّةٗ وَسَطٗا لِّتَكُونُواْ شُهَدَآءَ عَلَى ٱلنَّاسِ وَيَكُونَ ٱلرَّسُولُ عَلَيۡكُمۡ شَهِيدٗاۗ وَمَا جَعَلۡنَا ٱلۡقِبۡلَةَ ٱلَّتِي كُنتَ عَلَيۡهَآ إِلَّا لِنَعۡلَمَ مَن يَتَّبِعُ ٱلرَّسُولَ مِمَّن يَنقَلِبُ عَلَىٰ عَقِبَيۡهِۚ وَإِن كَانَتۡ لَكَبِيرَةً إِلَّا عَلَى ٱلَّذِينَ هَدَى ٱللَّهُۗ وَمَا كَانَ ٱللَّهُ لِيُضِيعَ إِيمَٰنَكُمۡۚ إِنَّ ٱللَّهَ بِٱلنَّاسِ لَرَءُوفٞ رَّحِيمٞ",
     "jawabanImage": "/images/slides/Slide195.JPG",
     "quranRef": {
       "surah": 2,
@@ -974,9 +974,9 @@
   {
     "nomor": 98,
     "kategori": "Imtihan 2025",
-    "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH BACALAH DENGAN TARTIL!",
+    "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH AYAT 168-171 BACALAH DENGAN TARTIL!",
     "soalImage": "/images/slides/Slide196.JPG",
-    "jawaban": "Surat 2 Al Baqarah 168-171 ZG ish be Wi OEM aS 2 ODS 38 EN BO |",
+    "jawaban": "Surat 2 Al Baqarah 168-171\nيَـٰٓأَيُّهَا ٱلنَّاسُ كُلُواْ مِمَّا فِي ٱلۡأَرۡضِ حَلَٰلٗا طَيِّبٗا وَلَا تَتَّبِعُواْ خُطُوَٰتِ ٱلشَّيۡطَٰنِۚ إِنَّهُۥ لَكُمۡ عَدُوّٞ مُّبِينٌ\nإِنَّمَا يَأۡمُرُكُم بِٱلسُّوٓءِ وَٱلۡفَحۡشَآءِ وَأَن تَقُولُواْ عَلَى ٱللَّهِ مَا لَا تَعۡلَمُونَ\nوَإِذَا قِيلَ لَهُمُ ٱتَّبِعُواْ مَآ أَنزَلَ ٱللَّهُ قَالُواْ بَلۡ نَتَّبِعُ مَآ أَلۡفَيۡنَا عَلَيۡهِ ءَابَآءَنَآۚ أَوَلَوۡ كَانَ ءَابَآؤُهُمۡ لَا يَعۡقِلُونَ شَيۡـٔٗا وَلَا يَهۡتَدُونَ\nوَمَثَلُ ٱلَّذِينَ كَفَرُواْ كَمَثَلِ ٱلَّذِي يَنۡعِقُ بِمَا لَا يَسۡمَعُ إِلَّا دُعَآءٗ وَنِدَآءٗۚ صُمُّۢ بُكۡمٌ عُمۡيٞ فَهُمۡ لَا يَعۡقِلُونَ",
     "jawabanImage": "/images/slides/Slide197.JPG",
     "quranRef": {
       "surah": 2,
@@ -987,17 +987,27 @@
   {
     "nomor": 99,
     "kategori": "Imtihan 2025",
-    "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH BACALAH DENGAN TARTIL!",
+    "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH AYAT 177 BACALAH DENGAN TARTIL!",
     "soalImage": "/images/slides/Slide198.JPG",
-    "jawaban": "CES Rts BS 9 cls coy GE AINE M5 AGS EN ES ANN Gs GAS ORM soODINEI0 Cis]",
-    "jawabanImage": "/images/slides/Slide199.JPG"
+    "jawaban": "Surat 2 Al Baqarah Ayat 177\n۞لَّيۡسَ ٱلۡبِرَّ أَن تُوَلُّواْ وُجُوهَكُمۡ قِبَلَ ٱلۡمَشۡرِقِ وَٱلۡمَغۡرِبِ وَلَٰكِنَّ ٱلۡبِرَّ مَنۡ ءَامَنَ بِٱللَّهِ وَٱلۡيَوۡمِ ٱلۡأٓخِرِ وَٱلۡمَلَـٰٓئِكَةِ وَٱلۡكِتَٰبِ وَٱلنَّبِيِّـۧنَ وَءَاتَى ٱلۡمَالَ عَلَىٰ حُبِّهِۦ ذَوِي ٱلۡقُرۡبَىٰ وَٱلۡيَتَٰمَىٰ وَٱلۡمَسَٰكِينَ وَٱبۡنَ ٱلسَّبِيلِ وَٱلسَّآئِلِينَ وَفِي ٱلرِّقَابِ وَأَقَامَ ٱلصَّلَوٰةَ وَءَاتَى ٱلزَّكَوٰةَ وَٱلۡمُوفُونَ بِعَهۡدِهِمۡ إِذَا عَٰهَدُواْۖ وَٱلصَّـٰبِرِينَ فِي ٱلۡبَأۡسَآءِ وَٱلضَّرَّآءِ وَحِينَ ٱلۡبَأۡسِۗ أُوْلَـٰٓئِكَ ٱلَّذِينَ صَدَقُواْۖ وَأُوْلَـٰٓئِكَ هُمُ ٱلۡمُتَّقُونَ",
+    "jawabanImage": "/images/slides/Slide199.JPG",
+    "quranRef": {
+      "surah": 2,
+      "surahName": "Al-Baqarah",
+      "ayat": "177"
+    }
   },
   {
     "nomor": 100,
     "kategori": "Imtihan 2025",
-    "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH BACALAH DENGAN TARTIL!",
+    "soal": "BUKA AL-QUR'AN SURAT 2 AL BAQARAH AYAT 247-248 BACALAH DENGAN TARTIL!",
     "soalImage": "/images/slides/Slide200.JPG",
-    "jawaban": "وَقَالَ لَهُمْ نَبِيُّهُمْ إِنَّ اللَّهَ قَدْ بَعَثَ لَكُمْ طَالُوتَ مَلِكًا ۖ قَالُوا أَنَّىٰ يَكُونُ لَهُ الْمُلْكُ عَلَيْنَا وَنَحْنُ أَحَقُّ بِالْمُلْكِ مِنْهُ وَلَمْ يُؤْتَ سَعَةً مِنَ الْمَالِ ۚ قَالَ إِنَّ اللَّهَ اصْطَفَاهُ عَلَيْكُمْ وَزَادَهُ بَسْطَةً فِي الْعِلْمِ وَالْجِسْمِ ۖ وَاللَّهُ يُؤْتِي مُلْكَهُ مَن يَشَاءُ ۗ وَاللَّهُ وَاسِعٌ عَلِيمٌ",
-    "jawabanImage": "/images/slides/Slide201.JPG"
+    "jawaban": "Surat 2 Al Baqarah Ayat 247-248\nوَقَالَ لَهُمۡ نَبِيُّهُمۡ إِنَّ ٱللَّهَ قَدۡ بَعَثَ لَكُمۡ طَالُوتَ مَلِكٗاۚ قَالُوٓاْ أَنَّىٰ يَكُونُ لَهُ ٱلۡمُلۡكُ عَلَيۡنَا وَنَحۡنُ أَحَقُّ بِٱلۡمُلۡكِ مِنۡهُ وَلَمۡ يُؤۡتَ سَعَةٗ مِّنَ ٱلۡمَالِۚ قَالَ إِنَّ ٱللَّهَ ٱصۡطَفَىٰهُ عَلَيۡكُمۡ وَزَادَهُۥ بَسۡطَةٗ فِي ٱلۡعِلۡمِ وَٱلۡجِسۡمِۖ وَٱللَّهُ يُؤۡتِي مُلۡكَهُۥ مَن يَشَآءُۚ وَٱللَّهُ وَٰسِعٌ عَلِيمٞ\nوَقَالَ لَهُمۡ نَبِيُّهُمۡ إِنَّ ءَايَةَ مُلۡكِهِۦٓ أَن يَأۡتِيَكُمُ ٱلتَّابُوتُ فِيهِ سَكِينَةٞ مِّن رَّبِّكُمۡ وَبَقِيَّةٞ مِّمَّا تَرَكَ ءَالُ مُوسَىٰ وَءَالُ هَٰرُونَ تَحۡمِلُهُ ٱلۡمَلَـٰٓئِكَةُۚ إِنَّ فِي ذَٰلِكَ لَأٓيَةٗ لَّكُمۡ إِن كُنتُم مُّؤۡمِنِينَ",
+    "jawabanImage": "/images/slides/Slide201.JPG",
+    "quranRef": {
+      "surah": 2,
+      "surahName": "Al-Baqarah",
+      "ayat": "247-248"
+    }
   }
 ]

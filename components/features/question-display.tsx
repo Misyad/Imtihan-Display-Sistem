@@ -37,6 +37,7 @@ export const QuestionDisplay = ({
 
   const hasQuranRef = questionData?.quranRef && showAnswer;
   const showQuranPanel = hasQuranRef && (showQuranRef || localShowQuran);
+  const minFontSize = layout === "overlay" ? 8 : 14;
 
   return (
     <>
@@ -74,7 +75,7 @@ export const QuestionDisplay = ({
                   className="font-bold leading-tight text-white tracking-tight"
                   align={layout === "full" ? "center" : "left"}
                   maxSize={layout === "full" ? 72 : 44}
-                  minSize={14}
+                  minSize={minFontSize}
                 >
                   <QuestionText text={questionData.soal} />
                 </AutoScaleText>
@@ -98,7 +99,7 @@ export const QuestionDisplay = ({
                 <AutoScaleText
                   className="font-black text-amber-950 tracking-tight"
                   maxSize={layout === "full" ? 128 : 72}
-                  minSize={14}
+                  minSize={minFontSize}
                 >
                   <QuestionText text={questionData?.jawaban || "MUMTAZ"} />
                 </AutoScaleText>
