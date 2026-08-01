@@ -219,12 +219,9 @@ export default function InteractivePage() {
                                   {currentQuestionData?.kategori || "UMUM"}
                               </StatusBadge>
 
-                              <div className="relative">
-                                  <div className="absolute -inset-20 bg-emerald-500/10 rounded-full blur-[100px]" />
-                                  <h1 className="relative text-7xl sm:text-9xl md:text-[12rem] lg:text-[15rem] font-black leading-none tracking-tighter text-white drop-shadow-2xl italic">
-                                    {activeQuestion?.toString().padStart(2, '0')}
-                                  </h1>
-                              </div>
+                              <StatusBadge icon={<BookOpen />} variant="emerald">
+                                  Soal {activeQuestion?.toString().padStart(2, '0')}
+                              </StatusBadge>
 
                               <div dir="auto" className="w-full flex-1 min-h-0 max-w-4xl px-2">
                                   <AutoScaleText

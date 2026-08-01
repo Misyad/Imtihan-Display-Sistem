@@ -6,6 +6,7 @@ import { useQuestionStore } from "@/lib/store";
 import { BookOpen, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AutoScaleText } from "@/components/ui/auto-scale-text";
+import { StatusBadge } from "@/components/ui/status-badge";
 
 export default function ObsSplitPage() {
   const { activeProfileId, profiles, activeQuestion, showAnswer } = useQuestionStore();
@@ -66,12 +67,11 @@ export default function ObsSplitPage() {
                     </p>
                  </div>
               </div>
-              <div className="text-right">
-                 <span className="text-[10px] sm:text-xs font-black text-display-muted uppercase tracking-[0.3em] block">No. Soal</span>
-                 <span className="text-5xl font-black text-amber-400 italic">
-                    {activeQuestion?.toString().padStart(2, '0') || "--"}
-                 </span>
-              </div>
+               <div className="text-right">
+                  <StatusBadge variant="amber">
+                     Soal {activeQuestion?.toString().padStart(2, '0') || "--"}
+                  </StatusBadge>
+               </div>
            </motion.div>
 
            <div className="relative h-[70vh] flex items-center justify-center p-12 rounded-[3.5rem] bg-zinc-900/50 backdrop-blur-3xl border border-white/10 shadow-2xl overflow-hidden">
