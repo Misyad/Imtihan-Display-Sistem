@@ -70,7 +70,7 @@ export function AutoScaleText({
       <div
         ref={innerRef}
         className={cn(
-          "my-auto min-w-0 max-w-full whitespace-pre-line break-words",
+          "my-auto min-w-0 max-w-full whitespace-pre-line break-words [&_.arabic-text]:leading-[1.5]",
           align === "left" ? "text-left" : "text-center",
           className
         )}
